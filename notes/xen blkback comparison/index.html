@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Comparison between XCP linux 2.6.32 and linux 3.0 blkback</title>
+<link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<body>
+
+<h1>Comparison between XCP linux 2.6.32 and linux 3.0 blkback</h1>
+<p>
+This is an attempt to describe the differences -- from a toolstack point
+of view -- between the &quot;classic xen&quot; blkback used in XCP and
+the upstream blkback in linux 3.0. In particular I attempt the answer the
+questions:
+<p>
+<ol>
+<li> if xapi switched over to a &quot;traditional&quot; udev script (where &quot; traditional &quot; in this context means: where the toolstack writes the &quot;params&quot; xenstore key and then the udev script writes the &quot;physical-device&quot; key), will it work with the existing XCP kernel?
+<li> if xapi uses the traditional disk hot unplug mechanism (instead of the &quot;shutdown-request&quot;) mechanism, will it work with the existing XCP kernel?
+<li> if xapi uses the same migrate disk handling as libxl, will it work with the existing XCP kernel?
+<li> if xapi runs on an upstream 3.0 kernel, what features are lost?
+</ol>
+
+<h1> Code locations </h1>
+The toolstack-relevant portions of blkback are here:
+<ul>
+<li>linux-2.6.32/drivers/xen/blkback/xenbus.c
+<li>linux-3.0/drivers/block/xen-blkback/xenbus.c
+</ul>
+
+<h1> Initialisation code </h1>
+Comparing 3.0 xen_blkback_probe with 2.6.32 blkback_probe:
+<ul>
+<li> 2.6.32 calls xenvbd_sysfs_addif to populate sysfs early
+<li> 2.6.32 registers a watch on &quot;shutdown-request&quot; with callback start_shutdown
+<li> 2.6.32 registers a watch on &quot;pause&quot; with callback backend_pause
+<li> 2.6.32 writes &quot;max-ring-page-order&quot;
+</ul>
+
+The backend/frontend handshake code is event driven, via the functions
+backend_changed and frontend_changed.
+
+Comparing 3.0 frontend_changed with 2.6.32 frontend_changed:
+<ul>
+<li> 2.6.32 only reconnects if the state isn't Connected or Closing (?)
+<li> 2.6.32 will call blkif_bdev_reopen: possibly to make pause/resize/unpause work
+</ul>
+
+Comparing a 3.0 backend_changed with a 2.6.32 backend_changed:
+<ul>
+<li> 3.0 creates sysfs nodes only when physical-device is read
+<li> 2.6.32 writes feature-barrier
+</ul>
+
+<h1> Pause/unpause code </h1>
+
+The pause/unpause functions were added in XCP blktap1 to support online snapshot. They were added to blkback to support online resize, where the unpause would trigger a refresh of the disk size information in the windows frontend.
+
+Online resize was never made into a first-class feature of XCP, so we don't have to worry about loosing pause/unpause.
+
+<h1> Shutdown protocols </h1>
+
+There are two kinds of device shutdowns:
+<ol>
+<li>hot-unplug
+<li>on domain destruction
+</ol>
+In the XCP blkback the two protocols are:
+<ol>
+<li> xapi writes backend/shutdown-request=normal (or =force for domain destruction)
+<li> blkback shuts down
+<li> blkback unregisters devices
+<li> blkback writes backend/shutdown-done
+<li> udev script runs
+</ol>
+In the upstream tools in the hot unplug case:
+<ol>
+<li> libxl writes backend/state=5 (closing)
+<li> blkback shuts down
+<li> udev script runs
+</ol>
+and the domain destruction case
+<ol>
+<li> libxl removes the frontend tree
+<li> blkback shuts down
+<li> udev script runs>
+</ol>
+In the start_shutdown function (called on receipt of &quot;shutdown-request&quot; watches), it calls blkback_queue_stop(be, 1, force=0) which sets the backend state to closing (5). When the frontend closes (6), frontend_changed will set the backend to closed (6) and then call blkback_queue_stop(be, 1, force=1). Since the first blkback_queue_stop(be, 1, force=0) only sets the backend state to closing (5) it would be safe for xapi to do this itself.
+
+In the case of a &quot;shutdown-request=force&quot; if xapi were to delete the frontend then the frontend_changed function would be called with the state XenbusStateUnknown. This would call device_unregister() which would tear everything down.
+<h1> Summary </h1>
+<ol>
+<li> Can xapi switch to a traditional udev script (with params instead of physical-device): yes
+<li> Can xapi switch to the upstream protocols for hotplug: yes
+<li> Can xapi switch to the upstream protocols for domain shutdown: yes
+<li> If xapi runs on a 3.0 kernel, what features are lost: multi-ring support, feature-barrier
+</body>
+</html>

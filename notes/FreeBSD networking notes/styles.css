@@ -1,0 +1,171 @@
+body {
+   margin-top: 10px;
+   margin-left: 10px;
+   margin-right: 10px;
+%   background-image: url(/images/graphpaper.gif);
+}
+
+#main {
+   margin-left: 12px;
+   margin-right: 12px;
+   line-height: 120%;
+}
+
+P.indent {
+	   margin-left: 0.5in;
+	   margin-right: 0.5in;
+	  }
+
+P.buttons {
+	font-size: 8pt;
+}
+
+
+p.title {
+      font-family: times,serif;
+      color: #ffffff;
+      font-size: 18pt;
+      margin-top: 1pt;
+      margin-bottom: 3pt;
+      font-weight: bold;
+}
+
+p.supertitle {
+      font-family: arial,helvetica,sans-serif;
+      color: #ffffff;
+      font-size: 12pt;
+      margin-top: 3pt;
+      margin-bottom: 1pt;
+}
+
+H1   {
+      font-size: 15pt;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      color: #000000;
+}
+
+H2   {
+      font-size: 14pt;
+      font-family: Arial,Helvetica,sans-serif;
+      font-weight: bold;
+      color: #00506E;
+ }
+
+H3 {
+      font-size: 11pt;
+      font-family: Arial,Helvetica,sans-serif;
+      color: #404080;
+}
+
+H4 {
+      font-size: 10pt;
+      font-family: Arial,Helvetica,sans-serif;
+      color: #000040;
+}
+
+
+A {
+	text-decoration: none; 
+}
+
+A:link
+{
+	color: #246DFF;
+}
+
+A:visited
+{
+	color: #246DFF;
+}
+
+A:hover
+{
+	color: #FF0000;
+}
+
+
+A.header {
+	color: #99ccff; 
+	font-family: arial,helvetica,sans-serif; 
+	text-decoration: none; 
+	font-weight: normal;
+}
+
+A.header:visited {
+	color:#99ccff; 
+}
+
+A.header:hover {
+	color:#ffcc66; 
+}
+
+A.header:link {
+	color:#99ccff; 
+}
+
+tt.path {
+%	color: #007a00;
+      color: #00506E;
+
+}
+
+tt.code {
+	color: #007a00;
+	font-weight: bold;
+}
+
+
+pre.code {
+        color: #007a00;
+        background-color: #ddffdd;
+	margin-left: 3ex;
+	font-weight: bold;
+}
+
+.PROMPT {
+	font-weight: bold;
+}
+
+table.form th {
+	text-align: left;
+}
+
+
+table.table {
+        border-collapse: collapse;
+        border: solid;
+        border-width: 2px;
+        empty-cells: show;
+        align: center;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+table.table th {
+        border: solid;
+        border-width: 1px;
+        background-color: #eeeeff;
+        vertical-align: top;
+        padding: 5px;
+}
+
+table.table td {
+        border: solid;
+        border-width: 1px;
+        vertical-align: top;
+        padding: 5px;
+}
+
+table.table td.divider {
+        border: solid;
+        border-width: 1px;
+        font-size: x-small;
+        font-weight: bold;
+        font-variant: small-caps;
+        text-align: center;
+        background-color: #eeeeff;
+        vertical-align: top;
+        padding: 5px;
+}
+

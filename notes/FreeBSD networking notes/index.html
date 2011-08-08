@@ -1,0 +1,360 @@
+<html>
+<head>
+<title>Notes on FreeBSD networking (under 5.1-RELEASE)</title>
+<link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<body>
+
+<h1>Notes on FreeBSD networking (under 5.1-RELEASE)</h1>
+
+<p>
+This is an attempt to describe, at a very basic level, what sequences of
+events occur when a FreeBSD host sends and receives network packets. This
+document is based mostly on reading the source code and referencing the book,
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0201549794/104-7175099-8357501?vi=glance">
+"Design and Implementation of the 4.4 BSD Operating System"</a>. This document
+is bound to contain errors for which I apologise in advance!
+</p>
+
+<h2>Some quick background facts</h2>
+
+<p>
+The FreeBSD base system source code is in the directory
+<tt class="path">/usr/src</tt> on a FreeBSD box. The kernel is in the
+directory <tt class="path">/usr/src/sys</tt>. All paths in this document
+are relative to the kernel source directory.
+</p>
+
+<p>
+The kernel source tree has a number of sub-directories. Important ones are:
+<table class="table">
+<tr><td>Directory</td><td>Contains</td></tr>
+<tr><td>sys/</td><td>Lots of system header files (which get installed to
+<tt class="path">/usr/include/sys</tt> and form the basis of the
+kernel<->user interface</td></tr>
+<tr><td>net/</td><td>Code for network device types (e.g. ethernet, atm, ppp
+etc)</td></tr>
+<tr><td>dev/</td><td>Device drivers (e.g. for RAID support)</td><tr>
+<tr><td>pci/</td><td>PCI Device drivers (e.g. most network cards)</td></tr>
+<tr><td>netinet/</td><td>Code for the Internet Protocols</td></tr>
+<tr><td>kern/</td><td>Low-level kernel stuff (memory, syscalls etc)</td></tr>
+</table>
+</p>
+
+<p>
+Useful links:
+<ul>
+<li> The <a
+href="http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/">FreeBSD
+handbook</a> containts lots of useful info including installation,
+compiling kernels etc.
+<li> The <a 
+href="http://www.freebsd.org/doc/en_US.ISO8859-1/books/developers-handbook/">
+FreeBSD Developers handbook</a> has some stuff about kernel hacking.
+<li> The Daemonnews article on
+<a href="http://www.daemonnews.org/200010/blueprints.html">
+writing FreeBSD kernel modules</a> is good.
+<li> The Daemonnews article on 
+<a href="http://www.daemonnews.org/200003/netgraph.html">Netgraph</a>
+is interesting (although not needed for this discussion).
+</ul>
+</p>
+
+<h2>In the beginning: receiving an ethernet frame</h2>
+
+<p>
+The ethernet hardware will receive a frame, check it's CRC and place it in
+memory somewhere. The driver will notice either when it polls the device
+status some time later of when notified via interrupt.
+</p>
+
+<p>
+For example, consider the RealTek 8129/8139 driver in
+<tt class="path">pci/if_rl.c</tt>:
+</p>
+
+<pre class="code">
+...
+rl_rxeof(sc)
+        struct rl_softc         *sc;
+{
+        struct mbuf             *m;
+        struct ifnet            *ifp;
+...
+
+        ifp->if_ipackets++;
+        (*ifp->if_input)(ifp, m);
+
+        return;
+}
+</pre>
+
+<p>
+The <tt class="code">struct mbuf</tt> is the entity which holds the data
+received from the network. <tt class="code">mbuf</tt>s are fixed size
+chunks (fixed size to help prevent memory fragmentation) and can be easily
+chained together to represent larger pieces of data. There are a number of
+programmatic idioms for managing <tt class="code">mbufs</tt> which will be
+described later.
+</p>
+
+<p>
+The <tt class="code">struct ifnet</tt> (defined in <tt
+class="path">net/if_var.h</tt> represents the network device to the
+system. The structure contains information like the interface name, state
+of the interface (up/down, broadcast), information about the device's
+capabilities (e.g. some devices are able to support larger-than-normal
+ethernet vlan frames while others cannot) and a bunch of function
+pointers. Many kernel entities are generic structs containing function
+pointers; rather like virtual base classes in C++. A specific network type
+(such as ethernet) will point its <tt class="code">struct ifnet</tt>
+function pointers to the appropriate ethernet functions. Of particular
+interest to us are:
+<table class="table">
+<tr><td>struct ifnet member</td><td>arguments</td><td>points to</td></tr>
+<tr><td>if_output</td><td>struct ifnet *, struct mbuf *, struct sockaddr *
+struct rtentry *</td><td>net/if_ethersubr.c:ether_output</td></tr>
+<tr><td>if_input</td><td>struct ifnet *, struct mbuf *</td>
+<td>net/if_ethersubr.c:ether_input</td></tr>
+</table>
+</p>
+
+<h2>Processing ethernet frames</h2>
+
+<p>
+In our case, the call to <tt class="code">(*ifp->if_input)(ifp, m)</tt> 
+leads to <tt class="path">net/if_ethersubr.c</tt> and the function
+<tt class="code">ether_input(struct ifnet *, struct mbuf *)</tt>. The
+function looks like the following:
+</p>
+<pre class="code">
+ether_input(struct ifnet *ifp, struct mbuf *m)
+{
+        struct ether_header *eh;
+        u_short etype;
+        ...
+</pre>
+<p class="aside">
+The <tt class="code">struct ether_header</tt> type is defined in 
+<tt class="path">net/ethernet.h</tt> as:
+<pre class="code">
+struct  ether_header {
+        u_char  ether_dhost[ETHER_ADDR_LEN];
+        u_char  ether_shost[ETHER_ADDR_LEN];
+        u_short ether_type;
+};
+</pre>
+</p>
+
+<p>
+The <tt class="code">ether_input</tt> function contines with a couple of
+sanity checks and then
+<pre class="code">
+      ...
+      eh = mtod(m, struct ether_header *);
+      etype = ntohs(eh->ether_type);
+      ...
+</pre>
+The <tt class="code">mtod</tt> macro (defined in <tt
+class="path">sys/mbuf.h</tt>) takes an mbuf and returns a pointer to the
+data portion of the <tt class="code">mbuf</tt> nicely cast to the correct
+type. Since we've received an ethernet frame, we expect the initial part of
+the data to be an ethernet header. The <tt class="code">ntohs</tt> function
+performs network to host endianness conversion.
+</p>
+
+<p>
+After a few more sanity checks the <tt class="code">ether_input</tt>
+function passes the <tt class="code">mbuf</tt> pointer to the Berkeley
+Packet Filters (BPF):
+<pre class="code">
+        ...
+        BPF_MTAP(ifp, m);
+        ...
+</pre>
+</p>
+
+<p>
+Shortly later, the ethernet frame is passed to the "netgraph" ethernet
+module, if the module has been loaded.
+<pre class="code">
+      ...
+      /* Handle ng_ether(4) processing, if any */
+      if (ng_ether_input_p != NULL) {
+              (*ng_ether_input_p)(ifp, &m);
+              if (m == NULL)
+                      return;
+      }
+      ...
+</pre>
+<tt class="code">ng_ether_input_p</tt> is a function pointer defined in
+global scope in the <tt class="path">net/if_ethersubr.c</tt> file. When the
+netgraph module is loaded it registers itself by assigning this function
+pointer to point to it's own input routine. Using function pointers as
+hooks is a common pattern in the network stack. If you want to add extra
+processing to the stack this is a fairly non-invasive way of doing it.
+</p>
+
+<p>
+Next the routine considers any possible bridging actions:
+<pre class="code">
+       ...
+       /* Check for bridging mode */
+       if (BDG_ACTIVE(ifp) ) {
+       ...
+       }
+       ...
+</pre>
+before finally calling the ethernet demultiplexing routine
+<pre class="code">
+       ...
+       ether_demux(ifp, m);
+       ...
+}
+</pre>
+
+<h2>Demultiplexing ethernet frames</h2>
+
+<p>
+In the same file (<tt class="path">net/if_ethersubr.c</tt>) control
+proceeds to the function
+<pre class="code">
+void
+ether_demux(struct ifnet *ifp, struct mbuf *m)
+{
+        struct ether_header *eh;
+        int isr;
+        ...
+        eh = mtod(m, struct ether_header *);
+        ...
+</pre>
+</p>
+
+<p>
+After a few sanity checks and stats gathering functions we examine the type
+of ethernet frame:
+<pre class="code">
+        ...
+        ether_type = ntohs(eh->ether_type);
+        ...
+ 
+        /*
+         * Handle protocols that expect to have the Ethernet header
+         * (and possibly FCS) intact.
+         */
+        switch (ether_type) {
+        case ETHERTYPE_VLAN:
+        ...
+        }
+
+	...
+        /* Strip off Ethernet header. */
+        m_adj(m, ETHER_HDR_LEN);
+        ...
+
+        switch (ether_type) {
+        case ETHERTYPE_IP:
+                if (ipflow_fastforward(m))
+                        return;
+                isr = NETISR_IP;
+                break;
+        case ETHERTYPE_ARP:
+        ...
+</pre>
+Note that the type fields are all defined in <tt
+class="path">net/ethernet.h</tt> (these are all IEEE standard numbers).
+The function <tt class="code">m_adj</tt> increments the <tt class="code">
+mbuf</tt> start-of-data pointer to point to the data immediately after the
+ethernet header.
+</p>
+
+<p>
+Consider what happens if the <tt class="code">ether_type</tt> is <tt
+class="code">ETHERTYPE_IP</tt> and the packet contains an IP packet (so the
+data after the ethernet header is an IP header).
+The function <tt class="code">ipflow_fastforward</tt>
+defined in <tt class="path">netinet/ip_flow.c</tt> exists to speed up
+forwarding of IP datagrams. It returns 0 (for example) if the system is not
+a router. Returning to <tt class="code">ether_demux</tt>, after the <tt
+class="code">ether_type</tt> switch the control passes to the code
+<pre class="code">
+        ...
+        netisr_dispatch(isr, m);
+        return;
+</pre>
+</p>
+
+<p>
+The file <tt class="path">net/netisr.c</tt> defines the function
+<tt class="code">netisr_dispatch</tt>:
+<pre class="code">
+void
+netisr_dispatch(int num, struct mbuf *m)
+{
+        struct netisr *ni;
+
+        isrstat.isrs_count++;
+        KASSERT(!(num < 0 || num >= (sizeof(netisrs)/sizeof(*netisrs))),
+            ("bad isr %d", num));
+        ni = &netisrs[num];
+        if (ni->ni_queue == NULL) {
+                m_freem(m);
+                return;
+        }
+        ...
+</pre>
+This function looks up the <tt class="code">struct netisr</tt> for the
+particular protocol. There is an array of these structs defined at the top
+of the file:
+<pre class="code">
+struct netisr {
+        netisr_t        *ni_handler;
+        struct ifqueue  *ni_queue;
+} netisrs[32];
+</pre>
+Supported protocols must register themselves (via 
+<tt class="code">netisr_register</tt>) in advance. The dispatch function
+makes an initial attempt to process the packet immediately and falls back
+to queueing if this is not possible. The <tt class="code">netisr_queue</tt>
+function is simpler and only queues the packets.
+Note that in both cases, the <tt class="code">schednetisr</tt> function is
+called. This tells the kernel that some processing needs to be done later
+and lets the function return. I think that the functions up to know have
+been running at high priority from an interrupt handler whereas most
+complex protocol processing happens with interrupts reenabled, by another
+part of the kernel.
+</p>
+
+<h2>Processing at the IP level</h2>
+
+<p>
+The file <tt class="path">netinet/ip_input.c</tt> has the following
+code:
+<pre class="code">
+static struct   ifqueue ipintrq;
+...
+void
+ip_init()
+{
+        ...
+        netisr_register(NETISR_IP, ip_input, &ipintrq);
+}
+</pre>
+This function is called early on during system boot to register the
+function <tt class="code">ip_input</tt> and the packet queue
+<tt class="code">struct ifqueue ipintrq</tt> with the netisr system.
+</p>
+
+<p>
+The function <tt class="code">ip_input</tt> function looks much like the
+<tt class="code">ether_demux</tt> function we saw earlier. It does lots of
+sanity checks, grabs the IP header from the mbuf and demultiplexes the
+packet to the appropriate IP protocol handler.
+</p>
+
+<h2>To be continued...</h2>
+
+<hr>
+<p align="right">Written by David Scott</p>
+</body>
+</html>
