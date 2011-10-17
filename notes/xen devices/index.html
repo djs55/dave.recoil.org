@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Xen Devices</title>
+</head>
+<body>
+This information is based on the
+<a href="">Mirage tutorial</a>
+given at
+<a href="">CUFP 2011</a>
+by
+<a href="">Anil Madhavapeddy</a>.
+<a href="">David Scott</a> and
+<a href="">Thomas Gazagnaire</a>.
+
+<h1>The Primitives</h1>
+Xen devices are built from the following low-level primitives:
+
+<h2> Memory pages </h2>
+These are the basic unit of memory exposed to guests. Note that xen supports pages of different sizes (see <a href="">superpages</a>) but for the rest of this article I will talk about 4KiB pages.
+
+<h2> Grants </h2>
+Xen allows guests to grant read-only or read-write access to other guests. This allows memory to be moved or shared between guests.
+
+Grants are stored in <emph>Grant tables</emph> which are blocks of memory with a special format. These tables are shared between the Guests and Xen.
+
+References:
+<ul>
+<li> <a href="http://xenbits.xen.org/hg/xen-4.1-testing.hg/file/3f8fb62436e6/xen/include/public/grant_table.h">xen-4.1-testing.hg:xen/include/public/grant_table.h</a>
+<li> <a href="https://github.com/avsm/mirage/blob/master/lib/os/runtime_xen/kernel/gnttab_stubs.c">mirage:lib/os/runtime_xen/kernel/gnttab_stubs.c</a>
+</ul>
+
+<h2> Event channels</h2>
+An event channel is a mechanism to signal a remote domain, which looks similar to a hardware interrupt. Event channels are typically used to signal when fresh data is available in some shared memory pages.
+
+References:
+<ul>
+<li><a href="http://xenbits.xen.org/hg/xen-4.1-testing.hg/file/3f8fb62436e6/xen/include/public/event_channel.h">xen-4.1-testing:xen/include/public/event_channel.h</a>
+<li><a href="https://github.com/avsm/mirage/blob/master/lib/os/xen/evtchn.mli">mirage:lib/os/xen/evtchn.mli</a>
+</ul>
+
+
+
+
+</body>
