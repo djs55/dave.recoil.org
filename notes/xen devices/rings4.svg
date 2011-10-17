@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   viewBox="-9.3464565 21.653543 544.69287 475.69293"
+   width="544.69287pt"
+   height="475.69293pt"
+   id="svg4706"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="rings4.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="960"
+     inkscape:window-height="652"
+     id="namedview4890"
+     showgrid="false"
+     inkscape:zoom="0.44062039"
+     inkscape:cx="340.43304"
+     inkscape:cy="297.30807"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4706" />
+  <metadata
+     id="metadata4708">
+    <dc:date>2011-09-21 09:03Z</dc:date>
+    <!-- Produced by OmniGraffle Professional 5.3.2 -->
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4710">
+    <font-face
+       font-family="Helvetica"
+       font-size="17"
+       units-per-em="1000"
+       underline-position="-75.683594"
+       underline-thickness="49.316406"
+       slope="0"
+       x-height="532.22656"
+       cap-height="719.72656"
+       ascent="770.01953"
+       descent="-229.98047"
+       font-weight="bold"
+       id="font-face4712">
+      <font-face-src
+         id="font-face-src4714">
+        <font-face-name
+           name="Helvetica-Bold"
+           id="font-face-name4716" />
+      </font-face-src>
+    </font-face>
+    <font-face
+       font-family="Helvetica"
+       font-size="15"
+       units-per-em="1000"
+       underline-position="-75.683594"
+       underline-thickness="49.316406"
+       slope="0"
+       x-height="522.94922"
+       cap-height="717.28516"
+       ascent="770.01953"
+       descent="-229.98045"
+       font-weight="500"
+       id="font-face4718">
+      <font-face-src
+         id="font-face-src4720">
+        <font-face-name
+           name="Helvetica"
+           id="font-face-name4722" />
+      </font-face-src>
+    </font-face>
+    <font-face
+       font-family="Helvetica"
+       font-size="15"
+       units-per-em="1000"
+       underline-position="-75.683594"
+       underline-thickness="49.316406"
+       slope="0"
+       x-height="532.22656"
+       cap-height="719.72656"
+       ascent="770.01953"
+       descent="-229.98045"
+       font-weight="bold"
+       id="font-face4724">
+      <font-face-src
+         id="font-face-src4726">
+        <font-face-name
+           name="Helvetica-Bold"
+           id="font-face-name4728" />
+      </font-face-src>
+    </font-face>
+    <marker
+       orient="auto"
+       overflow="visible"
+       markerUnits="strokeWidth"
+       id="FilledArrow_Marker"
+       viewBox="-1 -4 10 8"
+       markerWidth="10"
+       markerHeight="8"
+       color="black">
+      <g
+         id="g4731">
+        <path
+           d="M 8 0 L 0 -3 L 0 3 Z"
+           fill="currentColor"
+           stroke="currentColor"
+           stroke-width="1"
+           id="path4733" />
+      </g>
+    </marker>
+    <font-face
+       font-family="Helvetica"
+       font-size="14"
+       units-per-em="1000"
+       underline-position="-75.683594"
+       underline-thickness="49.316406"
+       slope="0"
+       x-height="522.94922"
+       cap-height="717.28516"
+       ascent="770.01953"
+       descent="-229.98047"
+       font-weight="500"
+       id="font-face4735">
+      <font-face-src
+         id="font-face-src4737">
+        <font-face-name
+           name="Helvetica"
+           id="font-face-name4739" />
+      </font-face-src>
+    </font-face>
+    <marker
+       orient="auto"
+       overflow="visible"
+       markerUnits="strokeWidth"
+       id="FilledArrow_Marker_2"
+       viewBox="-1 -3 6 6"
+       markerWidth="6"
+       markerHeight="6"
+       color="#3d0a27">
+      <g
+         id="g4742">
+        <path
+           d="M 3.7333333 0 L 0 -1.4 L 0 1.4 Z"
+           fill="currentColor"
+           stroke="currentColor"
+           stroke-width="1"
+           id="path4744" />
+      </g>
+    </marker>
+    <font-face
+       font-family="Helvetica"
+       font-size="13"
+       units-per-em="1000"
+       underline-position="-75.683594"
+       underline-thickness="49.31641"
+       slope="0"
+       x-height="532.22656"
+       cap-height="719.72662"
+       ascent="770.0196"
+       descent="-229.98048"
+       font-weight="bold"
+       id="font-face4746">
+      <font-face-src
+         id="font-face-src4748">
+        <font-face-name
+           name="Helvetica-Bold"
+           id="font-face-name4750" />
+      </font-face-src>
+    </font-face>
+    <marker
+       orient="auto"
+       overflow="visible"
+       markerUnits="strokeWidth"
+       id="FilledArrow_Marker_3"
+       viewBox="-5 -3 6 6"
+       markerWidth="6"
+       markerHeight="6"
+       color="#16521d">
+      <g
+         id="g4753">
+        <path
+           d="M -3.7333333 0 L 0 1.4 L 0 -1.4 Z"
+           fill="currentColor"
+           stroke="currentColor"
+           stroke-width="1"
+           id="path4755" />
+      </g>
+    </marker>
+    <font-face
+       font-family="Helvetica"
+       font-size="14"
+       units-per-em="1000"
+       underline-position="-75.683594"
+       underline-thickness="49.316406"
+       slope="0"
+       x-height="532.22656"
+       cap-height="719.72656"
+       ascent="770.01953"
+       descent="-229.98047"
+       font-weight="bold"
+       id="font-face4757">
+      <font-face-src
+         id="font-face-src4759">
+        <font-face-name
+           name="Helvetica-Bold"
+           id="font-face-name4761" />
+      </font-face-src>
+    </font-face>
+    <marker
+       orient="auto"
+       overflow="visible"
+       markerUnits="strokeWidth"
+       id="FilledArrow_Marker_4"
+       viewBox="-9 -4 10 8"
+       markerWidth="10"
+       markerHeight="8"
+       color="black">
+      <g
+         id="g4764">
+        <path
+           d="M -8 0 L 0 3 L 0 -3 Z"
+           fill="currentColor"
+           stroke="currentColor"
+           stroke-width="1"
+           id="path4766" />
+      </g>
+    </marker>
+  </defs>
+  <circle
+     cx="248.5"
+     cy="227.5"
+     r="89.500153"
+     id="circle4778"
+     sodipodi:cx="248.5"
+     sodipodi:cy="227.5"
+     sodipodi:rx="89.500153"
+     sodipodi:ry="89.500153"
+     style="fill:#ffffff;stroke:none" />
+  <circle
+     cx="248.5"
+     cy="227.5"
+     r="89.500153"
+     id="circle4780"
+     sodipodi:cx="248.5"
+     sodipodi:cy="227.5"
+     sodipodi:rx="89.500153"
+     sodipodi:ry="89.500153"
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" />
+  <line
+     x1="313.25391"
+     y1="167.50391"
+     x2="186.74219"
+     y2="294.01562"
+     id="line4782"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" />
+  <line
+     x1="183.875"
+     y1="164.54688"
+     x2="310.13281"
+     y2="290.80469"
+     id="line4784"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" />
+  <line
+     x1="249.49805"
+     y1="138"
+     x2="249.49805"
+     y2="317"
+     id="line4786"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" />
+  <line
+     x1="159"
+     y1="229.32812"
+     x2="338"
+     y2="229.32812"
+     id="line4788"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" />
+  <text
+     id="text4790"
+     style="fill:#000000;stroke:none"
+     x="19.912109"
+     y="50.378906">
+    <tspan
+       font-size="17"
+       font-weight="bold"
+       x="41.734375"
+       y="66.378906"
+       textLength="113.35547"
+       id="tspan4792"
+       style="font-size:17px;font-weight:bold;font-family:Helvetica">Backend Ring</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="22.130371"
+       y="85.378906"
+       textLength="90.03662"
+       id="tspan4794"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">Consumer of</tspan>
+    <tspan
+       font-size="15"
+       font-weight="bold"
+       x="112.16699"
+       y="85.378906"
+       textLength="62.526855"
+       id="tspan4796"
+       style="font-size:15px;font-weight:bold;font-family:Helvetica">requests</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="20.039307"
+       y="103.37891"
+       textLength="81.708984"
+       id="tspan4798"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">Producer of</tspan>
+    <tspan
+       font-size="15"
+       font-weight="bold"
+       x="101.74829"
+       y="103.37891"
+       textLength="75.03662"
+       id="tspan4800"
+       style="font-size:15px;font-weight:bold;font-family:Helvetica">responses</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="37.976318"
+       y="121.37891"
+       textLength="55.026855"
+       id="tspan4802"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">Runs in</tspan>
+    <tspan
+       font-size="15"
+       font-weight="bold"
+       x="93.003174"
+       y="121.37891"
+       textLength="65.844727"
+       id="tspan4804"
+       style="font-size:15px;font-weight:bold;font-family:Helvetica">domain 0</tspan>
+  </text>
+  <text
+     id="text4806"
+     style="fill:#000000;stroke:none"
+     x="340.30469"
+     y="50.378906">
+    <tspan
+       font-size="17"
+       font-weight="bold"
+       x="365.23242"
+       y="66.378906"
+       textLength="116.14453"
+       id="tspan4808"
+       style="font-size:17px;font-weight:bold;font-family:Helvetica">Frontend Ring</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="340.76807"
+       y="85.378906"
+       textLength="90.03662"
+       id="tspan4810"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">Consumer of</tspan>
+    <tspan
+       font-size="15"
+       font-weight="bold"
+       x="430.80469"
+       y="85.378906"
+       textLength="75.03662"
+       id="tspan4812"
+       style="font-size:15px;font-weight:bold;font-family:Helvetica">responses</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="351.18677"
+       y="103.37891"
+       textLength="81.708984"
+       id="tspan4814"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">Producer of</tspan>
+    <tspan
+       font-size="15"
+       font-weight="bold"
+       x="432.89575"
+       y="103.37891"
+       textLength="62.526855"
+       id="tspan4816"
+       style="font-size:15px;font-weight:bold;font-family:Helvetica">requests</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="349.53149"
+       y="121.37891"
+       textLength="55.026855"
+       id="tspan4818"
+       style="font-size:15px;font-weight:500;font-family:Helvetica" />
+  </text>
+  <path
+     d="m 249.41974,229.32812 90.4064,-1.57804 c -0.40317,-23.0972 -9.88754,-45.13346 -26.45407,-61.46407 z"
+     id="path4822"
+     inkscape:connector-curvature="0"
+     style="fill:#e8a4ec;fill-opacity:0.4;stroke:none" />
+  <line
+     x1="394.59375"
+     y1="229.32812"
+     x2="350.20407"
+     y2="229.82639"
+     id="line4824"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#FilledArrow_Marker)" />
+  <text
+     transform="matrix(0.99993125,-0.01172594,0.01172594,0.99993125,0,0)"
+     id="text4826"
+     style="font-size:12px;fill:#000000;stroke:none"
+     x="349.57071"
+     y="234.83972">
+    <tspan
+       font-size="14"
+       font-weight="500"
+       x="349.94327"
+       y="248.83972"
+       textLength="62.254883"
+       id="tspan4828"
+       style="font-size:14px;font-weight:500;font-family:Helvetica">Rsp_cons</tspan>
+  </text>
+  <path
+     d="m 217.38672,321.00067 c 7.71147,2.4036 13.95145,5.81592 23.13672,7.21149 9.18527,1.39557 21.40664,3.03134 31.98046,1.16284 10.57383,-1.8685 21.34348,-5.53564 31.46876,-12.375 6.30853,-4.26123 12.33618,-10.63126 18.34509,-17.13892"
+     id="path4830"
+     inkscape:connector-curvature="0"
+     style="fill:none;stroke:#3d0a27;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#FilledArrow_Marker_2)" />
+  <text
+     transform="matrix(0.97437007,-0.22495103,0.22495103,0.97437007,0,0)"
+     id="text4832"
+     style="font-size:12px;fill:#3d0b28;stroke:none"
+     x="176.15448"
+     y="385.26096">
+    <tspan
+       font-size="13"
+       font-weight="bold"
+       x="176.47406"
+       y="398.26096"
+       textLength="69.36084"
+       id="tspan4834"
+       style="font-size:13px;font-weight:bold;fill:#3d0b28;font-family:Helvetica">Responses</tspan>
+  </text>
+  <path
+     d="m 197.39389,140.5511 c 5.14108,-3.21164 10.27159,-6.21887 15.3483,-8.20735 9.52811,-3.73206 18.3479,-5.12442 28.30719,-5.81641 9.95929,-0.69198 21.81268,-0.5046 31.45452,1.66407 9.64185,2.16865 17.60245,7.56651 26.40235,11.34921"
+     id="path4836"
+     inkscape:connector-curvature="0"
+     style="fill:none;stroke:#16521d;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;marker-start:url(#FilledArrow_Marker_3)" />
+  <text
+     id="text4838"
+     style="fill:#17521d;stroke:none"
+     x="221.50391"
+     y="107.37891">
+    <tspan
+       font-size="14"
+       font-weight="bold"
+       x="221.99365"
+       y="121.37891"
+       textLength="63.020508"
+       id="tspan4840"
+       style="font-size:14px;font-weight:bold;fill:#17521d;font-family:Helvetica">Requests</tspan>
+  </text>
+  <text
+     id="text4842"
+     style="fill:#000000;stroke:none"
+     x="19.912109"
+     y="376.83594">
+    <tspan
+       font-size="17"
+       font-weight="bold"
+       x="87.26123"
+       y="392.83594"
+       textLength="39.694336"
+       id="tspan4844"
+       style="font-size:17px;font-weight:bold;font-family:Helvetica">Slice</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="37.491699"
+       y="411.83594"
+       textLength="143.40088"
+       id="tspan4846"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">Each slice is a single</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="27.47583"
+       y="429.83594"
+       textLength="159.26514"
+       id="tspan4848"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">device-dependent RPC.</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="25.813232"
+       y="447.83594"
+       textLength="166.75781"
+       id="tspan4850"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">There are a constant set</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="46.244141"
+       y="465.83594"
+       textLength="121.728516"
+       id="tspan4852"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">of slots in the ring.</tspan>
+  </text>
+  <text
+     id="text4854"
+     style="fill:#000000;stroke:none"
+     x="326.11914"
+     y="376.83594">
+    <tspan
+       font-size="17"
+       font-weight="bold"
+       x="352.6853"
+       y="392.83594"
+       textLength="103.867676"
+       id="tspan4856"
+       style="font-size:17px;font-weight:bold;font-family:Helvetica">Flow Control</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="349.16748"
+       y="411.83594"
+       textLength="115.0708"
+       id="tspan4858"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">Each side has to</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="330.40283"
+       y="429.83594"
+       textLength="152.6001"
+       id="tspan4860"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">ensure that it does not</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="329.16504"
+       y="447.83594"
+       textLength="155.07568"
+       id="tspan4862"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">overwrite unconsumed</tspan>
+    <tspan
+       font-size="15"
+       font-weight="500"
+       x="328.33008"
+       y="465.83594"
+       textLength="152.578125"
+       id="tspan4864"
+       style="font-size:15px;font-weight:500;font-family:Helvetica">requests or responses.</tspan>
+  </text>
+  <path
+     d="m 249.05693,229.7288 63.28606,-63.28605 c -34.37946,-34.37946 -90.08182,-34.75087 -125.19791,-0.83478 z"
+     id="path4866"
+     inkscape:connector-curvature="0"
+     style="fill:#a1eca8;fill-opacity:0.4;stroke:none" />
+  <text
+     transform="matrix(0.99993125,-0.01172594,0.01172594,0.99993125,0,0)"
+     id="text4868"
+     style="font-size:12px;fill:#000000;stroke:none"
+     x="104.31779"
+     y="159.98956">
+    <tspan
+       font-size="14"
+       font-weight="500"
+       x="104.57316"
+       y="173.98956"
+       textLength="61.489258"
+       id="tspan4870"
+       style="font-size:14px;font-weight:500;font-family:Helvetica">Req_prod</tspan>
+  </text>
+  <line
+     x1="170.6387"
+     y1="160.52321"
+     x2="126.24902"
+     y2="161.02147"
+     id="line4872"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;marker-start:url(#FilledArrow_Marker_4)" />
+  <line
+     x1="379.85687"
+     y1="165.99478"
+     x2="335.46719"
+     y2="166.49304"
+     id="line4874"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#FilledArrow_Marker)" />
+  <text
+     transform="matrix(0.99993125,-0.01172594,0.01172594,0.99993125,0,0)"
+     id="text4876"
+     style="font-size:12px;fill:#000000;stroke:none"
+     x="331.88019"
+     y="149.83955">
+    <tspan
+       font-size="14"
+       font-weight="500"
+       x="332.02863"
+       y="163.83955"
+       textLength="60.703125"
+       id="tspan4878"
+       style="font-size:14px;font-weight:500;font-family:Helvetica">Rsp_prod</tspan>
+  </text>
+  <rect
+     x="128.50391"
+     y="351.13086"
+     width="250"
+     height="20"
+     id="rect4880"
+     style="fill:none;stroke:#aeaeae;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" />
+  <text
+     id="text4882"
+     style="fill:#000000;stroke:none"
+     x="128.50391"
+     y="351.13086">
+    <tspan
+       font-size="17"
+       font-weight="bold"
+       x="128.78882"
+       y="367.13086"
+       textLength="249.43018"
+       id="tspan4884"
+       style="font-size:17px;font-weight:bold;font-family:Helvetica">3) Backend pushes 1 response</tspan>
+  </text>
+  <text
+     transform="matrix(0.99993125,-0.01172594,0.01172594,0.99993125,0,0)"
+     id="text4886"
+     style="font-size:12px;fill:#000000;stroke:none"
+     x="336.35437"
+     y="172.31154">
+    <tspan
+       font-size="14"
+       font-weight="500"
+       x="336.83386"
+       y="186.31154"
+       textLength="63.041016"
+       id="tspan4888"
+       style="font-size:14px;font-weight:500;font-family:Helvetica">Req_cons</tspan>
+  </text>
+</svg>

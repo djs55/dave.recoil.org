@@ -38,6 +38,40 @@ References:
 <li><a href="https://github.com/avsm/mirage/blob/master/lib/os/xen/evtchn.mli">mirage:lib/os/xen/evtchn.mli</a>
 </ul>
 
+<h1> Rings </h1>
+
+<p>
+Xen devices construct <emph>rings</emph> which are used for request/response (RPC-like) communication. A ring normally fits within a single 4KiB page. The page contains a header and a power-of-two number of fixed-size slots. Rings are shared between two peers, one of whom will write requests while the other only writes responses.
+</p>
+
+<p>
+Note there are some <a href="http://xen.1045712.n5.nabble.com/Add-multi-page-shared-ring-support-to-xen-blkfront-back-td2513205.html">blkfront/back patches</a> to allow a ring to be split across multiple pages, to allow larger numbers of outstanding requests. This is considered particularly important for block I/O against high-performance targets such as expensive FC arrays or local SSD storage.
+</p>
+
+<h2> A Ring with no requests or responses </h2>
+<p>
+This is the initial state where no requests or responses have been sent (&quot;pushed&quot;). We adopt the convention that requests are written anti-clockwize around the ring, as indicated by the arrow. Note the contents of each slice depends on the higher-level protocol in use (<emph>xenbus</emph>, <emph>network</emph>, <emph>block</emph>).
+
+</p>
+<img src="rings1.png">
+
+<h2> Pushing requests to the Ring </h2>
+
+<img src="rings2.png">
+
+<h2> Pushing a response to the Ring</h2>
+
+<img src="rings3.png">
+
+<h2> Receiving a response </h2>
+
+<img src="rings4.png">
+
+<h2>
+
+<img src="rings5.png">
+
+<hr>
 
 
 
