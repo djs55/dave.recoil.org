@@ -41,7 +41,15 @@ References:
 <h1> Rings </h1>
 
 <p>
-Xen devices construct <emph>rings</emph> which are used for request/response (RPC-like) communication. A ring normally fits within a single 4KiB page. The page contains a header and a power-of-two number of fixed-size slots. Rings are shared between two peers, one of whom will write requests while the other only writes responses.
+Xen devices construct <emph>rings</emph> which are used for request/response (RPC-like) communication. A Ring consists of
+<ol>
+<li> shared memory page(s): used for sharing data
+<li> event channels: used to signal when data is available
+</ol>
+</p>
+
+<p>
+Ring data normally fits within a single 4KiB page. The page contains a header and a power-of-two number of fixed-size slices. Rings are shared between two peers: a <emph>frontend</emph> which will write requests and a <emph>backend</emph> which only writes responses. Note this means if you wish to have full bidirectional communication you would need two rings.
 </p>
 
 <p>
@@ -50,28 +58,46 @@ Note there are some <a href="http://xen.1045712.n5.nabble.com/Add-multi-page-sha
 
 <h2> A Ring with no requests or responses </h2>
 <p>
-This is the initial state where no requests or responses have been sent (&quot;pushed&quot;). We adopt the convention that requests are written anti-clockwize around the ring, as indicated by the arrow. Note the contents of each slice depends on the higher-level protocol in use (<emph>xenbus</emph>, <emph>network</emph>, <emph>block</emph>).
-
+This is the initial state where no requests or responses have been sent (&quot;pushed&quot;). In the following diagram we adopt the convention that requests are written by the <emph>frontend</emph> anti-clockwize around the ring, as indicated by the arrow. Note the contents of each slice depends on the higher-level protocol in use (<emph>xenbus</emph>, <emph>network</emph>, <emph>block</emph>).
 </p>
 <img src="rings1.png">
 
 <h2> Pushing requests to the Ring </h2>
+<p>
+To co-ordinate actions on the ring, 4 pointers are maintained:
+<ul>
+<li><emph>req_prod</emph>: points to where the <emph>frontend</emph> will write its next request to
+<li><emph>req_cons</emph>: points to where the <emph>backend</emph> will read its next request from
+<li><emph>rsp_prod</emph>: points to where the <emph>backend</emph> will write its next response to
+<li><emph>rsp_cons</emph>: points to where the <emph>frontend</emph> will read its next response from
+</ul>
+In the following diagram the <emph>frontend</emph> has pushed 3 requests to the Ring. The <emph>frontend</emph> will <emph>notify</emph> the <emph>backend</emph> by triggering its event channel.
+</p>
 
 <img src="rings2.png">
 
-<h2> Pushing a response to the Ring</h2>
+<h2> Reading a request from the Ring </h2>
+<p>
+The <emph>backend</emph> wakes up and reads the ring pointers and discovers that some requets are waiting. It reads one request and signals that it has done so by advancing the <emph>req_cons</emph> pointer.
+</p>
 
 <img src="rings3.png">
 
-<h2> Receiving a response </h2>
+<h2> Pushing a response to the Ring</h2>
+<p>
+Once the results are ready (e.g. once the disk blocks have been retrieved), the <emph>backend</emph> pushes a response to the ring and advances the <emph>rsp_prod</emph> pointer.
+</p>
 
 <img src="rings4.png">
 
-<h2>
+<h2> Receiving a response </h2>
+<p>
+The <emph>frontend</emph> wakes up and reads the ring pointers and discovers that some responses are waiting. It reads one response and signals that it has done so by advancing the <emph>req_cons</emph> pointer.
+</p>
 
 <img src="rings5.png">
 
-<hr>
+
 
 
 
