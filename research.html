@@ -1,41 +1,64 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
-<head>
-    <title>Dave Scott / Research</title>
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="main.css" media="all" />
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dave Scott</title>
+    <meta name="description" content="Dave Scott's homepage">
+    <meta name="author" content="Dave Scott">
 
-<body>
-    <div id="header">
-        <h1><span><a href="/">David Scott</a></span></h1>
-    <div id="nav">
-        <ul>
-    <li><span class="foo"><a href="index.html">dave.recoil.org:</a></span></li>
-    <li><span><a href="index.html">aboutme</a></span></a></li>                             
-    <li id="current"><span><a href="research.html">research</a></span></li>                          
-    <li><span><a href="personal.html">personal</a></span></li>                          
-    <li><span><a href="gallery/tags.html">gallery</a></span></li>                               
-    <li><span><a href="blog/0.html">blog</a></span></li>                        
-    <li><span><a href="notes/">notes</a></span></li>
-        </ul>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">dave.recoil.org</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="#personal">Personal</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="notes/index.html">Notes</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    </div> 
-    <div id="headerstrip" ></div>
 	
-    <div id="main">
+    <div class="container" id="main">
     <!-- Content goes here -->
 
-This page is (slowly) being rewritten.
-
+<!--
 <h2>Papers which I thought were great</h2>
 (but some people disagreed with me)
 
 (to be filled in later)
 
+-->
+
 <h2>Papers which won prizes</h2>
 <table>
-<tr class="stripe2">
+<tr">
 <td><a href="papers/final/eurosys2007.pdf"><img src="papers/final/eurosys2007.jpg" width="160"></a></td>
 <td><div align="top">
     <p><b>Melange: creating a functional internet</b> - 
@@ -57,7 +80,7 @@ This page is (slowly) being rewritten.
 </td>
 </tr>
 
-<tr class="stripe1">
+<tr>
 <td><a href="papers/final/fase2003.pdf"><img src="papers/final/fase2003.jpg" width="160"></a></td>
 <td><div align="top">
     <p><b><a href="papers/final/fase2003.pdf">Spatial Security Policies for Mobile Agents in a Sentient Computing
@@ -86,7 +109,7 @@ Poland.
 </tr>
 
 
-<tr class="stripe2">
+<tr>
 <td><a href="papers/final/abstracting.pdf"><img src="papers/final/abstracting.jpg" width="160"></a></td>
 <td><div align="top">
     <p><b><a href="papers/final/abstracting.pdf">Abstracting Application-Level Web Security</a></b>
@@ -147,32 +170,25 @@ I'm grateful to
 
 <h2>Refereed Reports</h2>
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>…</th>
+      <th>…</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>…</td>
+      <td>…</td>
+    </tr>
+  </tbody>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="table table-striped">
   <tbody>
 
-<!--
-    <tr class="stripe1">
-      <td valign="top">year&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
- 
-        <table>
-          <tr><td>authors</td></tr>
-          <tr><td><i>title</i>
-          </td></tr>
-        </table>
-      </td>
-      <td></td>
-      <td><table>
-      <tr><td valign="top"> details
-       </td></tr>
-      <tr><td>
-        link [pdf: x kB]
-        &nbsp;</td></tr>
-      </table></td>
-    </tr>
--->
-
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2007&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -192,7 +208,7 @@ I'm grateful to
         &nbsp;--></td></tr>
       </table></td>
     </tr>
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2006&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -216,7 +232,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2005&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -237,7 +253,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2005&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -259,7 +275,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2005&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -280,7 +296,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2005&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -302,7 +318,7 @@ I'm grateful to
     </tr>
 
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2005&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -324,7 +340,7 @@ I'm grateful to
     </tr>
 
 
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2004&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -344,7 +360,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2004&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -367,7 +383,7 @@ I'm grateful to
     </tr>
 
 
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2004&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
 
@@ -392,7 +408,7 @@ I'm grateful to
 
 
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -420,7 +436,7 @@ I'm grateful to
     </tr>
 
 
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
 
@@ -438,7 +454,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -461,7 +477,7 @@ I'm grateful to
     </tr>
 
 
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -481,7 +497,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -501,7 +517,7 @@ I'm grateful to
       </table></td>
     </tr>
     
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2002&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
 
@@ -520,7 +536,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2002&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
 
@@ -545,7 +561,7 @@ I'm grateful to
       </table></td>
     </tr>
     
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2001&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
 
@@ -573,7 +589,7 @@ I'm grateful to
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2005&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -613,7 +629,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2002&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -633,7 +649,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2002&nbsp;&nbsp;</td>
       <td valign="top">
 
@@ -650,7 +666,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2001&nbsp;&nbsp;</td>
       <td valign="top">
 
@@ -677,7 +693,7 @@ I'm grateful to
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -695,7 +711,7 @@ I'm grateful to
       </table></td>
     </tr>
     
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top">
 
@@ -712,7 +728,7 @@ I'm grateful to
       </table></td>
     </tr>
 
-    <tr class="stripe1">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top" width="50%">
  
@@ -731,7 +747,7 @@ I'm grateful to
       </table></td>
     </tr>
     
-    <tr class="stripe2">
+    <tr>
       <td valign="top">2003&nbsp;&nbsp;</td>
       <td valign="top">
 
@@ -753,12 +769,7 @@ I'm grateful to
 
 
     <!-- End of content -->
-    </div>
+    </div> <!-- container -->
 
-    <div id="footer"> 
-    [ <a href="http://validator.w3.org/check/referer" class="w3cValid"> revalidate HTML</a> ]
-    [ <a href="http://jigsaw.w3.org/css-validator/" class="w3cValid">revalidate CSS</a>]
-    David Scott: $Id: research.html,v 1.14 2007/04/15 18:46:55 djs Exp $ 
-    </div>	
 </body>
 </html>
