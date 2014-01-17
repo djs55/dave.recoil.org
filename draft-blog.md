@@ -1,20 +1,44 @@
 The last year has seen an enormous amount of activity... it’s been a really exciting time to work on [xenserver](http://www.xenserver.org/). I’ve ‘git diff’ed my way through the [repos on github](http://www.github.com/xenserver) to gather together a list of my personal favourite code changes from the past 12 months.
 
+Open-source!
+============
+
 For me, the biggest event of the year was undoubtably the [open-sourcing of xenserver in June](http://www.theregister.co.uk/2013/07/02/citrix_open_sources_xenserver_hypervisor/). Although, by volume, about 99% of xenserver was already open-source ([xen](http://www.xenproject.org/), [Linux](http://kernel.org/), [CentOS](http://www.centos.org/), [xapi](http://github.com/xapi-project) etc etc), it was great to finally see the code for [xencenter](https://github.com/xenserver/xenadmin) and the Windows PV drivers: [win-xeniface](https://github.com/xenserver/win-xeniface) [win-xennet](https://github.com/xenserver/win-xennet) [win-xenvif](https://github.com/xenserver/win-xenvif) [win-xenvbd](https://github.com/xenserver/win-xenvbd) and even the awesome test system, [xenrt](http://www.xenserver.org/discuss-virtualization/virtualization-blog/entry/introducing-open-source-xenrt.html) [finally](http://www.slideshare.net/xen_com_mgr/xen-summit-taas-and-xenrt-0 ) [open-sourced](http://www.slideshare.net/xen_com_mgr/open-source-pv-drivers )
 
 Of course, the action certainly didn’t stop there. Not only were the Windows PV drivers open-sourced, but [Paul](http://github.com/pauldu), [Ben](http://github.com/benchalmers) and [Owen](http://github.com/OwenSmith) completely overhauled them to make them compatible with upstream xen. Previously the drivers relied on a customisation contained within the [xenserver xen patch queue](https://github.com/xenserver/xen-4.3.pg). Now the drivers should work well, everywhere.
 
+Virtualising graphics... the right way
+======================================
+
 In another exciting development, [Paul](http://github.com/pauldu)’s work on [creating multiple device emulators for HVM guests](http://www.slideshare.net/xen_com_mgr/multiple-emulators) enabled safe sharing of physical GPUs among VMs, a feature we call [vGPU](http://www.youtube.com/watch?v=oYefdXMSGn0). Just as [xen](http://www.xenproject.org/) allows its components to be isolated in separate VM containers (known as [dom0 disaggregation](http://wiki.xen.org/wiki/Dom0_Disaggregation)), it’s exciting to see the isolation being taken to the level of individual virtual PCI devices. (I’m hoping to try writing my own virtual PCI device sometime in 2014)
+
+User interfaces
+===============
 
 Continuing with the Windows theme, at the top of the xenserver stack, the [XenCenter](http://github.com/xenserver/xenadmin) interface has received several great usability enhancements. It has been redesigned to simplify the user experience for navigation between different views of resources and for viewing different types of notifications. This was all thanks to the hard work of [Tina](http://github.com/kc284) (expect another blog on this subject soon!)
 
+Scaling up
+==========
+
 2013 was also a great year for xenserver scalability. It’s quite a challenge making a system as complex as xenserver scale well: you have to have a deep understanding of the whole system in order to find -- and fix -- all the important bottlenecks. Thanks to the laser-like focus of [Felipe](http://github.com/felipef), the [storage datapath](http://www.xenserver.org/discuss-virtualization/virtualization-blog/entry/karcygwins.html) has been extensively analysed and understood. Meanwhile large increases in basic system resources such as [David](https://github.com/dvrabel)’s new [event channel ABI](http://events.linuxfoundation.org/sites/events/files/slides/unlimited-event-channels.pdf), reducing the number of grant references needed by [disabling receive-side copy](https://github.com/jamesbulpin/xcp-linux-2.6.32.pq/blob/master/netback-dynamic-gref-allocation#L396) and absorbing upstream xen goodness such as Wei’s [patch to use poll(2) in consoled](http://xenbits.xen.org/gitweb/?p=xen.git;a=commit;h=cc5434c933153c4b8812d1df901f8915c22830a8) have led to big improvements in [VM density](http://xenserver.org/discuss-virtualization/virtualization-blog/entry/how-did-we-increase-vm-density-in-xenserver-6-2-part-2.html).
+
+XenServer: the distro
+=====================
 
 The xenserver distro is the foundation upon which everything else is -- literally -- based. Anyone who has downloaded one of the regular [development snapshot builds](http://xenserver.org/overview-xenserver-open-source-virtualization/download/2-uncategorised/115-development-snapshots.html) (thanks to Craig and [Peter](http://github.com/pmw) for organising those) should have noticed that it has been recently rebased on top of [CentOS](http://www.centos.org/) 6.4 with a shiny new [Linux](http://kernel.org/) 3.x kernel and [xen](http://www.xenproject.org/) 4.3. Much better!
 
+(No-one likes) patch queues
+===========================
+
 Speaking of the distro, I have to mention the “patch queue problem”. Patch queues are a sequence of source code customisations applied to an “upstream” (e.g. the official [xen-4.3 release](http://wiki.xenproject.org/wiki/Xen_4.3_Release_Notes)) to produce the version we actually use. Patch queues are important tools for distro builders. They can be used for good (e.g. backporting important security fixes) and for evil (e.g. forward-porting stuff that shouldn’t exist: “technical debt” in its most concrete form). Every time a new upstream release comes out, the patch queue needs careful rebasing against the new release -- this can be very time-consuming. In recent years, the [xenserver xen patch queue](https://github.com/xenserver/xen-4.3.pg) had grown to such a large size that it was almost blocking us from moving xenserver to more recent versions of xen. I’m happy to report that the past year has seen heroic efforts from [Andy](http://github.com/andyhhp)  [Malcolm](http://github.com/malcolmcrossley) and [David](http://github.com/dvrabel) to reduce it to more manageable levels. [Andy](http://github.com/andyhhp) tells me that while it took more than 1 year (!) to rebase and fix xenserver from xen 3.4 to 4.1; and then -- a still surprising -- 3 months to get from 4.1 to 4.2; it recently only took 3 days to rebase from 4.2 to 4.3! Phew!
 
+Build and packaging
+===================
+
 In addition to decimating patch queues, in 2013 we made a concerted effort to clean up our xenserver distro build and packaging more generally. Thanks to [Euan](http://github.com/euanh), [Jon](http://github.com/jonludlam) and [Frediano](http://github.com/freddy77) we're now using [standard build tools like mock and rpmbuild](http://github.com/xenserver/planex). In the past we cut corners by either leaving files unpackaged (bad) or applying large patch queues in the packages (terrible, as we’ve seen already). To help sort this out, [Euan](http://github.com/euanh) created a set of experimental RPM and .deb packages for the toolstack, shook out the bugs and forced us to fix things properly. As a result we’ve found and fixed lots of portability problems in the upstream software (e.g. hard-coded CentOS paths which break on Debian), which should make the lives of other distro package maintainers easier. Now that the [xenserver packages](https://github.com/xenserver/xenserver-core) have been cleaned up, we’re much closer to a world where a xenserver .iso is simply a respin of a base CentOS distro with an extra repo of packages and overrides on top. As a side-benefit, we’ve also been able to release bleeding-edge packages containing prototypes of new features, such as [ceph storage](http://ceph.org/) released as a [tech preview](http://www.xenserver.org/discuss-virtualization/virtualization-blog/entry/tech-preview-of-xenserver-libvirt-ceph.html) in July.
+
+New toolstack version
+=====================
 
 Next on my list, xenserver picked up a refreshed version of [xapi](http://github.com/xapi-project) with lots of improvements, my personal favourites being [Rob](http://github.com/robhoes)'s [port of xenopsd to libxl](https://github.com/xapi-project/xenopsd/blob/master/xl/xenops_server_xenlight.ml#L2072);
 [enhanced disk copying APIs](https://github.com/xapi-project/xen-api/pull/1581) tailored for cloud use-cases ([Zheng](http://github.com/zli), [Si](http://github.com/simonjbeaumont), [Dave](http://github.com/djs55); and support for [enabling host GRO](https://github.com/xapi-project/xen-api/commit/576bdb9e1824bf13553a55a01987eeff9f6ae9e0) ([Rob](http://github.com/robhoes)) and more [IPv6](https://github.com/xapi-project/xen-api/commit/b7be14004ddc9f319fa731f4aa1506e803768049) ([Rob](http://github.com/robhoes), [Euan](http://github.com/euanh)).
