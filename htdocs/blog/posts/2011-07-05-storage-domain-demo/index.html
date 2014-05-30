@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2011-07-05-storage-domain-demo</title>
+
+<link rel="stylesheet" href="../../style.css" type="text/css" />
+
+<link rel="stylesheet" href="../../local.css" type="text/css" />
+
+
+
+
+
+</head>
+<body>
+
+<div class="pageheader">
+<div class="header">
+<span>
+<span class="parentlinks">
+
+<a href="../../">Dave Scott</a>/ 
+
+<a href="../">posts</a>/ 
+
+</span>
+<span class="title">
+2011-07-05-storage-domain-demo
+
+</span>
+</span><!--.header-->
+
+</div>
+
+
+<div class="actions">
+<ul>
+
+
+<li><a href="../../recentchanges/">RecentChanges</a></li>
+
+
+
+
+
+<li><a href="./#comments">Comments</a><br /></li>
+
+</ul>
+</div>
+
+
+
+
+</div> <!-- .pageheader -->
+
+
+
+<div id="content">
+<h1>Demo of XCP storage driver domains</h1>
+
+<p>In previous posts I described</p>
+
+<ul>
+<li><a href="/blog/posts/2011-05-05-dom0/">the future of domain 0</a></li>
+<li><a href="/blog/posts/2011-05-20-storage-domain-progress/">the advantages of storage driver domains</a></li>
+</ul>
+
+<p>Since then progress has been rapid:</p>
+
+<ol>
+<li>xapi now uses the same xenstore protocol for block and network devices as in upstream: this is necessary in order to talk to a non-XCP-dom0 blkback</li>
+<li>xapi now has a way to associate a storage driver VM with an SR on a Host; the VM will be automatically booted when the SR is plugged in</li>
+<li>xapi now has an SMAPI multiplexer which can dispatch SMAPI calls to the correct domain</li>
+<li>the security check in qemu which I previously had to patch out, is now back in: see the open issue section below</li>
+<li>a demo SMAPI backend implementation that can use raw files on either linux or FreeBSD has been created</li>
+<li>the SMAPI VDI.attach call has been generalised so that its results can be used to configure both linux and FreeBSD blkbacks</li>
+<li>co-incidentally Justin Gibbs added a fix <a href="http://svnweb.freebsd.org/base?view=revision&amp;revision=222975">FreeBSD blkback reconnect issue</a> before I even noticed it was there</li>
+</ol>
+
+<p>As a result of all that, I now have a fully functional demo which</p>
+
+<ul>
+<li>uses 64-bit FreeBSD 9-CURRENT XENHVM as a storage backend</li>
+<li>allows Windows to be installed (via emulated IDE) and then successfully loads and uses the Citrix Windows PV drivers for fast paravirtualised I/O</li>
+</ul>
+
+<h2>The exciting demo</h2>
+
+<p><center>
+<img src="/blog/images/2011-07-05-demo1.png">
+</center>
+This screenshot is of <a href="http://sourceforge.net/projects/openxenmanager/">OpenXenManager</a>: a python/gtk UI which can
+be used to manage XCP hosts. The tree view on the left shows the host (labelled "st20"), a number of offline
+VMs and then some storage. One of the storage repositories (labelled "test") has a highlighted icon;
+this is a warning that the storage is currently "unplugged" and therefore unavailable to VMs.
+<hr></p>
+
+<p><center>
+<img src="/blog/images/2011-07-05-demo2.png">
+</center>
+After clicking on the "Repair storage" from the context menu a FreeBSD VM starts booting up -- here you
+can see the bootloader.
+<hr></p>
+
+<p><center>
+<img src="/blog/images/2011-07-05-demo3.png">
+</center>
+After the FreeBSD has finished booting, xapi in domain 0 successfully talks to an SMAPI service running
+in the VM and "attaches" the storage. You can see that all storage is now available.</p>
+
+<hr>
+
+<p><center>
+<img src="/blog/images/2011-07-05-demo4.png">
+</center>
+Finally, I've started a Windows VM. In a terminal I've used a diagnostic command (more below) to list
+the configured VM disk and network devices. The red arrow highlights a line which corresponds to a disk
+device whose backend is in domain id 44 (FreeBSD) and whose frontend is in domain id 45 (Windows). The
+frontend and backend state are both "4" which means "connected" -- so everything is working!</p>
+
+<h2>The storage datapath: before and after</h2>
+
+<p>For an HVM (fully virtualised) guest there are usually two storage datapaths:</p>
+
+<ol>
+<li>the slow emulated IDE interface: this is only used during install and boot</li>
+<li>the fast PV interface: this is used as soon as the PV drivers have loaded</li>
+</ol>
+
+<p><center>
+<img src="/blog/images/2011-07-05-datapath-before.png">
+</center>
+Without storage driver domains, the IDE interface is emulated by qemu (running in dom0) which reads and writes the real disk device directly. In the PV datapath, the guest driver "blkfront" talks to the backend driver "blkback" (also in dom0) and reads and writes to and from the same disk device.
+<hr></p>
+
+<p><center>
+<img src="/blog/images/2011-07-05-datapath-after.png">
+</center>
+With storage driver domains, the IDE datapath is slightly longer: as before, IDE is emulated by qemu (in dom0). However qemu cannot read and write the real disk device directly; instead it must use a "blkfront" talking to a "blkback" <em>in the storage domain</em>. In the PV datapath, the guest driver "blkfront" talks to the backend driver "blkback" <em>in the storage domain</em> where it can read and write the real disk device.
+<hr></p>
+
+<h2>New diagnostic commands</h2>
+
+<p>To help debug complicated setups with driver domains I updated the "xenops" binary to have a much prettier (and I think much more useful) "list_devices" command e.g.</p>
+
+<pre><code>[root@st20 ~]# ./xenops list_devices
+be | proto |        dev | state | -&gt; | state |  kind |  dev | fe
+ 0 |   blk |       fd:2 |     4 | -&gt; |     4 |  disk | xvdb |  0
+ 0 |   blk |       fd:0 |     4 | -&gt; |     4 |  disk | xvdc |  0
+42 |   blk |   /dev/md0 |     4 | -&gt; |     4 |  disk | xvdd |  0
+ 0 |   blk |       fd:2 |     4 | -&gt; |     4 |  disk |  hda | 42
+ 0 |   blk |            |     6 | -&gt; |     6 | cdrom |  hdb | 42
+ 0 |   net |          - |     4 | -&gt; |     4 |   vif |    0 | 42
+ 0 |   blk | ...e1f0c51 |     2 | -&gt; |     1 | cdrom |  hdb | 43
+42 |   blk |   /dev/md0 |     4 | -&gt; |     4 |  disk |  hda | 43
+</code></pre>
+
+<p>Each line describes one device, with the backend on the left and the frontend information the right. If both backend and frontend are present it means that they look well-formed: the backend is pointing to the right frontend and vice-versa. The last device on the above list shows the Windows VM's (domain id 43) root disk, being serviced via device /dev/md0 in the FreeBSD VM (domain id 42)</p>
+
+<h2>Open issue: qemu disk config</h2>
+
+<p>For some reason (possibly historical accident) both xapi and libxl add emulated NICs but <em>not IDE interfaces</em> via the qemu commandline. Instead qemu has code for reading xenstore: finding the frontend, following the link to the backend and opening a file mentioned in the backend "params" key. This is obviously inadequate in cases where qemu and the backend are in different domains, where they don't share a common filesystem and the file named by "params" will have two totally different meanings. Emphasising this problem, there is a security check in qemu which skips the disk altogether if the backend is not in domain 0.</p>
+
+<p>Previously I had commented-out the security check, and cunningly arranged for the "params" key in the backend directory to be a path within <em>domain 0</em> of a <em>blkfront</em> which qemu could use to read and write the correct disk. This only worked because the linux blkback doesn't read the "params" key itself: instead it is conventionally translated into a "physical-device=major:minor" by a udev script. In XCP, xapi performs the major:minor lookup itself and hence I could create a "physical-device" key for linux blkback and a "params" key for qemu. This scheme fell apart when I tried FreeBSD because their blkback (reasonably) uses only the "params" key: clearly I can't write two different values into this key.... well you could, if you were willing to start hacking xenstore but that's going a bit too far.</p>
+
+<p>Reading through the qemu source code I noticed that, although we aren't using the standard qemu commandline mechanism for adding IDE devices, it still exists and hasn't been disabled. So I added commandline arguments for IDE devices as well as NICs and it works!</p>
+
+<p>Clearly I need to figure out whether the commandline argument code is doing the right thing, and the resulting machine configuration is valid. If so it would be good to patch both libxl and xapi to use the commandline and stop qemu assuming that the paths in xenstore are actually suitable for it.</p>
+
+<h2>Open issue: the SMAPI</h2>
+
+<p>As part of this project I've been updating the Storage Manager (SM) API to make it possible to run storage driver domains. This has been a success. However looking at the result, the API seems to really be two different things stuck together which could be separated:</p>
+
+<ol>
+<li>functions for manipulating (creating, destroying, cloning, snapshotting) virtual disks on local or remote storage</li>
+<li>functions for setting up and tearing down datapaths for VMs</li>
+</ol>
+
+<p>Another way of looking at it is to ask the question: where should an iSCSI initiator go? In the domain performing the volume creations or somewhere else? Perhaps we would have a scheme like:</p>
+
+<ul>
+<li>VDI.create: creates a new volume inside a "storage service"</li>
+<li>VDI.attach: returns a URI suitable for setting up a datapath (e.g. iscsi://....)</li>
+</ul>
+
+<p>And then we would have a separate "storage driver domain" interface which would</p>
+
+<ul>
+<li>consume URIs from "storage services" (e.g. iscsi://... nfs://...)</li>
+<li>manage resources like iSCSI sessions, NFS mounts, multipath setup</li>
+<li>provide blkback disk exports for guest VMs</li>
+</ul>
+
+<p>Of course a VM could choose to implement both interface simultaneously, if it wanted.</p>
+
+</div>
+
+
+<div id="comments">
+
+
+
+
+<div class="addcomment">Comments on this page are closed.</div>
+
+</div>
+
+
+<div id="footer" class="pagefooter">
+<div id="pageinfo">
+
+
+
+
+
+
+
+
+
+<div class="pagedate">
+Last edited <span class="date">Tue 05 Jul 2011 10:51:25 BST</span>
+<!-- Created <span class="date">Tue 05 Jul 2011 10:51:25 BST</span> -->
+</div>
+
+</div><!-- #pageinfo -->
+
+<!-- from Dave Scott -->
+</div><!-- .pagefooter #footer -->
+
+</body>
+</html>

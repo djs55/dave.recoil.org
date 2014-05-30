@@ -1,0 +1,210 @@
+
+<!-- saved from url=(0019)http://10.0.0.2/#12 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>OUD 2012: Programming the Xen Cloud using OCaml</title>
+    <script type="text/javascript" src="./oud2012_files/slides.js">  </script>
+  <style>
+  </style><meta name="viewport" content="width=1100,height=750"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+  
+  
+
+  <body class="loaded">
+    <section class="slides layout-regular template-default">
+      
+   <article class="biglogo">
+     
+   <h1>Programming the Xen Cloud using OCaml</h1>
+   <br>
+   1430-1450, 14 Sept 2012<br>
+   Ocaml Users and Developers Workshop (OUD),<br>
+   Copenhagen, Denmark
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>People</h3>
+    <ul>
+     <li><b>Dr. David Scott</b> (me!),<br>
+       <div style="font-size: 80%">
+       XenServer System Architect,<br>
+       Citrix <br>
+       www: <a href="http://dave.recoil.org/">http://dave.recoil.org</a>&nbsp; &nbsp; twitter: <a href="http://twitter.com/mugofsoup">mugofsoup</a>
+       </div>
+     </li>
+	 <li>
+	   <b>Dr. Richard Mortier</b>,<br>
+       <div style="font-size: 80%">
+       Horizon Transitional Fellow,<br>
+       School of Computer Science, University of Nottingham.<br>
+       www: <a href="http://www.cs.nott.ac.uk/~rmm/">http://www.cs.nott.ac.uk/~rmm</a>&nbsp; &nbsp; twitter: <a href="http://twitter.com/mort___">mort___</a>
+       </div>
+     </li>
+     <li>
+       <b>Dr. Anil Madhavapeddy</b>,<br>
+       <div style="font-size: 80%">
+       Senior Research Fellow,<br>
+       Computer Laboratory, University of Cambridge.<br>
+       www: <a href="http://anil.recoil.org/">http://anil.recoil.org</a>&nbsp; &nbsp; twitter: <a href="http://twitter.com/avsm">avsm</a>
+       </div>
+     </li>
+    </ul>
+    <p>With <b>lots</b> of help from Dr. Thomas Gazagnaire, Haris Rotsos, Raphael Proust and Balraj Singh.</p>
+
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>The modern software stack is mature, big and complicated</h3>
+    <ul>
+      <li>Hardware is abstracted
+        <ul>
+          <li> <b>good</b>: applications are portable</li>
+          <li> <b>bad</b>: out-dated abstractions obscure common hardware features</li>
+          <li>It's difficult to get high performance while remaining portable</li>
+        </ul>
+      </li>
+      <li>OSes handle multi-user, multi-process well
+        <ul>
+        <li> <b>good</b>: very flexible</li>
+        <li> <b>bad</b>: can be overkill for single-purpose apps; developers need sysadmin skills </li>
+        </ul>
+      </li>
+
+    </ul>
+    <p><b>There is another way!</b></p>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Mirage: the other way</h3>
+    <ul>
+	  <li><b>"The cloud is the computer"</b>: now we only need simple block, network packet abstractions at the bottom.</li>
+      <li>Protocol libraries, rather than layers
+        <ul>
+          <li> IP, UDP, TCP, HTTP, DNS, SSH, FAT32, OpenFlow </li>
+          <li> <a href="http://github.com/mirage/">http://github.com/mirage/</a></li>
+        </ul>
+      </li>
+      <li>Modules, signatures, functors, recompilation rather than ABIs
+        <ul>
+          <li> Type-checker helps with API updates </li>
+        </ul>
+      </li>
+      <li>Single-purpose, optimised, statically-linked images running as OS kernels
+        <ul>
+          <li> Fetch libraries with <b>opam</b> </li>
+          <li> Link only what you need </li>
+          <li> Compile-in static configuration (no config files) </li>
+        </ul>
+      </li>
+    </ul>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Example: xenstore service</h3>
+    <ul>
+      <li>A critical service on a <tt>xen</tt> host, needed by all control operations.</li>
+      <li>Provides an access-controlled key-value store to all VMs.</li>
+    </ul>
+    <section>
+    <object data="./oud2012_files/xenstore.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Example: this presentation</h3>
+    <section>
+    <object data="./oud2012_files/website.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Performance: block I/O</h3>
+    <section>
+    <object data="./oud2012_files/storage-colour.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Performance: network I/O</h3>
+    <section>
+    <object data="./oud2012_files/dns-qps.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Binary size</h3>
+    <p>All binaries are bzip2'd (since they're sparse, with lots of blocks of zero)</p>
+    <table>
+      <tbody><tr style="background-color:#000; color:#EEE"><td>App</td><td>standard build / KiB</td><td>with dead code elim / KiB</td></tr>
+      <tr style="background-color:#ddffdd"><td>DNS</td><td>499</td><td>184</td></tr>
+      <tr style="background-color:#ffdddd"><td>web server</td><td>674</td><td>172</td></tr>
+      <tr style="background-color:#ddffdd"><td>OpenFlow learning switch</td><td>393</td><td>164</td></tr>
+      <tr style="background-color:#ffdddd"><td>OpenFlow controller</td><td>392</td><td>168</td></tr>
+    </tbody></table>
+    <p>Dead code elimination currently only possible on bytecode (via <tt>ocamlclean</tt>).</p>
+    <p><b>Remember: these binaries are self-contained, containing full network stacks etc.</b></p>
+  
+   </article>
+ 
+   <article class="far-past">
+     
+    <h3>Building</h3>
+      <p>Set up <b>opam</b></p>
+<pre class="noprettyprint"><span class="pln">$ git clone https</span><span class="pun">:</span><span class="com">//github.com/OCamlPro/opam</span><span class="pln">
+$ </span><span class="pun">(</span><span class="pln">cd opam </span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="pun">./</span><span class="pln">configure </span><span class="pun">&amp;&amp;</span><span class="pln"> make </span><span class="pun">&amp;&amp;</span><span class="pln"> make install</span><span class="pun">)</span><span class="pln">
+$ opam init default git</span><span class="pun">:</span><span class="com">//github.com/mirage/opam-repository</span><span class="pln">
+$ opam remote </span><span class="pun">-</span><span class="pln">add dev git</span><span class="pun">:</span><span class="com">//github.com/mirage/opam-repo-dev</span></pre>
+     <p>Switch to xen and install mirage</p>
+<pre class="noprettyprint"><span class="pln">$ opam switch </span><span class="pun">-</span><span class="pln">install </span><span class="lit">3.12.1+mirage</span><span class="pun">-</span><span class="pln">xen
+$ opam switch </span><span class="lit">3.12.1+mirage</span><span class="pun">-</span><span class="pln">xen
+$ opam </span><span class="pun">--</span><span class="pln">yes install mirage mirage</span><span class="pun">-</span><span class="pln">net cohttp mirage</span><span class="pun">-</span><span class="pln">fs</span></pre>
+     <p>You're ready to go!</p>
+  
+   </article>
+ 
+   <article class="past">
+     
+    <h3>Summary</h3>
+    <ul>
+      <li>Building apps with mirage is liberating and fun
+        <ul>
+          <li>I even enjoyed debugging the TCP stack last weekend</li>
+          <li>It makes kernel programming less of a "black art"</li>
+        </ul>
+      </li>
+      <li>Give <b>opam</b> a try</li>
+      <li>Be explicit about the interfaces your app needs: do you need all of Unix or just a network stack?
+        <ul>
+          <li> As well as being mirage-friendly, this also makes your app easier to test through "mocks"</li>
+        </ul>
+      </li>
+    </ul>
+  
+   </article>
+ 
+   <article class="current">
+     
+    <h1>The End
+    <br><small>happy hacking</small>
+    </h1>
+  
+   </article>
+ 
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+  
+
+<link rel="stylesheet" type="text/css" href="./oud2012_files/css"><link rel="stylesheet" type="text/css" href="./oud2012_files/styles.css"><script type="text/javascript" src="./oud2012_files/prettify.js"></script></body></html>

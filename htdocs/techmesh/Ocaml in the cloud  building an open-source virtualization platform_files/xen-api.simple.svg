@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="800"
+   viewBox="0 0 800 800"
+   id="svg6168"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="xen-api.simple.svg">
+  <metadata
+     id="metadata6476">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnuplot</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6474">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path4480"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="977"
+     inkscape:window-height="649"
+     id="namedview6472"
+     showgrid="false"
+     inkscape:zoom="0.69532167"
+     inkscape:cx="300"
+     inkscape:cy="281.66624"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg6168" />
+  <title
+     id="title6170">Gnuplot</title>
+  <desc
+     id="desc6172">Produced by GNUPLOT 4.6 patchlevel 0 </desc>
+  <g
+     id="gnuplot_canvas"
+     transform="matrix(1.11086,0,0,1.11086,80,140)">
+    <rect
+       x="0"
+       y="0"
+       width="600"
+       height="480"
+       id="rect6175"
+       style="fill:none" />
+    <defs
+       id="defs6177">
+      <circle
+         id="gpDot"
+         r="0.5"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="0.5"
+         sodipodi:ry="0.5"
+         style="stroke-width:0.5" />
+      <path
+         id="gpPt0"
+         d="M -1,0 H 1 M 0,-1 v 2"
+         inkscape:connector-curvature="0"
+         style="stroke:currentColor;stroke-width:0.222" />
+      <path
+         id="gpPt1"
+         d="M -1,-1 1,1 M 1,-1 -1,1"
+         inkscape:connector-curvature="0"
+         style="stroke:currentColor;stroke-width:0.222" />
+      <path
+         id="gpPt2"
+         d="M -1,0 1,0 M 0,-1 0,1 m -1,-2 2,2 m -2,0 2,-2"
+         inkscape:connector-curvature="0"
+         style="stroke:currentColor;stroke-width:0.222" />
+      <rect
+         id="gpPt3"
+         x="-1"
+         y="-1"
+         width="2"
+         height="2"
+         style="stroke:currentColor;stroke-width:0.222" />
+      <rect
+         id="gpPt4"
+         x="-1"
+         y="-1"
+         width="2"
+         height="2"
+         style="fill:currentColor;stroke:currentColor;stroke-width:0.222" />
+      <circle
+         id="gpPt5"
+         cx="0"
+         cy="0"
+         r="1"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="1"
+         sodipodi:ry="1"
+         style="stroke:currentColor;stroke-width:0.222" />
+      <use
+         xlink:href="#gpPt5"
+         id="gpPt6"
+         style="fill:currentColor;stroke:none"
+         x="0"
+         y="0"
+         width="600"
+         height="480" />
+      <path
+         id="gpPt7"
+         d="m 0,-1.33 -1.33,2 2.66,0 z"
+         inkscape:connector-curvature="0"
+         style="stroke:currentColor;stroke-width:0.222" />
+      <use
+         xlink:href="#gpPt7"
+         id="gpPt8"
+         style="fill:currentColor;stroke:none"
+         x="0"
+         y="0"
+         width="600"
+         height="480" />
+      <use
+         xlink:href="#gpPt7"
+         id="gpPt9"
+         transform="scale(-1,-1)"
+         style="stroke:currentColor"
+         x="0"
+         y="0"
+         width="600"
+         height="480" />
+      <use
+         xlink:href="#gpPt9"
+         id="gpPt10"
+         style="fill:currentColor;stroke:none"
+         x="0"
+         y="0"
+         width="600"
+         height="480" />
+      <use
+         xlink:href="#gpPt3"
+         id="gpPt11"
+         transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)"
+         style="stroke:currentColor"
+         x="0"
+         y="0"
+         width="600"
+         height="480" />
+      <use
+         xlink:href="#gpPt11"
+         id="gpPt12"
+         style="fill:currentColor;stroke:none"
+         x="0"
+         y="0"
+         width="600"
+         height="480" />
+    </defs>
+    <g
+       style="color:#ffffff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       id="g6193" />
+    <g
+       style="color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       id="g6195">
+      <path
+         d="m 71.9,422.4 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6197"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,426.9)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6199">
+        <text
+           id="text6201">0</text>
+      </g>
+      <path
+         d="m 71.9,381.8 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6203"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,386.3)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6205">
+        <text
+           id="text6207">0.1</text>
+      </g>
+      <path
+         d="m 71.9,341.3 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6209"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,345.8)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6211">
+        <text
+           id="text6213">0.2</text>
+      </g>
+      <path
+         d="m 71.9,300.7 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6215"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,305.2)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6217">
+        <text
+           id="text6219">0.3</text>
+      </g>
+      <path
+         d="m 71.9,260.1 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6221"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,264.6)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6223">
+        <text
+           id="text6225">0.4</text>
+      </g>
+      <path
+         d="m 71.9,219.5 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6227"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,224)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6229">
+        <text
+           id="text6231">0.5</text>
+      </g>
+      <path
+         d="m 71.9,179 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6233"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,183.5)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6235">
+        <text
+           id="text6237">0.6</text>
+      </g>
+      <path
+         d="m 71.9,138.4 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6239"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,142.9)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6241">
+        <text
+           id="text6243">0.7</text>
+      </g>
+      <path
+         d="m 71.9,97.8 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6245"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,102.3)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6247">
+        <text
+           id="text6249">0.8</text>
+      </g>
+      <path
+         d="m 71.9,57.3 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6251"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,61.8)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6253">
+        <text
+           id="text6255">0.9</text>
+      </g>
+      <path
+         d="m 71.9,16.7 9,0 m 485.1,0 -9,0 h 0.01"
+         id="path6257"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(63.6,21.2)"
+         style="font-size:15px;text-anchor:end;fill:#000000;stroke:none;font-family:Arial"
+         id="g6259">
+        <text
+           id="text6261">1</text>
+      </g>
+      <path
+         d="m 71.9,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6263"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(71.9,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6265">
+        <text
+           id="text6267">0</text>
+      </g>
+      <path
+         d="m 118.5,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6269"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(118.5,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6271">
+        <text
+           id="text6273">5</text>
+      </g>
+      <path
+         d="m 165.1,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6275"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(165.1,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6277">
+        <text
+           id="text6279">10</text>
+      </g>
+      <path
+         d="m 211.7,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6281"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(211.7,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6283">
+        <text
+           id="text6285">15</text>
+      </g>
+      <path
+         d="m 258.4,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6287"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(258.4,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6289">
+        <text
+           id="text6291">20</text>
+      </g>
+      <path
+         d="m 305,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6293"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(305,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6295">
+        <text
+           id="text6297">25</text>
+      </g>
+      <path
+         d="m 351.6,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6299"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(351.6,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6301">
+        <text
+           id="text6303">30</text>
+      </g>
+      <path
+         d="m 398.2,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6305"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(398.2,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6307">
+        <text
+           id="text6309">35</text>
+      </g>
+      <path
+         d="m 444.8,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6311"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(444.8,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6313">
+        <text
+           id="text6315">40</text>
+      </g>
+      <path
+         d="m 491.4,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6317"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(491.4,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6319">
+        <text
+           id="text6321">45</text>
+      </g>
+      <path
+         d="m 538,422.4 0,-9 m 0,-396.7 0,9 h 0.01"
+         id="path6323"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="translate(538,444.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6325">
+        <text
+           id="text6327">50</text>
+      </g>
+      <path
+         d="m 71.9,16.7 0,405.7 494.1,0 0,-405.7 -494.1,0 z m 0,0 h 0.01"
+         id="path6329"
+         inkscape:connector-curvature="0" />
+      <g
+         transform="matrix(0,-1,1,0,17.6,219.6)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6331">
+        <text
+           id="text6333">Cumulative fraction of all changesets contributed</text>
+      </g>
+      <g
+         transform="matrix(0,-1,1,0,588.4,219.6)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6335">
+        <text
+           id="text6337" />
+      </g>
+      <g
+         transform="translate(318.9,471.9)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6339">
+        <text
+           id="text6341">Developers ordered by contribution size</text>
+      </g>
+      <g
+         transform="translate(318.9,30.2)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6343">
+        <text
+           id="text6345" />
+      </g>
+      <g
+         transform="translate(318.9,30.3)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g6347">
+        <text
+           id="text6349" />
+      </g>
+      <g
+         transform="translate(22.1,475.5)"
+         style="font-size:15px;text-anchor:start;fill:#000000;stroke:none;font-family:Arial"
+         id="g6351">
+        <text
+           id="text6353" />
+      </g>
+    </g>
+    <g
+       id="gnuplot_plot_1">
+      <title
+         id="title6356">gnuplot_plot_1</title>
+      <g
+         style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+         id="g6358">
+        <path
+           d="m 71.9,422.3 9.3,-0.1 9.3,-0.1 9.4,-0.1 9.3,-0.1 9.3,-0.2 9.3,-0.2 9.4,-0.2 9.3,-0.2 9.3,-0.2 9.3,-0.1 9.3,-0.2 9.4,-0.2 9.3,-0.2 9.3,-0.2 9.3,-0.2 9.4,-0.4 9.3,-0.4 9.3,-0.4 9.3,-0.4 9.4,-0.4 9.3,-0.3 9.3,-0.4 9.3,-0.4 9.3,-0.6 9.4,-0.9 9.3,-0.8 9.3,-1 9.3,-1 9.4,-0.9 9.3,-1.1 9.3,-1.1 9.3,-1.1 9.3,-1.3 9.4,-1.5 9.3,-1.7 9.3,-3.6 9.3,-3.7 9.4,-3.6 9.3,-4.7 9.3,-4.7 9.3,-5.1 9.4,-5.4 9.3,-7.9 9.3,-11 9.3,-16 9.3,-17.1 9.4,-19.4 9.3,-21.7 9.3,-22.7 9.3,-36.4 9.4,-61.5 9.3,-142.5 h 0.01"
+           id="path6360"
+           inkscape:connector-curvature="0" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,71.9,422.3)"
+           id="use6362"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,81.2,422.2)"
+           id="use6364"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,90.5,422.1)"
+           id="use6366"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,99.9,422)"
+           id="use6368"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,109.2,421.9)"
+           id="use6370"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,118.5,421.7)"
+           id="use6372"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,127.8,421.5)"
+           id="use6374"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,137.2,421.3)"
+           id="use6376"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,146.5,421.1)"
+           id="use6378"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,155.8,420.9)"
+           id="use6380"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,165.1,420.8)"
+           id="use6382"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,174.4,420.6)"
+           id="use6384"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,183.8,420.4)"
+           id="use6386"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,193.1,420.2)"
+           id="use6388"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,202.4,420)"
+           id="use6390"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,211.7,419.8)"
+           id="use6392"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,221.1,419.4)"
+           id="use6394"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,230.4,419)"
+           id="use6396"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,239.7,418.6)"
+           id="use6398"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,249,418.2)"
+           id="use6400"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,258.4,417.8)"
+           id="use6402"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,267.7,417.5)"
+           id="use6404"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,277,417.1)"
+           id="use6406"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,286.3,416.7)"
+           id="use6408"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,295.6,416.1)"
+           id="use6410"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,305,415.2)"
+           id="use6412"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,314.3,414.4)"
+           id="use6414"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,323.6,413.4)"
+           id="use6416"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,332.9,412.4)"
+           id="use6418"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,342.3,411.5)"
+           id="use6420"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,351.6,410.4)"
+           id="use6422"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,360.9,409.3)"
+           id="use6424"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,370.2,408.2)"
+           id="use6426"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,379.5,406.9)"
+           id="use6428"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,388.9,405.4)"
+           id="use6430"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,398.2,403.7)"
+           id="use6432"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,407.5,400.1)"
+           id="use6434"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,416.8,396.4)"
+           id="use6436"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,426.2,392.8)"
+           id="use6438"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,435.5,388.1)"
+           id="use6440"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,444.8,383.4)"
+           id="use6442"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,454.1,378.3)"
+           id="use6444"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,463.5,372.9)"
+           id="use6446"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,472.8,365)"
+           id="use6448"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,482.1,354)"
+           id="use6450"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,491.4,338)"
+           id="use6452"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,500.7,320.9)"
+           id="use6454"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,510.1,301.5)"
+           id="use6456"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,519.4,279.8)"
+           id="use6458"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,528.7,257.1)"
+           id="use6460"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,538,220.7)"
+           id="use6462"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,547.4,159.2)"
+           id="use6464"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+        <use
+           xlink:href="#gpPt0"
+           transform="matrix(4.5,0,0,4.5,556.7,16.7)"
+           id="use6466"
+           x="0"
+           y="0"
+           width="600"
+           height="480" />
+      </g>
+    </g>
+    <g
+       style="color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       id="g6468">
+      <path
+         d="m 71.9,16.7 0,405.7 494.1,0 0,-405.7 -494.1,0 z m 0,0 h 0.01"
+         id="path6470"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.11085999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+     d="m 548.82056,384.01263 107.32037,-1.12969"
+     id="path6478"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.11085999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+     d="m 472.00177,548.94709 107.32037,0"
+     id="path6480"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <text
+     xml:space="preserve"
+     style="font-size:35.54751968px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="259.62045"
+     y="353.51102"
+     id="text6482"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       x="259.62045"
+       y="353.51102"
+       id="tspan6486">top 3 contributed 50%</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:35.54751968px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="192.96881"
+     y="519.57526"
+     id="text6490"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan6492"
+       x="192.96881"
+       y="519.57526">top 10 contributed 85%</tspan></text>
+</svg>

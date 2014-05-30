@@ -1,0 +1,507 @@
+
+<!-- saved from url=(0018)./files/#1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Ocaml in the cloud: building an open-source virtualization platform</title>
+    <script type="text/javascript" src="./files/slides.js">  </script>
+  <style>
+  </style><meta name="viewport" content="width=1100,height=750"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+  
+  
+
+  <body class="loaded">
+    <section class="slides layout-regular template-default">
+      
+   <article class="biglogo current">
+     
+   <h1>OCaml in the cloud</h1>
+   <br>
+   <b>building an open-source virtualization platform</b>
+   <br>
+   <br>
+   Tech Mesh 2012, London
+   <br>
+   David Scott, XenServer System Architect, Citrix<br>
+   <br>
+       <a href="http://dave.recoil.org/">http://dave.recoil.org/</a> <br>
+        <a href="http://twitter.com/mugofsoup">@mugofsoup</a>
+  
+   </article>
+ 
+   <article class="next">
+     
+    <h3>Talk structure</h3>
+    <ol>
+    <li><b>XenServer and OCaml: a brief history
+      <ul>
+      <li>What is XenServer? </li>
+      <li> Where is the OCaml? </li>
+      <li>What was good, what could have been better? </li>
+      </ul></b>
+    </li>
+    <li>Low-level systems programming in OCaml
+      <ul>
+      <li>OCaml in kernel space</li>
+      <li>Run OCaml directly on the cloud</li>
+      </ul>
+    </li>
+    <li>Future XenServer architecture
+      <ul>
+      <li>Where OCaml fits</li>
+      </ul>
+    </li>
+  </ol>
+  
+   </article>
+ 
+   <article class="far-next">
+     
+    <h3>What is XenServer?</h3>
+    <ul>
+      <li>a hypervisor platform</li>
+      <li>based on open-source <a href="http://www.xen.org/"><tt>Xen</tt></a>, <a href="http://kernel.org/"><tt>Linux</tt></a>, <a href="http://www.centos.org/"><tt>CentOS</tt></a></li>
+      <li>turns a set of physical machines into a single, flexible substrate on which VMs can be installed, migrated around, etc etc</li>
+    </ul>
+    <br>
+    <section>
+    <object data="./files/xenserver.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+    <br>
+
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>So... where did we put the OCaml?</h3>
+    <section>
+    <object data="./files/xenserver-ocaml.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>XenServer and OCaml: a short history</h3>
+    <ul>
+    <li> Back in 2006 we were:
+      <ul>
+      <li> XenSource: a VC-funded spin-off from the <a href="http://www.cl.cam.ac.uk/">University of Cambridge Computer Lab</a></li>
+      <li> Building software to manage datacenters running the <a href="http://www.xen.org/"><tt>Xen</tt></a> hypervisor</li>
+      </ul>
+    </li>
+    <li> Back in 2006 we had:
+      <ul>
+      <li> a small team of smart, pragmatic people</li>
+      <li> an existing codebase in C/C++/python</li>
+      <li> ...</li>
+      <li> too many defect tickets of the form "component X SIGSEGV (again)"</li>
+      </ul>
+    </li>
+
+    </ul>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>XenServer and OCaml: a short history</h3>
+    <ul>
+    <li> We knew we were spending <b>waaaay</b> too much time
+      <ul>
+      <li> tediously parsing strings (protocols, CLIs, config files)</li>
+      <li> tracking down the root cause of memory corruption</li>
+      </ul>
+    </li>
+    <li> We knew we were spending <b>waaaay</b> too little time
+      <ul>
+      <li> building features people wanted</li>
+      <li> thinking about any kind of "design" at all</li>
+      </ul>
+    </li>
+    </ul>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>XenServer and OCaml: a short history</h3>
+    <ul>
+    <li> We knew we could <b>generate more value</b> by
+      <ul>
+      <li> using higher-level, safer tools</li>
+      <li> thinking and planning more than one step ahead</li>
+      </ul>
+    </li>
+    <li> .. but it's hard to justify anything that sounds like "rewrite" when
+      <ul>
+      <li> "the burn rate is X Mega USD per month"</li>
+      <li> "we have a Y month runway"</li>
+      </ul>
+    </li>
+    </ul>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>XenServer and OCaml: a short history</h3>
+    <ul>
+    <li> we were asked to design a "hypervisor management API"
+      <ul>
+      <li> to manage all hosts within a "resource Pool" (cluster)</li>
+      <li> for sysadmins, 3rd party integrators</li>
+      <li> with language bindings in Java, C, C++</li>
+      <li> with documentation</li>
+      </ul>
+    </li>
+	<li> first task: create an API document for discussion</li>
+    <li> why write a doc when you can generate from a declarative spec?</li>
+    <li> .. and then you can generate code</li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>XenServer and OCaml: a short history</h3>
+    <ul>
+    <li> 3 of us had FP experience (standard ML and then OCaml)</li>
+    <li> we knew that we could benefit from
+    <ul>
+      <li>algebraic data types</li>
+      <li>type-checking</li>
+      <li>bounds-checking</li>
+    </ul>
+    </li>
+    <li> OCaml is a "multi-paradigm" programming language</li>
+    <li> OCaml is like "a better C"
+    <ul>
+      <li> small, simple runtime (we described as "embedded")</li>
+      <li> small memory footprint, quick startup time</li>
+      <li> compiler generates decent native code</li>
+      <li> FFI allows us to drop to C if necessary</li>
+    </ul>
+    </li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>So a document generator was born</h3>
+    <ul>
+    <li> a declarative API spec was converted into pdf (via latex)</li>
+    <li> how did we know the API was actually going to work?
+      <ul>
+      <li>clearly we needed a quick prototype implementation</li>
+      </ul>
+    </li>
+    <li> we quickly generated some API stubs, skeletons</li>
+    <li> we quickly hooked up the skeletons to some "actuators" (<tt>Xen</tt> hypercalls etc)</li>
+    <li> ... </li>
+    <li> the result was pretty impressive! </li>
+    <li> ... </li>
+    <li> shall we move the product over to this new codebase then? </li>
+    <li><b>What about the objections?</b></li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>but... but... what if you can't hire anyone?</h3>
+    <p>Not a problem in practice:</p>
+<pre class="noprettyprint"><span class="pln">$ git shortlog </span><span class="pun">-</span><span class="pln">s </span><span class="pun">-</span><span class="pln">n </span><span class="pun">|</span><span class="pln"> dedup</span><span class="pun">-</span><span class="pln">users</span><span class="pun">-</span><span class="pln">by</span><span class="pun">-</span><span class="pln">hand </span><span class="pun">|</span><span class="pln"> wc </span><span class="pun">-</span><span class="pln">l
+</span><span class="lit">53</span></pre>
+    <p>We turned it to our advantage by</p>
+    <ul>
+      <li> making job adverts more exciting</li>
+      <li> attracting lots of interesting people (who would excel in any language)</li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>ok, you hired people-- but did they contribute?</h3>
+	<p>Obviously yes!</p>
+    <section>
+    <object data="./files/xen-api.simple.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>but... but... we won't be acquired if code is in OCaml!</h3>
+    <ul>
+      <li> maybe their devs will never understand the code?</li>
+      <ul>
+        <li> honestly OCaml is the easy bit; hypervisors are quite complex</li>
+      </ul>
+      <li> but the code is insecure: you can't run off-the-shelf buffer overflow detectors</li>
+      <ul>
+        <li> perhaps this did put some people off: probably a lucky escape</li>
+      </ul>
+    </ul>
+    <center><b> In 2007 Citrix bought XenSource for 500 M USD</b></center>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>OCaml retrospective: What was good? What could have been better?</h3>
+    <ul>
+      <li> Good
+      <ul>
+        <li> segfaults are an endangered species </li>
+        <li> OCaml tools are very robust </li>
+        <li> new people were productive quickly </li>
+        <li> we could concentrate on the important high-level problems </li>
+      </ul>
+      </li>
+      <li> Could have been better
+      <ul>
+        <li> some confusion caused by multiple "standard libraries"</li>
+        <li> packaging: often easier to reinvent something than to share</li>
+      </ul>
+      </li>
+      <li>OCaml labs and OCamlPro to the rescue!</li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Talk structure</h3>
+    <ol>
+    <li>XenServer and OCaml: a brief history
+      <ul>
+      <li>What is XenServer? </li>
+      <li> Where is the OCaml? </li>
+      </ul>
+    </li>
+    <li><b>Low-level systems programming in OCaml
+      <ul>
+      <li>OCaml in kernel space</li>
+      <li>Run OCaml directly on the cloud</li>
+      </ul></b>
+    </li>
+    <li>Future XenServer architecture
+      <ul>
+      <li>Where OCaml fits</li>
+      </ul>
+    </li>
+  </ol>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Mirage: OCaml in kernel space</h3>
+    <ul>
+	  <li><b>"The cloud is the computer"</b>: now we only need simple block, network packet abstractions at the bottom.</li>
+      <li>Protocol libraries, rather than layers
+        <ul>
+          <li> IP, UDP, TCP, HTTP, DNS, SSH, FAT32, OpenFlow </li>
+          <li> <a href="http://openmirage.org/">http://openmirage.org/</a></li>
+        </ul>
+      </li>
+      <li>Modules, signatures, functors, recompilation rather than ABIs
+        <ul>
+          <li> Type-checker helps with API updates </li>
+        </ul>
+      </li>
+      <li>Single-purpose, optimised, statically-linked images running as OS kernels
+        <ul>
+          <li> Fetch libraries with <b>opam</b> </li>
+          <li> Link only what you need </li>
+          <li> Compile-in static configuration (no config files) </li>
+        </ul>
+      </li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Performance: block I/O</h3>
+    <section>
+    <object data="./files/storage-colour.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Performance: network I/O</h3>
+    <section>
+    <object data="./files/dns-qps.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Binary size</h3>
+    <p>All binaries are bzip2'd (since they're sparse, with lots of blocks of zero)</p>
+    <table>
+      <tbody><tr style="background-color:#000; color:#EEE"><td>App</td><td>standard build / KiB</td><td>with dead code elim / KiB</td></tr>
+      <tr style="background-color:#ddffdd"><td>DNS</td><td>499</td><td>184</td></tr>
+      <tr style="background-color:#ffdddd"><td>web server</td><td>674</td><td>172</td></tr>
+      <tr style="background-color:#ddffdd"><td>OpenFlow learning switch</td><td>393</td><td>164</td></tr>
+      <tr style="background-color:#ffdddd"><td>OpenFlow controller</td><td>392</td><td>168</td></tr>
+    </tbody></table>
+    <p>Dead code elimination currently only possible on bytecode (via <tt>ocamlclean</tt>).</p>
+    <p><b>Remember: these binaries are self-contained, containing full network stacks etc.</b></p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>The Mirage Way</h3>
+    <section>
+    <object data="./files/yourapp.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Example: this presentation</h3>
+    <section>
+    <object data="./files/website.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Building an OCaml kernel is easy</h3>
+      <p>Set up <b>opam</b></p>
+<pre class="noprettyprint"><span class="pln">$ git clone https</span><span class="pun">:</span><span class="com">//github.com/OCamlPro/opam</span><span class="pln">
+$ </span><span class="pun">(</span><span class="pln">cd opam </span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="pun">./</span><span class="pln">configure </span><span class="pun">&amp;&amp;</span><span class="pln"> make </span><span class="pun">&amp;&amp;</span><span class="pln"> make install</span><span class="pun">)</span><span class="pln">
+$ opam init default git</span><span class="pun">:</span><span class="com">//github.com/mirage/opam-repository</span><span class="pln">
+$ opam remote </span><span class="pun">-</span><span class="pln">add dev git</span><span class="pun">:</span><span class="com">//github.com/mirage/opam-repo-dev</span></pre>
+     <p>Switch to <tt>Xen</tt> and install mirage</p>
+<pre class="noprettyprint"><span class="pln">$ opam switch </span><span class="pun">-</span><span class="pln">install </span><span class="lit">3.12.1+mirage</span><span class="pun">-</span><span class="pln">xen
+$ opam switch </span><span class="lit">3.12.1+mirage</span><span class="pun">-</span><span class="pln">xen
+$ opam </span><span class="pun">--</span><span class="pln">yes install mirage mirage</span><span class="pun">-</span><span class="pln">net cohttp mirage</span><span class="pun">-</span><span class="pln">fs</span></pre>
+     <p>You're ready to go!</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Talk structure</h3>
+    <ol>
+    <li>XenServer and OCaml: a brief history
+      <ul>
+      <li>What is XenServer? </li>
+      <li> Where is the OCaml? </li>
+      </ul>
+    </li>
+    <li>Low-level systems programming in OCaml
+      <ul>
+      <li>OCaml in kernel space</li>
+      <li>Run OCaml directly on the cloud</li>
+      </ul>
+    </li>
+    <li><b>Future XenServer architecture
+      <ul>
+      <li>Where OCaml fits</li>
+      </ul></b>
+    </li>
+  </ol>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>"Project Windsor": disaggregating domain 0</h3>
+    <ul>
+      <li> Isolate components in (small) VMs e.g.
+        <ul>
+        <li> Individual device drivers (NIC x; HBA y)</li>
+        <li> Individual services (per-VM hardware emulators</li>
+        </ul>
+      </li>
+      <li> <b>Increase reliability:</b> Monitor, crash and restart on failure (Erlang-style)</li>
+      <li> <b>Better scalability:</b> Dynamically scale-out across NUMA nodes</li>
+      <li> <b>More secure:</b> Reduce size of the Trusted Computing Base</li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>"Project Windsor": where OCaml helps</h3>
+    <ul>
+      <li> The same code can be run in user-space (as normal) or kernel-space (via Mirage)
+        <ul>
+        <li>Debug in user-space, deploy in kernel-space</li>
+        </ul>
+      </li>
+      <li> Only include the libraries you actually need
+        <ul>
+        <li> Low memory footprint</li>
+        <li> Extremely fast boot</li>
+        <li> Helps keep the TCB small</li>
+        </ul>
+      </li>
+      <li> High performance
+        <ul>
+        <li> No layers of legacy code </li>
+        <li> No need for separate kernel and user-space within a Mirage VM</li>
+        </ul>
+      </li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Example: xenstore service</h3>
+    <ul>
+      <li>A critical service on a <tt>Xen</tt> host, needed by all control operations.</li>
+      <li>Provides an access-controlled key-value store to all VMs.</li>
+    </ul>
+    <section>
+    <object data="./files/xenstore.svg" type="image/svg+xml">&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Summary</h3>
+    <ul>
+      <li> using higher-level tools like OCaml, helps us <b>generate more value</b> for the company
+        <ul>
+        <li> I claim the complexity of our software is due to the problem domain, not the programming language(s)</li>
+        <li> You can think of OCaml as "a better C" (if that helps) </li>
+        </ul>
+      </li>
+      <li> virtualization allows us to rethink how our OSes and applications are structured
+      <ul>
+        <li>Remember Rob Pike's "Systems Software Research is Irrelevant"?</li>
+        <li>OCaml in kernel mode is liberating and fun</li>
+      </ul>
+      </li>
+      <li><b>Citrix is a great company</b> - speak to me to find out more</li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h1>The End
+    <br><small>happy hacking</small>
+    </h1>
+  
+   </article>
+ 
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+  
+
+<link rel="stylesheet" type="text/css" href="./files/css"><link rel="stylesheet" type="text/css" href="./files/styles.css"><script type="text/javascript" src="./files/prettify.js"></script></body></html>

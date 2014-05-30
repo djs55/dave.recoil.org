@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2011-05-20-storage-domain-progress</title>
+
+<link rel="stylesheet" href="../../style.css" type="text/css" />
+
+<link rel="stylesheet" href="../../local.css" type="text/css" />
+
+
+
+
+
+</head>
+<body>
+
+<div class="pageheader">
+<div class="header">
+<span>
+<span class="parentlinks">
+
+<a href="../../">Dave Scott</a>/ 
+
+<a href="../">posts</a>/ 
+
+</span>
+<span class="title">
+2011-05-20-storage-domain-progress
+
+</span>
+</span><!--.header-->
+
+</div>
+
+
+<div class="actions">
+<ul>
+
+
+<li><a href="../../recentchanges/">RecentChanges</a></li>
+
+
+
+
+
+<li><a href="./#comments">Comments</a><br /></li>
+
+</ul>
+</div>
+
+
+
+
+</div> <!-- .pageheader -->
+
+
+
+<div id="content">
+<h2>Progress on creating storage driver domains for XCP</h2>
+
+<p>Currently all storage drivers in 
+<a href="http://www.xen.org/products/cloudxen.html">XCP</a> 
+must be in domain 0. I'd like to
+make it possible to put storage drivers into other domains (ie VM appliances)
+so that</p>
+
+<ul>
+<li>they are independent of the domain 0 OS (linux distro, linux kernel etc);</li>
+<li>if they crash then they can be rebooted independently; and</li>
+<li>domain 0 can be made smaller, into something more like a little embedded system.</li>
+</ul>
+
+<p>For more information, see the <a href="../../posts/2011-05-05-dom0/">discussion about the future of domain 0</a>.</p>
+
+<p>Conceptually this isn't very difficult. We just need to</p>
+
+<ol>
+<li>remote the storage control plane (VDI.attach et al)</li>
+<li>configure blkback endpoints in domains other than 0</li>
+<li>make sure that qemu can still read the disks (it currently knows a little too much about the devices being in domain 0)</li>
+<li>create an example storage domain to prove it works</li>
+</ol>
+
+<p>Here's my current task list:</p>
+
+<table border="1">
+    <th><td>Description</td><td>Depends</td><td>Status</td></th>
+    <tr>
+        <td>1</td>
+        <td>create a method for remoting the SMAPI (storage control plane)</td>
+        <td></td>
+        <td><a href="https://github.com/xen-org/xen-api/commit/349d28deb93bc4587d896ee236469b5ca46d959a">merged</a></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>allow lots of blkfronts in domain 0 (for qemus)</td>
+        <td></td>
+        <td><a href="https://github.com/xen-org/xen-api/commit/1a8307db366b6c575e333a5c5ff528b9c7e1dbfb">merged</a></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>VDI.attach needs to return the info we need for blkback, not a path in dom0</td>
+        <td>1</td>
+        <td>Not started</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>disks which qemu needs require blkfront instances in dom0</td>
+        <td>2</td>
+        <td>Not started</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>remoted SMAPI needs fleshed-out with SR.create, SR.destroy, VDI.create, VDI.destroy etc</td>
+        <td>1</td>
+        <td>Not started</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>add a simple policy associating a driver domain (VM) with an SR or PBD</td>
+        <td>1</td>
+        <td>Not started</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>create an example storage domain with FreeBSD?</td>
+        <td>1</td>
+        <td>Not started</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>create a domain 0 storage control multiplexor capable of (eg) starting storage domains on-demand</td>
+        <td>6</td>
+        <td>Not started</td>
+    </tr>
+</table>
+
+<p>So far I've focused on pieces which also coincidentally fix existing bugs in XCP: this is why some changes have already been merged into mainline. The rest of the tasks are clearly only useful for the driver domain case so I'll keep these in a personal branch on github.</p>
+
+</div>
+
+
+<div id="comments">
+
+
+
+
+<div class="addcomment">Comments on this page are closed.</div>
+
+</div>
+
+
+<div id="footer" class="pagefooter">
+<div id="pageinfo">
+
+
+
+
+
+
+
+
+
+<div class="pagedate">
+Last edited <span class="date">Fri 20 May 2011 16:39:43 BST</span>
+<!-- Created <span class="date">Fri 20 May 2011 15:41:44 BST</span> -->
+</div>
+
+</div><!-- #pageinfo -->
+
+<!-- from Dave Scott -->
+</div><!-- .pagefooter #footer -->
+
+</body>
+</html>
