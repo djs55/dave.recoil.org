@@ -38,7 +38,7 @@ if [ "$MIRAGE_BACKEND" = "xen" \
     # Clone the deployment repo. Notice the user,
     # which is the same as in the ~/.ssh/config file.
     git clone git@github.com:djs55/dave.recoil.org-unikernels
-    cd www-test-deploy
+    cd dave.recoil.org-unikernels 
 
     # Make a folder named for the commit. 
     # If we're rebuiling a VM from a previous
