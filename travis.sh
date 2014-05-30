@@ -23,7 +23,7 @@ if [ "$MIRAGE_BACKEND" = "xen" \
     mkdir -p ~/.ssh
     travis-senv decrypt > ~/.ssh/id_dsa # This doesn't expose it
     chmod 600 ~/.ssh/id_dsa             # Owner can read and write
-    echo "Host some_user github.com"   >> ~/.ssh/config
+    echo "Host djs55 github.com"   >> ~/.ssh/config
     echo "  Hostname github.com"          >> ~/.ssh/config
     echo "  StrictHostKeyChecking no"     >> ~/.ssh/config
     echo "  CheckHostIP no"               >> ~/.ssh/config
@@ -37,7 +37,7 @@ if [ "$MIRAGE_BACKEND" = "xen" \
     # Do the actual work for deployment.
     # Clone the deployment repo. Notice the user,
     # which is the same as in the ~/.ssh/config file.
-    git clone git@some_user:amirmc/www-test-deploy
+    git clone git@github.com:djs55/dave.recoil.org-unikernels
     cd www-test-deploy
 
     # Make a folder named for the commit. 
