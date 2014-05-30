@@ -1,0 +1,7 @@
+language: c
+before_script: cd _mirage
+script: bash -ex travis.sh
+env:
+  matrix:
+  - MIRAGE_BACKEND=xen DEPLOY=0
+  - MIRAGE_BACKEND=unix
