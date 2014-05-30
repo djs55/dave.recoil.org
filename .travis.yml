@@ -2,7 +2,7 @@ language: c
 script: bash -ex travis.sh
 env:
   matrix:
-  - MIRAGE_BACKEND=xen DEPLOY=0
+  - MIRAGE_BACKEND=xen DEPLOY=1
   - MIRAGE_BACKEND=unix
   global:
   - secure: bq6k90JKwJkqKNOBDSz99REEnq3vSx3h4/9rtDPqiz+KiZQHUgkrd/kBc/Kwp82FdHqirnqB4YgmdsQtbd1Nwwru9+wDd08AvaU18GpUV+pqdFj8aVX0ZaxYFcAt5fGuPOE1Z9TKN4tPxcqHdF8E+oD22fmAhEjKeBX1yftV2tA=
