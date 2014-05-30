@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/djs55
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://dave.recoil.org
+  * I am djs55 (https://keybase.io/djs55) on keybase.
+  * I have a public key with fingerprint 5F7C 5F2A 9DCD 726B D8DA  E4E5 52E9 2ADE CC07 713F
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "5f7c5f2a9dcd726bd8dae4e552e92adecc07713f",
+            "host": "keybase.io",
+            "key_id": "52e92adecc07713f",
+            "uid": "46fa67255f1509d4f511789356bd3300",
+            "username": "djs55"
+        },
+        "service": {
+            "hostname": "dave.recoil.org",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1397570249,
+    "expire_in": 157680000,
+    "prev": "03d972abd53b827e3d2e754ac710122ee7e5ee566d0c0743291219b8f78becd0",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v0.1.8
+Comment: https://keybase.io/crypto
+
+yMH1AnicZZFdSBxXFMd3G9fYjREl6lYfErnxK2g387F3ZmcjUmKtpEExLBpiAsvM
+3DvruDqzndndqrtSQolpiwQkIVofQmwxXUKUhMYgIRFj+iJWiiBi0H7gQ6SVLSyU
+YCOodyQ+5b4M9/x///+5Z84vRw/ZnHbFFQWzzXXb9vmZdNTmb/TNxYGkox7gi4MQ
+3v8oqhbERthQtQjwAajwMlQYUUAy4hlOQl4kYg+GkMECIyIsyxTP06wCqkG7bloO
+EiOJJnarOqmRS0BFVs77fHRf8HCKyPEMhAoNKQF5FEjTvFdgIenFshRlgSY2NLEL
+Exp1mBCCvmpASjFVJqX4ft8DWYxht4FlXe1060aQeMOGHtFlvZOI7ZFI2Gd5Iz1h
+C/4SS4F3MQFJ1RCZmxhi2DBVXQM+mpByRLVyaVbgIU8xHqEa4O6wauCAahGQ57wU
+OVYbHCORFIsEnhElBFnJy/CYRQzmoUeUeZqiGQZjHkOMIcchivwHD8sINEMLklfh
+vRKWkTWsib/QdOBjyTPFIIk01aAmRqIGBn2zM1cybHanLdPxgbU5m/PD3IN9prIO
+75T8ven/bLOgtOhjR9kDx6OpsWaY/Wb8r51LD/PLf7xXN+LMTDwdYZtWVn74yP/V
+/2xL3r8VReWpBfNC1ub2YkFOzafFHZ8s1+b8eX+ysBdpiwuv09lcavBc6XfJxp/0
+ZNPoxG8n7tzsrpy+XFg1OnFxqWWDatv9ffr01NXM0jPHv9+yhT5P1tRv/Kc2pzpz
+qaFgZft8K4i9HQod4Z6vFrQMViT86XVgPpsL3YqXib2u1uVrHThvOHHj1OrJBvlu
+VW3/+dHh9aUnO9+WiOnc/GSxa3dmzX575Z+xrabr7peTjhcZqZ8HXrXWH3OMDQy6
+in41qPG5ta8b2vr/ONuVeCx/sweG+Qyy
+=r+wm
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/djs55
+
+==================================================================

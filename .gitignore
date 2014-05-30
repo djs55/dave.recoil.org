@@ -1,4 +1,15 @@
-blog/
 gallery/
-CVS/
 *~
+Makefile
+_build/
+static1.ml
+static1.mli
+main.ml
+main.xl
+www.xl
+mir-www
+mir-www.xen
+bits/
+log
+main.native
+

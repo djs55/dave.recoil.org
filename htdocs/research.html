@@ -1,42 +1,78 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
-<head>
-    <title>Dave Scott / Research</title>
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="main.css" media="all" />
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dave Scott</title>
+    <meta name="description" content="Dave Scott's homepage">
+    <meta name="author" content="Dave Scott">
 
-<body>
-    <div id="header">
-        <h1><span><a href="/">David Scott</a></span></h1>
-    <div id="nav">
-        <ul>
-    <li><span class="foo"><a href="index.html">dave.recoil.org:</a></span></li>
-    <li><span><a href="index.html">aboutme</a></span></a></li>                             
-    <li id="current"><span><a href="research.html">research</a></span></li>                          
-    <li><span><a href="personal.html">personal</a></span></li>                          
-    <li><span><a href="gallery/tags.html">gallery</a></span></li>                               
-    <li><span><a href="blog/0.html">blog</a></span></li>                        
-    <li><span><a href="notes/">notes</a></span></li>
-        </ul>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">dave.recoil.org</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="index.html">Home</a></li>
+<!--
+            <li><a href="#about">About</a></li>
+-->
+            <li class="active"><a href="research.html">Research</a></li>
+<!--
+            <li><a href="#personal">Personal</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+-->
+            <li><a href="blog/index.html">Blog</a></li>
+<!--
+            <li><a href="notes/index.html">Notes</a></li>
+-->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
-    </div> 
-    <div id="headerstrip" ></div>
-	
-    <div id="main">
+
+    <div class="container" id="main">
     <!-- Content goes here -->
 
-This page is (slowly) being rewritten.
-
+<!--
 <h2>Papers which I thought were great</h2>
 (but some people disagreed with me)
 
 (to be filled in later)
 
+-->
+
 <h2>Papers which won prizes</h2>
-<table>
-<tr class="stripe2">
-<td><a href="papers/final/eurosys2007.pdf"><img src="papers/final/eurosys2007.jpg" width="160"></a></td>
+<table class="table table-striped">
+<tr">
+<td width="160"><a href="papers/final/eurosys2007.pdf"><img src="papers/final/eurosys2007.jpg"></a></td>
 <td><div align="top">
     <p><b>Melange: creating a functional internet</b> - 
           A. Madhavapeddy, A. Ho, T. Deegan, D. Scott, R. Sohan</p>
@@ -57,7 +93,7 @@ This page is (slowly) being rewritten.
 </td>
 </tr>
 
-<tr class="stripe1">
+<tr>
 <td><a href="papers/final/fase2003.pdf"><img src="papers/final/fase2003.jpg" width="160"></a></td>
 <td><div align="top">
     <p><b><a href="papers/final/fase2003.pdf">Spatial Security Policies for Mobile Agents in a Sentient Computing
@@ -86,7 +122,7 @@ Poland.
 </tr>
 
 
-<tr class="stripe2">
+<tr>
 <td><a href="papers/final/abstracting.pdf"><img src="papers/final/abstracting.jpg" width="160"></a></td>
 <td><div align="top">
     <p><b><a href="papers/final/abstracting.pdf">Abstracting Application-Level Web Security</a></b>
@@ -147,264 +183,176 @@ I'm grateful to
 
 <h2>Refereed Reports</h2>
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="table table-striped">
   <tbody>
 
-<!--
-    <tr class="stripe1">
-      <td valign="top">year&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2007&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>authors</td></tr>
-          <tr><td><i>title</i>
-          </td></tr>
-        </table>
+          <p>A. Madhavapeddy, A. Ho, T. Deegan, D. Scott, R. Sohan</p>
+          <p><i>Melange: Towards a &quot;functional&quot; Internet</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> details
-       </td></tr>
-      <tr><td>
-        link [pdf: x kB]
-        &nbsp;</td></tr>
-      </table></td>
+      <td>
+          <p> Appeared in <a href="http://www.gsd.inesc-id.pt/conference/EuroSys2007/">EuroSys 2007</a>, March 2007 </p>
+       </td>
     </tr>
--->
-
-    <tr class="stripe1">
-      <td valign="top">2007&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2006&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>A. Madhavapeddy, A. Ho, T. Deegan, D. Scott, R. Sohan</td></tr>
-          <tr><td><i>Melange: Towards a &quot;functional&quot; Internet</i>
-          </td></tr>
-        </table>
-      </td>
-      <td></td>
-      <td><table>
-      <tr><td valign="top"> Appeared in <a href="http://www.gsd.inesc-id.pt/conference/EuroSys2007/">EuroSys 2007</a>, March 2007
-       </td></tr>
-      <tr><td>
-<!--
-        link [pdf: x kB]
-        &nbsp;--></td></tr>
-      </table></td>
-    </tr>
-    <tr class="stripe2">
-      <td valign="top">2006&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
- 
-        <table>
-          <tr><td>E. Toye, R. Sharp, A. Madhavapeddy, D. Scott, E. Upton,
-          A. Blackwell</td></tr>
-          <tr><td><i>Interacting with Mobile Services: An Evaluation of
+          <p>E. Toye, R. Sharp, A. Madhavapeddy, D. Scott, E. Upton,
+          A. Blackwell</p>
+          <p><i>Interacting with Mobile Services: An Evaluation of
           Camera-Phones and Visual Tags</i>
-          </td></tr>
-        </table>
+          </p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> In <a href="http://www.personal-ubicomp.com/">Personal and Ubiquitous Computing Journal</a>,
-          February 2006
-       </td></tr>
-      <tr><td>
-        <a href="papers/2006-puc-tags.pdf"> [pdf:
-          330 kB] </a>
-        &nbsp;</td></tr>
-      </table></td>
+      <td>
+      <p>In <a href="http://www.personal-ubicomp.com/">Personal and Ubiquitous Computing Journal</a>,
+          February 2006</p>
+      <p><a href="papers/2006-puc-tags.pdf"> [pdf:
+          330 kB] </a></p>
+      </td>
     </tr>
 
-    <tr class="stripe1">
-      <td valign="top">2005&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2005&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>A. Madhavapeddy, R. Sharp, D. Scott, A. Tse</td></tr>
-          <tr><td><i>Audio Networking: The Forgotten Wireless Technology</i>
-          </td></tr>
-        </table>
+        <p>A. Madhavapeddy, R. Sharp, D. Scott, A. Tse</p>
+        <p><i>Audio Networking: The Forgotten Wireless Technology</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> In <a href="http://www.computer.org/pervasive/">IEEE Pervasive Computing</a> (volume 4, number
-          3), July-September 2005
-       </td></tr>
-      <tr><td>
-        <a href="papers/2005-ieee-audio.pdf"> [pdf: 1 MiB] </a>
-        &nbsp;</td></tr>
-      </table></td>
+      <td>
+        <p>In <a href="http://www.computer.org/pervasive/">IEEE Pervasive Computing</a> (volume 4, number
+          3), July-September 2005</p>
+        <p><a href="papers/2005-ieee-audio.pdf"> [pdf: 1 MiB] </a></p>
+      </td>
     </tr>
 
-    <tr class="stripe2">
-      <td valign="top">2005&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2005&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>A. Madhavapeddy, D. Scott, R. Sharp</td></tr>
-          <tr><td><i>SPLAT: A Tool for Model-Checking and Dynamically
-          Enforcing Abstractions</i>
-          </td></tr>
-        </table>
+        <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
+        <p><i>SPLAT: A Tool for Model-Checking and Dynamically
+          Enforcing Abstractions</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> In the proceedings of the 12th Internation SPIN
-          Workshop on Model Checking of Software (<a href="http://cm.bell-labs.com/cm/cs/what/spin2005/">SPIN 2005</a>)
-       </td></tr>
-      <tr><td>
-        <a href="papers/2005-spin-splat.pdf"> [pdf: 120 kB]</a>
-        &nbsp;</td></tr>
-      </table></td>
+      <td>
+        <p>In the proceedings of the 12th Internation SPIN
+          Workshop on Model Checking of Software (<a href="http://cm.bell-labs.com/cm/cs/what/spin2005/">SPIN 2005</a>)</p>
+        <p><a href="papers/2005-spin-splat.pdf"> [pdf: 120 kB]</a></p>
+      </td>
     </tr>
 
-    <tr class="stripe1">
-      <td valign="top">2005&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2005&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>E. Toye, R. Sharp, A. Madhavapeddy, D.Scott</td></tr>
-          <tr><td><i>Using Smart Phones to Access Site-Specific Mobile Services</i>
-          </td></tr>
-        </table>
+        <p>E. Toye, R. Sharp, A. Madhavapeddy, D.Scott</p>
+        <p><i>Using Smart Phones to Access Site-Specific Mobile Services</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> In the special issue of IEEE Pervasive Computing on the Smart Phone: A First Platform for Pervasive Computing, April-June 2005
-       </td></tr>
-      <tr><td>
-        <a href="papers/2005-ieee-smartphones.pdf"> [pdf: 2.4 MiB]</a>
-        &nbsp;
-</td></tr>
-      </table></td>
+      <td>
+        <p>In the special issue of IEEE Pervasive Computing on the Smart Phone: A First Platform for Pervasive Computing, April-June 2005</p>
+        <p><a href="papers/2005-ieee-smartphones.pdf"> [pdf: 2.4 MiB]</a></p>
+      </td>
     </tr>
 
-    <tr class="stripe2">
-      <td valign="top">2005&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2005&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-	  <tr><td>A. Madhavapeddy, D. Scott</td></tr>
-          <tr><td>On the Challenge of Delivering High-Performance, Dependable, Model-Checked Internet Servers</td></tr>
-          </td></tr>
-        </table>
+        <p>A. Madhavapeddy, D. Scott</p>
+        <p><i>On the Challenge of Delivering High-Performance, Dependable, Model-Checked Internet Servers</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> In the proceedings of the First Workshop on Hot Topics in System Dependability (HotDep-05), June 2005.
-       </td></tr>
-      <tr><td>
-        <a href="papers/2005-hotdep-spl.pdf"> [pdf: 80 kB] </a>
-        &nbsp;
-</td></tr>
-      </table></td>
+      <td>
+        <p>In the proceedings of the First Workshop on Hot Topics in System Dependability (HotDep-05), June 2005.</p>
+        <p><a href="papers/2005-hotdep-spl.pdf"> [pdf: 80 kB] </a></p>
+      </td>
     </tr>
 
 
-    <tr class="stripe1">
-      <td valign="top">2005&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2005&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>D. Scott, R. Sharp, A. Madhavapeddy, E. Upton</td></tr>
-          <tr><td><i>Using Camera-Enabled Personal Devices to Access Bluetooth Mobile Services</i>
-          </td></tr>
-        </table>
+        <p>D. Scott, R. Sharp, A. Madhavapeddy, E. Upton</p>
+        <p><i>Using Camera-Enabled Personal Devices to Access Bluetooth Mobile Services</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">
-      ACM Mobile Computing and Communications Review (MC2R), January 2005, Volume 9, Number 1, Pages 41-53.
-       </td></tr>
-      <tr><td>
-        <!-- link [pdf: x kB] -->
-        &nbsp;</td></tr>
-      </table></td>
+      <td>
+        <p>ACM Mobile Computing and Communications Review (MC2R), January 2005, Volume 9, Number 1, Pages 41-53.</p>
+      </td>
     </tr>
 
 
-    <tr class="stripe2">
-      <td valign="top">2004&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2004&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>D. Scott</td></tr>
-          <tr><td><i>Abstracting Application-Level Security Policy for Ubiquitous Computing</i>
-          </td></tr>
-        </table>
+        <p>D. Scott</p>
+        <p><i>Abstracting Application-Level Security Policy for Ubiquitous Computing</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> PhD thesis, University of Cambridge
-       </td></tr>
-      <tr><td>
-        <a href="thesis/approved.pdf"> [pdf: 2.0 MB]
-        </a>&nbsp;</td></tr>
-      </table></td>
+      <td>
+        <p>PhD thesis, University of Cambridge</p>
+        <p><a href="thesis/approved.pdf"> [pdf: 2.0 MB]</a></p>
+      </td>
     </tr>
 
-    <tr class="stripe1">
-      <td valign="top">2004&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2004&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>K. mansley, A. Beresford, D. Scott</td></tr>
-          <tr><td><i>The Carrot Approach: Encouraging use of location systems</i>
-          </td></tr>
-        </table>
+        <p>K. mansley, A. Beresford, D. Scott</p>
+        <p><i>The Carrot Approach: Encouraging use of location systems</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> This paper describes techniques to encourage (rather than force) the use of location-aware apps in the face of declining participation. Presented at 
+      <td>
+        <p>This paper describes techniques to encourage (rather than force) the use of location-aware apps in the face of declining participation. Presented at 
            <a href="http://ubicomp.org/ubicomp2004/">
-           The Sixth International Conference on Ubiquitous Computing (UBICOMP 2004)</a> in Nottingham, UK in Septempter 2004
-       </td></tr>
-      <tr><td>
-        <a href="papers/final/ubicomp2004.pdf">
-        [pdf: 400kB]</a>&nbsp;</td></tr>
-      </table></td>
+           The Sixth International Conference on Ubiquitous Computing (UBICOMP 2004)</a> in Nottingham, UK in Septempter 2004</p>
+        <p><a href="papers/final/ubicomp2004.pdf">
+        [pdf: 400kB]</a></p>
+      </td>
     </tr>
 
 
-    <tr class="stripe2">
-      <td valign="top">2004&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2004&nbsp;&nbsp;</td>
+      <td width="50%">
 
-        <table>
-          <tr><td>K. Mansley, D. Scott, A. Tse, A. Madhavapeddy</td></tr>
-          <tr><td><i>Feedback, Latency, Accuracy: Exploring Tradeoffs in Location-Aware Gaming
-</i></td></tr>
-        </table>
+        <p>K. Mansley, D. Scott, A. Tse, A. Madhavapeddy</p>
+        <p><i>Feedback, Latency, Accuracy: Exploring Tradeoffs in Location-Aware Gaming
+</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">
-        Presented at 
+      <td>
+        <p>Presented at 
         <a href="http://netgames2004.cse.ogi.edu/">NetGames 2004</a>, in conjunction with ACM
-        <a href="http://www.acm.org/sigs/sigcomm/sigcomm2004/">SIGCOMM 2004</a>, August 2004
-      </td></tr>
-      <tr><td>
-        <a href="papers/final/netgames2004.pdf">
-        [pdf: 1.3MB]</a>&nbsp;</td></tr>
-      </table></td>
+        <a href="http://www.acm.org/sigs/sigcomm/sigcomm2004/">SIGCOMM 2004</a>, August 2004</p>
+        <p><a href="papers/final/netgames2004.pdf">
+        [pdf: 1.3MB]</a></p>
+      </td>
     </tr>
 
 
 
-    <tr class="stripe1">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2003&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>A. Madhavapeddy, D. Scott, R. Sharp</td></tr>
-          <tr><td><i>Context-Aware Computing with Sound</i>
-          </td></tr>
-        </table>
+        <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
+        <p><i>Context-Aware Computing with Sound</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">This paper describes simple techniques for 
+      <td>
+        <p>This paper describes simple techniques for 
           <i>audible</i> data communication and shows how these channels,
           although low bandwidth, may be used to create cheap context-aware
           applications.
@@ -412,157 +360,131 @@ I'm grateful to
           <a href="http://ubicomp.org/ubicomp2003/">
           The Fifth International Conference on Ubiquitous Computing (UBICOMP) 
           2003</a> in Seattle, Washington.
-          </td></tr>
-      <tr><td>
-        <a href="papers/final/ubicomp2003.pdf">
-        [pdf: 237kB]</a>&nbsp;</td></tr>
-      </table></td>
+        </p>
+        <p><a href="papers/final/ubicomp2003.pdf">
+        [pdf: 237kB]</a></p>
+      </td>
     </tr>
 
 
-    <tr class="stripe2">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2003&nbsp;&nbsp;</td>
+      <td width="50%">
 
-        <table>
-          <tr><td>D. Scott, R. Sharp</td></tr>
-          <tr><td><i>Specifying and Enforcing Application-Level Web Security Policies</i></td></tr>
-        </table>
+        <p>D. Scott, R. Sharp</p>
+        <p><i>Specifying and Enforcing Application-Level Web Security Policies</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">
-        Invited contribution to Jul/Aug 2003 IEEE Transactions in Knowledge and Data Engineering (<a href="http://www.computer.org/tkde/">TKDE</a>)</td></tr>
-      <tr><td>
-          </td></tr>
-      </table></td>
+      <td>
+        <p>Invited contribution to Jul/Aug 2003 IEEE Transactions in Knowledge and Data Engineering (<a href="http://www.computer.org/tkde/">TKDE</a>)</p>
+      </td>
     </tr>
 
-    <tr class="stripe1">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2003&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>A. Madhavapeddy, A. Mycroft, D. Scott, R. Sharp</td></tr>
-          <tr><td><i>The Case For Abstracting Security Policies</i>
-          </td></tr>
-        </table>
+        <p>A. Madhavapeddy, A. Mycroft, D. Scott, R. Sharp</p>
+        <p><i>The Case For Abstracting Security Policies</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">This paper describes an infrastructure for
+      <td>
+        <p>This paper describes an infrastructure for
           imposing Stateful Syscall Policies on existing programs.
           Presented at <a href="http://www.ashland.edu/~iajwa/conferences/2003/SAM/">
 	   The 2003 International Conference on Security and Management
-          </a></td></tr>
-      <tr><td><a href="http://anil.recoil.org/papers/sam03-secpol.pdf">
-        [pdf: 68kB]</a>&nbsp;</td></tr>
-      </table></td>
+          </a></p>
+        <p><a href="http://anil.recoil.org/papers/sam03-secpol.pdf">
+        [pdf: 68kB]</a>&nbsp;</p>
+      </td>
     </tr>
 
 
-    <tr class="stripe2">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2003&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>D. Scott, A. Beresford, A. Mycroft</td></tr>
-          <tr><td><i>Spatial Policies for Sentient Mobile Applications</i>
-          </td></tr>
-        </table>
+        <p>D. Scott, A. Beresford, A. Mycroft</p>
+        <p><i>Spatial Policies for Sentient Mobile Applications</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">This paper describes a runtime for implementing 
+      <td>
+        <p>This paper describes a runtime for implementing 
           a Spatial Policy system for sentient applications built from Mobile Agents
-          Presented at <a href="http://www.labs.agilent.com/policy2003/">IEEE Policy 2003</a>.</td></tr>
-      <tr><td><a href="papers/final/policy.ps.gz">[gzipped ps: 76kB]</a>&nbsp;<a href="papers/final/policy2003.pdf">
-        [pdf: 132kB]]</a>&nbsp;</td></tr>
-      </table></td>
+          Presented at <a href="http://www.labs.agilent.com/policy2003/">IEEE Policy 2003</a>.</p>
+        <p><a href="papers/final/policy.ps.gz">[gzipped ps: 76kB]</a>&nbsp;<a href="papers/final/policy2003.pdf">
+        [pdf: 132kB]]</a></p>
+      </td>
     </tr>
 
-    <tr class="stripe1">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2003&nbsp;&nbsp;</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>D. Scott, A. Beresford, A. Mycroft</td></tr>
-          <tr><td><i>Spatial Security Policies for Mobile Agents in a Sentient Computing environment</i>
-          </td></tr>
-        </table>
+        <p>D. Scott, A. Beresford, A. Mycroft</p>
+        <p><i>Spatial Security Policies for Mobile Agents in a Sentient Computing environment</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">Presented at <a href="http://www.lta.disco.unimib.it/fase2003/">FASE 2003</a> (part of <a href="http://www.mimuw.edu.pl/etaps03/">ETAPS 2003</a>) in Warsaw, Poland. Won the <a href="http://www.easst.net/">European Association of Software Science and Technology</a> (EASST) Best Software Science Paper award.
-<nobr> &copy; <a HREF="http://www.springer.de/comp/lncs/index.html">Springer-Verlag</nobr></a>
-</td></tr>
-      <tr><td><a href="papers/final/fase2003.ps.gz">[gzipped ps: 164kB]</a>&nbsp;
-      <a href="papers/final/fase2003.pdf">[pdf: 170Kb]</a></td></tr>
-      </table></td>
+      <td>
+        <p>Presented at <a href="http://www.lta.disco.unimib.it/fase2003/">FASE 2003</a> (part of <a href="http://www.mimuw.edu.pl/etaps03/">ETAPS 2003</a>) in Warsaw, Poland. Won the <a href="http://www.easst.net/">European Association of Software Science and Technology</a> (EASST) Best Software Science Paper award.
+<nobr> &copy; <a HREF="http://www.springer.de/comp/lncs/index.html">Springer-Verlag</nobr></a></p>
+        <p><a href="papers/final/fase2003.ps.gz">[gzipped ps: 164kB]</a>
+           <a href="papers/final/fase2003.pdf">[pdf: 170Kb]</a></p>
+      </td>
     </tr>
     
-    <tr class="stripe2">
-      <td valign="top">2002&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2002&nbsp;&nbsp;</td>
+      <td width="50%">
 
-        <table>
-          <tr><td>D. Scott, R. Sharp</td></tr>
-          <tr><td><i>Developing Secure Web Applications</i></td></tr>
-          <tr><td>(C)2002 IEEE Internet Computing</td></tr>
-        </table>
+        <p>D. Scott, R. Sharp</p>
+        <p><i>Developing Secure Web Applications</i></p>
+        <p>(C)2002 IEEE Internet Computing</p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">
-        <a href="http://www.computer.org/internet/">IEEE Internet Computing</a> Magazine in the Nov/Dec 2002 special issue on <a href="http://dsonline.computer.org/0211/f/w6gei.htm">The Technology of Trust</a></td></tr>
-      <tr><td><a href="developingsecure.pdf">[pdf: 560kb]</a>
-          </td></tr>
-      </table></td>
+      <td>
+        <p><a href="http://www.computer.org/internet/">IEEE Internet Computing</a> Magazine in the Nov/Dec 2002 special issue on <a href="http://dsonline.computer.org/0211/f/w6gei.htm">The Technology of Trust</a></p>
+        <p><a href="developingsecure.pdf">[pdf: 560kb]</a></p>
+      </td>
     </tr>
 
-    <tr class="stripe1">
-      <td valign="top">2002&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2002&nbsp;&nbsp;</td>
+      <td width="50%">
 
-        <table>
-          <tr><td>D. Scott, R. Sharp</td></tr>
-          <tr><td><i>Abstracting Application-Level Web
-          Security</i></td></tr>
-          <tr><td>Please read the <a href="errata">errata</a></td></tr>
-        </table>
+        <p>D. Scott, R. Sharp</p>
+        <p><i>Abstracting Application-Level Web
+          Security</i></p>
+          <p>Please read the <a href="errata">errata</a></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">
-        Proceedings of the 11th International World-Wide Web conference
+      <td>
+        <p>Proceedings of the 11th International World-Wide Web conference
         (<a href="http://www2002.org/">WWW2002</a>) where
-        it also received the "Best Paper" award.</td></tr>
-      <tr><td><a href="abstracting.ps.gz">[gzipped ps: 91Kb]</a>&nbsp;
+        it also received the "Best Paper" award.</p>
+        <p><a href="abstracting.ps.gz">[gzipped ps: 91Kb]</a>;
               <a href="abstracting.pdf">[pdf: 180Kb]</a>
               <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/slides/">[slides]</a>
               <a href="http://citeseer.nj.nec.com/508874.html">[citeseer]</a>
-          </td></tr>
-      </table></td>
+        </p>
+      </td>
     </tr>
     
-    <tr class="stripe2">
-      <td valign="top">2001&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2001&nbsp;&nbsp;</td>
+      <td width="50%">
 
-        <table>
-          <tr><td>J. Weatherall, D. Scott</td></tr>
-          <tr><td><i>Mobile Computing with Python</i></td></tr>
-        </table>
+        <p>J. Weatherall, D. Scott</p>
+        <p><i>Mobile Computing with Python</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">
-        Proceedings of the 9th International Python Conference (<a href="http://www.python9.org/">Python9</a>), March 2001
-      </td></tr>
-      <tr><td><a href="http://www-lce.eng.cam.ac.uk/~jnw22/papers/koala.ps.gz">[gzipped ps]</a> 
+      <td>
+        <p>Proceedings of the 9th International Python Conference (<a href="http://www.python9.org/">Python9</a>), March 2001
+      </p>
+      <p><a href="http://www-lce.eng.cam.ac.uk/~jnw22/papers/koala.ps.gz">[gzipped ps]</a> 
               <a href="http://citeseer.nj.nec.com/weatherall01mobile.html">[citeseer]</a>
-         </td></tr>
-      </table></td>
+         </p>
+      </td>
 
     </tr>
   </tbody>
@@ -570,102 +492,67 @@ I'm grateful to
 
 <h2>Unrefereed Reports</h2>
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<table class="table table-striped" width="100%">
   <tbody>
 
-    <tr class="stripe1">
-      <td valign="top">2005&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
- 
-        <table>
-          <tr><td>D. Scott</td></tr>
-          <tr><td><i>Abstracting application-level security policy for ubiquitous computing</i>
-          </td></tr>
-        </table>
+    <tr>
+      <td><p>2005</p></td>
+      <td width="50%">
+          <p>D. Scott</p>
+          <p><i>Abstracting application-level security policy for ubiquitous computing</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> Technical Report UCAM-CL-TR-613, University of Cambridge
-       </td></tr>
-      <tr><td>
-        <a href="http://www.cl.cam.ac.uk/TechReports/UCAM-CL-TR-613.html"> [pdf: 2.2 MB]</a>
-        &nbsp;</td></tr>
-      </table></td>
+      <td>
+           <p>Technical Report UCAM-CL-TR-613, University of Cambridge</p>
+           <p><a href="http://www.cl.cam.ac.uk/TechReports/UCAM-CL-TR-613.html"> [pdf: 2.2 MB]</a></p>
+      </td>
     </tr>
 
-    <tr class="strip2">
-      <td valign="top">2004&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td><p>2004</p></td>
+      <td width="50%">
  
-        <table>
-          <tr><td>E. Toye, A. Madhavapeddy, R. Sharp, D. Scott, A. Blackwell, E. Upton</td></tr>
-          <tr><td><i>Using camera-phones to interact with context-aware mobile services</i>
-          </td></tr>
-        </table>
+        <p>E. Toye, A. Madhavapeddy, R. Sharp, D. Scott, A. Blackwell, E. Upton</p>
+        <p><i>Using camera-phones to interact with context-aware mobile services</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top"> Technical report UCAM-CL-TR-609, University of Cambridge
-       </td></tr>
-      <tr><td>
-        <a href="http://www.cl.cam.ac.uk/TechReports/UCAM-CL-TR-609.html">[pdf: 0.4 MB]</a>
-        &nbsp;</td></tr>
-      </table></td>
+      <td>
+        <p>Technical report UCAM-CL-TR-609, University of Cambridge</p>
+        <p><a href="http://www.cl.cam.ac.uk/TechReports/UCAM-CL-TR-609.html">[pdf: 0.4 MB]</a></p>
+      </td>
     </tr>
 
-    <tr class="stripe1">
-      <td valign="top">2002&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2002</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>D. Scott, R. Sharp</td></tr>
-          <tr><td><i>SPECTRE: A Tool for Inferring, Specifying and
-        Enforcing Web-Security Policies</i>
-          </td></tr>
-        </table>
+        <p>D. Scott, R. Sharp</p>
+        <p><i>SPECTRE: A Tool for Inferring, Specifying and
+        Enforcing Web-Security Policies</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">This paper describes the implementation of the dynamic
-        policy enforcement tool called "SPECTRE"</td></tr>
-      <tr><td><a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/spectre.ps.gz">[gzipped ps: 107Kb]</a>&nbsp;
-              <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/spectre.pdf">[pdf: 145Kb]</a></td></tr>
-      </table></td>
+      <td>
+        <p>This paper describes the implementation of the dynamic
+        policy enforcement tool called "SPECTRE"</p>
+        <p><a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/spectre.ps.gz">[gzipped ps: 107Kb]</a>
+           <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/spectre.pdf">[pdf: 145Kb]</a></p>
+      </td>
     </tr>
 
-    <tr class="stripe2">
-      <td valign="top">2002&nbsp;&nbsp;</td>
-      <td valign="top">
+    <tr>
+      <td>2002</td>
+      <td>
 
-        <table>
-          <tr><td>D. Scott, R. Sharp</td></tr>
-          <tr><td><i>The SWAP Project</i> </td></tr>
-        </table></td>
+        <p>D. Scott, R. Sharp</p>
+        <p><i>The SWAP Project</i></p>
+      </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">This poster describes the overall aim of the SWAP
-        Project</td></tr>
-      <tr><td> <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/poster.ps.gz">[gzipped ps: 100Kb]</a>&nbsp;
-               <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/poster.pdf">[pdf: 125Kb]</a></td></tr>
-      </table></td>
-    </tr>
-
-    <tr class="stripe1">
-      <td valign="top">2001&nbsp;&nbsp;</td>
-      <td valign="top">
-
-        <table>
-          <tr><td>D. Scott</td></tr>
-          <tr><td><i>First Year Report: Scalable Interface Framework</i> </td></tr>
-        </table></td>
-      <td></td>
-      <td><table>
-      <tr><td valign="top">This report was submitted after the first year of my PhD course.
-       </td></tr>
-      <tr><td> <a href="papers/final/first-year-report/scalable-interface-framework.ps.gz">[gzipped ps: 412Kb]</a>&nbsp;
-<a href="papers/final/first-year-report/scalable-interface-framework.pdf">[pdf: 519Kb]</a></td></tr>
-      </table></td>
-
+      <td>
+        <p>This poster describes the overall aim of the SWAP
+        Project</p>
+        <p><a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/poster.ps.gz">[gzipped ps: 100Kb]</a>
+               <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/poster.pdf">[pdf: 125Kb]</a></p>
+      </td>
     </tr>
 
   </tbody>
@@ -675,77 +562,62 @@ I'm grateful to
 
 <h2>Videos</h2>
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<table class="table table-striped" width="100%">
   <tbody>
-    <tr class="stripe1">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
+    <tr>
+      <td>2003</td>
+      <td width="50%">
  
-        <table>
-          <tr><td>A. Madhavapeddy, D. Scott, R. Sharp</td></tr>
-          <tr><td><i>Audio Notes</i>
-          </td></tr>
-        </table>
+        <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
+        <p><i>Audio Notes</i></p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">This video demonstrates how audionotes (special sequences of DTMF tones) may be used to store and retrieve documents via standard audio recording equipment.</td></tr>
-      <tr><td><a href="videos/audionetworking/divx/audionotes.avi">[DivX AVI: 11Mb]</a>&nbsp;
-      </td></tr>
-      </table></td>
+      <td>
+        <p>This video demonstrates how audionotes (special sequences of DTMF tones) may be used to store and retrieve documents via standard audio recording equipment.</p>
+        <p><a href="videos/audionetworking/divx/audionotes.avi">[DivX AVI: 11Mb]</a></p>
+      </td>
     </tr>
     
-    <tr class="stripe2">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top">
+    <tr>
+      <td>2003</td>
+      <td>
 
-        <table>
-          <tr><td>A. Madhavapeddy, D. Scott, R. Sharp</td></tr>
-          <tr><td><i>Audio Authentication</i> </td></tr>
-        </table></td>
-      <td></td>
-      <td><table>
-      <tr><td valign="top">This video demonstrates how a capability to access a resource may be sent as a melodic ring tone via SMS to a mobile phone handset.
-     </td></tr>
-      <tr><td> <a href="videos/audionetworking/divx/authentication.avi">[DivX AVI: 8.8Mb]</a>&nbsp;
-      </td></tr>
-      </table></td>
-    </tr>
-
-    <tr class="stripe1">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top" width="50%">
- 
-        <table>
-          <tr><td>A. Madhavapeddy, D. Scott, R. Sharp</td></tr>
-          <tr><td><i>Room-grained Location</i>
-          </td></tr>
-        </table>
+        <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
+        <p><i>Audio Authentication</i> </p>
       </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">This video demonstrates how audio beacons operating at approximately 21kHz (imperceptible to humans) may be used to easily infer room-grained location.
-      </td></tr>
-      <tr><td><a href="videos/audionetworking/divx/location.avi">[DivX AVI: 2.7Mb]</a>&nbsp;
-      </td></tr>
-      </table></td>
+      <td>
+        <p>This video demonstrates how a capability to access a resource may be sent as a melodic ring tone via SMS to a mobile phone handset.</p>
+        <p><a href="videos/audionetworking/divx/authentication.avi">[DivX AVI: 8.8Mb]</a></p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>2003</td>
+      <td width="50%">
+ 
+        <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
+        <p><i>Room-grained Location</i></p>
+      </td>
+      <td></td>
+      <td>
+        <p>This video demonstrates how audio beacons operating at approximately 21kHz (imperceptible to humans) may be used to easily infer room-grained location.</p>
+        <p><a href="videos/audionetworking/divx/location.avi">[DivX AVI: 2.7Mb]</a></p>
+      </td>
     </tr>
     
-    <tr class="stripe2">
-      <td valign="top">2003&nbsp;&nbsp;</td>
-      <td valign="top">
+    <tr>
+      <td>2003</td>
+      <td>
 
-        <table>
-          <tr><td>A. Madhavapeddy, D. Scott, R. Sharp</td></tr>
-          <tr><td><i>Telephone Attachments</i> </td></tr>
-        </table></td>
+        <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
+        <p><i>Telephone Attachments</i> </p>
+      </td>
       <td></td>
-      <td><table>
-      <tr><td valign="top">This video demonstrates how document references may be easily transmitted across telephone networks as sequences of DTMF tones.
-     </td></tr>
-      <tr><td> <a href="videos/audionetworking/divx/telephone.avi">[DivX AVI: 7.5Mb]</a>&nbsp;
-      </td></tr>
-      </table></td>
+      <td>
+        <p>This video demonstrates how document references may be easily transmitted across telephone networks as sequences of DTMF tones.</p>
+        <p><a href="videos/audionetworking/divx/telephone.avi">[DivX AVI: 7.5Mb]</a></p>
+      </td>
     </tr>
 
   </tbody>
@@ -753,12 +625,25 @@ I'm grateful to
 
 
     <!-- End of content -->
-    </div>
+    </div> <!-- container -->
 
-    <div id="footer"> 
-    [ <a href="http://validator.w3.org/check/referer" class="w3cValid"> revalidate HTML</a> ]
-    [ <a href="http://jigsaw.w3.org/css-validator/" class="w3cValid">revalidate CSS</a>]
-    David Scott: $Id: research.html,v 1.14 2007/04/15 18:46:55 djs Exp $ 
-    </div>	
-</body>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap-transition.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="bootstrap/js/bootstrap-tab.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/js/bootstrap-popover.js"></script>
+    <script src="bootstrap/js/bootstrap-button.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
+
+  </body>
 </html>
+

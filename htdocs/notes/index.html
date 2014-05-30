@@ -1,61 +1,108 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
-<head>
-    <title>Dave Scott / Notes</title>
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="../main.css" media="all" />
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Notes</title>
+    <meta name="description" content="Dave's collection of notes">
+    <meta name="author" content="Dave Scott">
 
-<body>
-    <div id="header">
-        <h1><span><a href="/">David Scott</a></span></h1>
-    <div id="nav">
-        <ul>
-    <li><span class="foo"><a href="../index.html">dave.recoil.org:</a></span></li>
-    <li><span><a href="../index.html">aboutme</a></span></a></li>                             
-    <li><span><a href="../research.html">research</a></span></li>                          
-    <li><span><a href="../personal.html">personal</a></span></li>                          
-    <li><span><a href="../gallery/tags.html">gallery</a></span></li>                               
-    <li><span><a href="../blog/0.html">blog</a></span></li>                        
-    <li id="current"><span><a href="notes/">notes</a></span></li>
-        </ul>
-    </div>
-    </div> 
-    <div id="headerstrip" ></div>
-	
-    <div id="main">
-    <!-- Content goes here -->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-<table>
-<tr class="stripe1">
-<td><div align="top">
-<p><a href="xen%20devices/index.html">Notes on Xen devices</a></p>
-    <p>
-<p>This describes how Xen devices are constructed out of shared memory and event channels.</p>
-    </div>
-</td>
-</tr>
+    <!-- Le styles -->
+    <link href="../bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
 
-<tr class="stripe2">
-<td><div align="top">
-<p><a href="xen%20blkback%20comparison/index.html">Comparison between XCP linux 2.6.32 and linux 3.0 blkback</a></p>
-<p>This describes the differences from the toolstack point of view between the blkback in the XCP linux 2.6.32 "xen classic" kernel and the upstream linux-3.0 version.</p>
-    </div>
-</td>
-</tr>
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
 
-<tr class="stripe1">
-<td><div align="top">
-<p><a href="FreeBSD%20networking%20notes/index.html">Notes on FreeBSD networking (under 5.1-RELEASE)</a></p>
-    <p>
-<p>This is an attempt to describe, at a very basic level, what sequences of
-events occur when a FreeBSD host sends and receives network packets.</p>
-    </div>
-</td>
-</tr>
+  <body>
 
-    <!-- End of content -->
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">dave.recoil.org</a>
+          <ul class="nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#personal">Personal</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li class="active"><a href="notes/index.html">Notes</a></li>
+          </ul>
+          <p class="pull-right">Logged in as <a href="#">username</a></p>
+        </div>
+      </div>
     </div>
 
-</body>
+    <div class="container-fluid">
+      <div class="sidebar">
+        <div class="well">
+          <h5>Sidebar</h5>
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+          <h5>Sidebar</h5>
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+          <h5>Sidebar</h5>
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <!-- Main hero unit for a primary marketing message or call to action -->
+        <div class="hero-unit">
+          <h1>Dave's notes</h1>
+          <p>This page contains a bunch of notes, mostly for my benefit.</p>
+        </div>
+
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="span6">
+            <h2>Xen Devices</h2>
+			<p>This note describes how Xen devices are constructed out of shared memory and event channels.</p>
+            <p><a class="btn" href="#">View details &raquo;</a></p>
+          </div>
+          <div class="span5">
+            <h2>XCP linux blkback</h2>
+             <p>This note describes the differences -- from a toolstack point of view -- between the blkback used in the XCP linux 2.6.32 &quot;xen classic&quot; kernel and the upstream linux-3.0 version. </p>
+            <p><a class="btn" href="#">View details &raquo;</a></p>
+         </div>
+          <div class="span5">
+            <h2>FreeBSD networking</h2>
+			<p>This note describes, at a very basic level, what sequences of events occur when a FreeBSD host sends and receives network packets.</p>
+            <p><a class="btn" href="#">View details &raquo;</a></p>
+          </div>
+        </div>
+
+        <footer>
+          <p>&copy; Company 2011</p>
+        </footer>
+      </div>
+    </div>
+
+  </body>
 </html>

@@ -1,0 +1,1235 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>Mirage CUFP 2011 Tutorial</title>
+    <script type="text/javascript" src="Mirage%20CUFP%202011%20Tutorial_files/slides.js">Â  </script>
+  <style>
+  </style><meta content="width=1100,height=750" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"></head>
+  
+  
+
+  <body class="loaded">
+    <section class="slides layout-regular template-default">
+      
+   <article class="biglogo">
+     
+   <h1>Building a Functional Operating System</h1>
+   <br>
+   Tutorial T3<br>
+   Commercial Users of Function Programming (CUFP),<br>
+   Tokyo, Japan
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Your Tutorial Teachers Are...</h3>
+    <ul>
+     <li>
+       <b>Dr. Anil Madhavapeddy</b>,<br>
+       <div style="font-size: 80%">
+       Senior Research Fellow,<br>
+       Computer Laboratory, University of Cambridge.<br>
+       www: <a href="http://anil.recoil.org/">http://anil.recoil.org</a>Â&nbsp; Â&nbsp; twitter: <a href="http://twitter.com/avsm">avsm</a>
+       </div>
+     </li>
+       
+     <li><b>Dr. David Scott</b>,<br>
+       <div style="font-size: 80%">
+       XenServer Platform Architect,<br>
+       Citrix and Xen.org.<br>
+       www: <a href="http://dave.recoil.org/">http://dave.recoil.org</a>Â&nbsp; Â&nbsp; twitter: <a href="http://twitter.com/mugofsoup">mugofsoup</a>
+       </div>
+     </li>
+     <li><b>Dr. Thomas Gazagnaire</b>,
+       <div style="font-size: 80%">
+       CTO, OCamlPro.<br>
+       www: <a href="http://gazagnaire.org/">http://gazagnaire.org</a>Â&nbsp; Â&nbsp; twitter: <a href="http://twitter.com/samoht">samoht</a>
+       </div>
+     </li>
+    </ul>
+    <p>With <b>lots</b> of help from Richard Mortier, Raphael Proust and Balraj Singh, who couldn't make it to Tokyo.</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Schedule</h3>
+    <table>
+      <tbody><tr style="background-color: rgb(0, 0, 0); color: rgb(238, 238, 238);">
+         <th>Topic</th>
+         <th>Activity</th>
+         <th>Time</th>
+      </tr>
+      <tr style="background-color: rgb(221, 221, 255);">
+         <td>What is Mirage?</td>
+         <td>Presentation</td>
+         <td>10 mins</td>
+      </tr>
+      <tr style="background-color: rgb(255, 221, 221);">
+         <td>Hello World in UNIX, Xen, Javascript</td>
+         <td>Activity</td>
+         <td>15 mins</td>
+      </tr>
+      <tr style="background-color: rgb(221, 221, 255);">
+         <td>Threading Intro</td>
+         <td>Presentation</td>
+         <td>10 mins</td>
+      </tr>
+      <tr style="background-color: rgb(255, 221, 221);">
+         <td>Threading Exercises</td>
+         <td>Activity</td>
+         <td>15 mins</td>
+      </tr>
+      <tr style="background-color: rgb(221, 255, 221);">
+         <td colspan="2">Comfort Break</td>
+         <td>10 mins</td>
+      </tr>
+      <tr style="background-color: rgb(221, 221, 255);">
+         <td>Device Model and Storage</td>
+         <td>Presentation</td>
+         <td>10 mins</td>
+      </tr>
+      <tr style="background-color: rgb(255, 221, 221);">
+         <td>File System Exercises</td>
+         <td>Activity</td>
+         <td>15 mins</td>
+      </tr>
+      <tr style="background-color: rgb(221, 255, 221);">
+         <td colspan="2">Tea Break</td>
+         <td>30 mins</td>
+      </tr>
+      <tr style="background-color: rgb(221, 221, 255);">
+         <td>Networking</td>
+         <td>Presentation</td>
+         <td>10 mins</td>
+      </tr>
+      <tr style="background-color: rgb(221, 221, 255);">
+         <td>Syntax Extensions</td>
+         <td>Presentation</td>
+         <td>5 mins</td>
+      </tr>
+      <tr style="background-color: rgb(255, 221, 221);">
+         <td>Build Your Website</td>
+         <td>Activity</td>
+         <td>15 mins</td>
+      </tr>
+      <tr style="background-color: rgb(221, 221, 255);">
+         <td>To the Cloud!</td>
+         <td>Presentation</td>
+         <td>10 mins</td>
+      </tr>
+      <tr style="background-color: rgb(255, 221, 221);">
+         <td>Play with EC2</td>
+         <td>Activity</td>
+         <td>15 mins</td>
+      </tr>
+      <tr style="background-color: rgb(221, 255, 221);">
+         <td colspan="2">Discussion</td>
+         <td>10 mins</td>
+      </tr>
+    </tbody></table>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Prior Knowledge</h3>
+    <ul>
+      <li>Basic OCaml</li>
+      <li>Day-to-day UNIX operation, preferably Linux or MacOS X.</li>
+      <li>Version control (git)</li>
+    </ul>
+    <p><b>Does everyone have the VirtualBox VM installed?</b></p><br>
+    <h3>Software Required</h3>
+    <ul>
+     <li>A 64-bit UNIX (Linux or MacOS X)</li>
+     <li>OCaml 3.12.0 (with <tt>make world opt.opt</tt> to have the native code compilers)</li>
+     <li><tt>tuntap</tt> (default on Linux, <a href="http://tuntaposx.sourceforge.net/">download</a> on MacOS X)</li>
+     <li>Git checkout of <a href="http://github.com/avsm/mirage/">http://github.com/avsm/mirage</a></li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Installation</h3>
+    <p>For OCaml, use your package manager, or from source:</p>
+<pre class="noprettyprint"><span class="pln">$ cd ocaml</span><span class="pun">-</span><span class="lit">3.12</span><span class="pun">.</span><span class="lit">0</span><span class="pln">
+$ make world opt opt</span><span class="pun">.</span><span class="pln">opt
+$ make install</span></pre>
+    <p>Mirage installs into <tt>$HOME/mir-inst</tt> by:</p>
+<pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">.</span><span class="pln">git
+$ make
+$ make install
+$ export PATH</span><span class="pun">=</span><span class="pln">$HOME</span><span class="pun">/</span><span class="pln">mir</span><span class="pun">-</span><span class="pln">inst</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">:</span><span class="pln">$PATH
+
+</span><span class="com">// if you are using emacs</span><span class="pln">
+$ make install</span><span class="pun">-</span><span class="pln">el
+</span><span class="com">// if you are using vim, re-install </span><a href="https://github.com/avsm/ocaml-annot"><span class="com">ocaml-annot</span></a><span class="undefined"></span></pre>
+
+   </article>
+ 
+   <article>
+     
+   <h3>Run This Tutorial</h3>
+<p>The tutorial is itself written in Mirage, so build it by:</p>
+<pre class="noprettyprint"><span class="pln">$ git clone http</span><span class="pun">:</span><span class="com">//github.com/avsm/mirage-tutorial</span><span class="pln">
+$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">slides
+$ make</span></pre>
+<p>You can run it in many different combinations. The default is UNIX sockets. <b>Is anyone here running Xen?</b></p>
+<table>
+<tbody><tr><th>Target</th><th>Backend</th><th>Storage</th><th>Network</th> </tr>
+<tr><td>run-socket_crunch</td><td>UNIX</td><td>Builtin</td><td>Sockets</td></tr>
+<tr><td>run-socket_fs</td><td>UNIX</td><td>UNIX filesystem</td><td>Sockets</td></tr>
+<tr><td>run-direct_crunch</td><td>UNIX</td><td>Builtin</td><td>Tuntap+OCaml</td></tr>
+<tr><td>run-direct_fs</td><td>UNIX</td><td>Disk image+OCaml</td><td>Tuntap+OCaml</td></tr>
+<tr><td>run-xen_crunch</td><td>Xen</td><td>Builtin</td><td>Xennet+OCaml</td></tr>
+<tr><td>run-xen_fs</td><td>Xen</td><td>Xenblock+OCaml</td><td>Xennet+OCaml</td></tr>
+</tbody></table>
+  
+   </article>
+ 
+   <article>
+     
+    <h1>What is Mirage?
+    <br>
+    <small>"Fat-Free Application Synthesis"</small>
+    </h1>
+    <p>Anil Madhavapeddy</p>
+    
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/backends1.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/backends2.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/backends3.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/backends4.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article class="">
+     
+   <h3>Motivation</h3>
+   <ul>
+     <li><b>Portability</b>: minimise platform dependencies, leverage functional programming</li>
+     <li><b>Security</b>: replace millions of lines of C with safer/smaller OCaml</li>
+     <li><b>"Fat-free"</b>: compile out the layers for energy efficiency and performance</li>
+   </ul>
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/modules1.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/modules2.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/modules3.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/modules4.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Show Me The Code!</h3>
+    <ul>
+      <li><a href="http://github.com/avsm/mirage/tree/master/lib"><tt>lib/</tt></a> - core libraries</li>
+      <ul>
+        <li><a href="http://github.com/avsm/mirage/tree/master/lib/std"><tt>lib/std</tt></a> - Standard library</li>
+        <li><a href="http://github.com/avsm/mirage/tree/master/lib/os"><tt>lib/os</tt></a> - OS alternatives</li>
+        <ul>
+          <li><a href="http://github.com/avsm/mirage/tree/master/lib/os/unix"><tt>lib/os/unix</tt></a> - UNIX platform</li>
+          <li><a href="http://github.com/avsm/mirage/tree/master/lib/os/xen"><tt>lib/os/xen</tt></a> - Xen platform</li>
+        </ul>
+        <li><a href="http://github.com/avsm/mirage/tree/master/lib/net"><tt>lib/net</tt></a> - Net alternatives</li>
+        <ul>
+          <li><a href="http://github.com/avsm/mirage/tree/master/lib/net/direct"><tt>lib/net/direct</tt></a> - Ethernet to TCP/IP stack</li>
+          <li><a href="http://github.com/avsm/mirage/tree/master/lib/net/socket"><tt>lib/net/socket</tt></a> - Socket stack</li>
+        </ul>
+        <li><a href="http://github.com/avsm/mirage/tree/master/lib/block"><tt>lib/block</tt></a> - Block alternatives</li>
+      </ul>
+      <li><a href="http://github.com/avsm/mirage/tree/master/lib/http"><tt>lib/http</tt></a> - HTTP client/server</li>
+      <li><a href="http://github.com/avsm/mirage/tree/master/syntax"><tt>syntax/</tt></a> - camlp4 extensions</li>
+    </ul>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Basic Mirage Commands</h3>
+    <p><tt>mir-build</tt> is a wrapper over <tt>ocamlbuild</tt>.<br>
+     Output files are in <tt>_build/</tt> and source is never modified.</p>
+    <ul>
+      <li><b><tt>mir-build -clean</tt></b> will remove all built files</li>
+      <li><b><tt>mir-build -j 5</tt></b> runs a parallel build.</li>
+    </ul>
+    <ul>
+       <li><b><tt>mir-run -b <i>backend</i> <i>binary</i></tt></b> will execute it (or you can call it directly too).</li>
+       <li>We will cover the advanced options later!</li>
+    </ul>
+    <p>All of this build-time synthesis is wrapped by the powerful <tt>ocamlbuild</tt>, which supports dynamic dependencies.</p>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Try it Out</h3>
+    <p>Mirage also has extra rules. Prepend the backend name to your target:</p>
+    <section><pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">examples</span><span class="pun">/</span><span class="pln">hello
+$ mir</span><span class="pun">-</span><span class="pln">build unix</span><span class="pun">-</span><span class="pln">direct</span><span class="pun">/</span><span class="pln">hello</span><span class="pun">.</span><span class="pln">bin
+$ mir</span><span class="pun">-</span><span class="pln">build unix</span><span class="pun">-</span><span class="pln">socket</span><span class="pun">/</span><span class="pln">hello</span><span class="pun">.</span><span class="pln">bin
+$ mir</span><span class="pun">-</span><span class="pln">build xen</span><span class="pun">/</span><span class="pln">hello</span><span class="pun">.</span><span class="pln">xen  </span><span class="pun">#</span><span class="pln"> need </span><span class="typ">Linux</span><span class="pln"> x86_64
+$ mir</span><span class="pun">-</span><span class="pln">build node</span><span class="pun">/</span><span class="pln">hello</span><span class="pun">.</span><span class="pln">js  </span><span class="pun">#</span><span class="pln"> need js_of_ocaml
+
+$ mir</span><span class="pun">-</span><span class="pln">run </span><span class="pun">-</span><span class="pln">b unix</span><span class="pun">-</span><span class="pln">socket _build</span><span class="pun">/</span><span class="pln">unix</span><span class="pun">-</span><span class="pln">socket</span><span class="pun">/</span><span class="pln">hello</span><span class="pun">.</span><span class="pln">bin
+$ mir</span><span class="pun">-</span><span class="pln">run </span><span class="pun">-</span><span class="pln">b unix</span><span class="pun">-</span><span class="pln">direct _build</span><span class="pun">/</span><span class="pln">unix</span><span class="pun">-</span><span class="pln">direct</span><span class="pun">/</span><span class="pln">hello</span><span class="pun">.</span><span class="pln">bin
+$ mir</span><span class="pun">-</span><span class="pln">run </span><span class="pun">-</span><span class="pln">b node _build</span><span class="pun">/</span><span class="pln">node</span><span class="pun">/</span><span class="pln">hello</span><span class="pun">.</span><span class="pln">js
+$ mir</span><span class="pun">-</span><span class="pln">run </span><span class="pun">-</span><span class="pln">b xen _build</span><span class="pun">/</span><span class="pln">xen</span><span class="pun">/</span><span class="pln">hello</span><span class="pun">.</span><span class="pln">xen</span></pre></section>
+<p>Got a working system? Let's make sure we do before moving on.</p>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h1>Lightweight Threading
+    <br>
+     <small>using the Lwt library</small>
+    </h1>
+    <p>Raphael Proust, Balraj Singh and Anil Madhavapeddy</p>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Lightweight Threads</h3>
+    <ul>
+     <li>Mirage is <b>event-driven</b> with no preemption. Containers execute until
+         they cannot make progress, and then sleep until woken up.</li>
+     <li><tt>Lwt</tt> wraps event callbacks to maintain the illusion of straight-line code.</li>
+    </ul>
+    <p>Let's look at some examples.
+    They are all in<br> <a href="https://github.com/avsm/mirage-tutorial/tree/master/">mirage-tutorial/examples/lwt</a>, and you build them by:</p>
+    <section><pre class="noprettyprint"><span class="pln">$ mir</span><span class="pun">-</span><span class="pln">build unix</span><span class="pun">-</span><span class="pln">socket</span><span class="pun">/</span><span class="pln">sleep</span><span class="pun">.</span><span class="pln">bin
+$ </span><span class="pun">./</span><span class="pln">_build</span><span class="pun">/</span><span class="pln">unix</span><span class="pun">-</span><span class="pln">socket</span><span class="pun">/</span><span class="pln">sleep</span><span class="pun">.</span><span class="pln">bin</span></pre></section> 
+    <p>More tutorial content is available at:<br><a href="http://www.openmirage.org/wiki/tutorial-lwt">http://openmirage.org/wiki/tutorial-lwt</a> <i>(this tutorial)</i><br><a href="http://ocsigen.org/lwt/manual/">http://ocsigen.org/lwt/manual/</a> <i>(Lwt manual)</i></p>
+
+   </article>
+ 
+   <article class="">
+     
+    <h3>The Lwt monad</h3>
+<section><pre class="prettyprint"><span class="kwd">val</span><span class="pln"> return </span><span class="pun">:</span><span class="pln"> </span><span class="str">'a -&gt; '</span><span class="pln">a </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span></pre></section> 
+  <p><tt><a href="http://ocsigen.org/lwt/api/Lwt#VALreturn">Lwt.return</a> v</tt> builds a thread that returns with value <tt>v</tt>.</p>
+<section><pre class="prettyprint"><span class="kwd">val</span><span class="pln"> bind </span><span class="pun">:</span><span class="pln"> </span><span class="str">'a Lwt.t -&gt; ('</span><span class="pln">a </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="str">'b Lwt.t) -&gt; '</span><span class="pln">b </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span></pre></section> 
+<p><tt><a href="http://ocsigen.org/lwt/api/Lwt#VALbind">Lwt.bind</a> t f</tt> creates a thread which waits for <tt>t</tt> to terminate, then pass the result to <tt>f</tt>. If <tt>t</tt> is a sleeping thread, then <tt>bind t f</tt> will sleep too, until <t>t terminates</t>.</p>
+<section><pre class="prettyprint"><span class="kwd">val</span><span class="pln"> join </span><span class="pun">:</span><span class="pln"> unit </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t list </span><span class="pun">-&gt;</span><span class="pln"> unit </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span></pre></section> 
+<p><tt><a href="http://ocsigen.org/lwt/api/Lwt#VALjoin">Lwt.join</a></tt> takes a list of threads and waits for them all to terminate.</p>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>A Simple Sleeping Example</h3>
+<pre class="prettyprint"><span class="pln">  </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">bind
+    </span><span class="pun">(</span><span class="pln">OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="lit">1.0</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">(</span><span class="kwd">fun</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln">
+       </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">bind
+         </span><span class="pun">(</span><span class="pln">OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="lit">2.0</span><span class="pun">)</span><span class="pln">
+         </span><span class="pun">(</span><span class="kwd">fun</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln">
+            OS</span><span class="pun">.</span><span class="typ">Console</span><span class="pun">.</span><span class="pln">log </span><span class="str">"Wake up sleepy!\n"</span><span class="pun">;</span><span class="pln">
+            </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">return </span><span class="pun">()</span><span class="pln">
+         </span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">)</span></pre>
+<p>More natural ML style, via syntax extension:</p>
+<pre class="prettyprint"><span class="pln">  </span><span class="kwd">lwt</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="lit">1.0</span><span class="pln"> in
+  </span><span class="kwd">lwt</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="lit">2.0</span><span class="pln"> in
+  OS</span><span class="pun">.</span><span class="typ">Console</span><span class="pun">.</span><span class="pln">log </span><span class="str">"Wake up sleep!\n"</span><span class="pun">;</span><span class="pln">
+  </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">return </span><span class="pun">()</span></pre>
+  
+   </article>
+ 
+   <article class="">
+     
+   <h3>Lwt syntax extension</h3>
+<p><tt>lwt/sleep.ml</tt> (<tt>make sleep</tt>)</p>
+<pre class="prettyprint"><span class="pln">  </span><span class="kwd">lwt</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="lit">1.0</span><span class="pln"> in
+  </span><span class="kwd">lwt</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="lit">2.0</span><span class="pln"> in
+  OS</span><span class="pun">.</span><span class="typ">Console</span><span class="pun">.</span><span class="pln">log </span><span class="str">"Wake up sleep!\n"</span><span class="pun">;</span><span class="pln">
+  </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">return </span><span class="pun">()</span></pre>
+<p>After syntax transform: (<tt>make sleep.pp</tt>)</p>
+<pre class="prettyprint"><span class="pln">  </span><span class="kwd">let</span><span class="pln"> __pa_lwt_0 </span><span class="pun">=</span><span class="pln"> OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="lit">1.0</span><span class="pln"> in
+  </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">bind __pa_lwt_0 </span><span class="pun">(</span><span class="kwd">fun</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln">
+    </span><span class="kwd">let</span><span class="pln"> __pa_lwt_0 </span><span class="pun">=</span><span class="pln"> OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="lit">2.0</span><span class="pln"> in
+    </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">bind __pa_lwt_0 </span><span class="pun">(</span><span class="kwd">fun</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> 
+      </span><span class="pun">(</span><span class="pln">OS</span><span class="pun">.</span><span class="typ">Console</span><span class="pun">.</span><span class="pln">log </span><span class="str">"Wake up sleep.ml!\n"</span><span class="pun">;</span><span class="pln">
+       </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">return </span><span class="pun">()</span><span class="pln">
+      </span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">)</span><span class="pln">
+  </span><span class="pun">)</span></pre>
+
+   </article>
+ 
+   <article class="">
+     
+    <h3>Behind the Scenes</h3>
+    <p>The scheduler is itself written in OCaml, but is operating system specific. To consider UNIX:</p>
+    <ul>
+      <li>Scheduler: <tt><a href="http://github.com/avsm/mirage/blob/master/lib/os/unix/main.ml">mirage/lib/os/unix/main.ml</a></tt></li>
+      <li>OCaml: <tt><a href="http://github.com/avsm/mirage/blob/master/lib/os/runtime_unix/evtchn_stubs.c">mirage/lib/os/unix/evtchn_stubs.c</a></tt></li>
+    </ul>
+    <pre class="prettyprint"><span class="kwd">let</span><span class="pln"> t</span><span class="pun">,</span><span class="pln">u </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">task </span><span class="pun">()</span><span class="pln"> in </span><span class="com">// t sleeps forever</span><span class="pln">
+</span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">wakeup u </span><span class="str">"foo"</span><span class="pun">;</span><span class="pln">      </span><span class="com">// and u can wake it up  </span><span class="pln">
+t                        </span><span class="com">// value of t is "foo" </span></pre>
+<p>The outside world wakes up sleeping threads via the <tt><a href="http://ocsigen.org/lwt/api/Lwt#VALwakeup">Lwt.wakeup</a></tt> mechanism:</p>
+<ul>
+<li>Timeouts are stored in an efficient <a href="https://github.com/avsm/mirage/blob/master/lib/os/unix/time.ml">priority queue</a></li>
+<li>I/O is woken up by <tt>select</tt>, <tt>kqueue</tt> or <tt>epoll</tt></li>
+</ul>
+  
+   </article>
+ 
+   <article class="fill">
+     
+    <section>
+    <object data="Mirage%20CUFP%202011%20Tutorial_files/unix_threads1.svg" type="image/svg+xml">Â&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="fill far-past">
+     
+    <section>
+    <object data="Mirage%20CUFP%202011%20Tutorial_files/unix_threads2.svg" type="image/svg+xml">Â&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="fill past">
+     
+    <section>
+    <object data="Mirage%20CUFP%202011%20Tutorial_files/unix_threads3.svg" type="image/svg+xml">Â&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="fill current">
+     
+    <section>
+    <object data="Mirage%20CUFP%202011%20Tutorial_files/unix_threads4.svg" type="image/svg+xml">Â&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="fill next">
+     
+    <section>
+    <object data="Mirage%20CUFP%202011%20Tutorial_files/unix_threads5.svg" type="image/svg+xml">Â&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="fill far-next">
+     
+    <section>
+    <object data="Mirage%20CUFP%202011%20Tutorial_files/unix_threads6.svg" type="image/svg+xml">Â&nbsp;</object>
+    </section>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h1>Lwt Exercises
+    <br>
+     <small>cool cooperative concurrency</small>
+    </h1>
+    <p>Raphael Proust, Balraj Singh and Anil Madhavapeddy</p>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Heads or Tails?</h3>
+    <p>Write a program that spins off two threads, each of which sleeps for some amount of time,
+      say 1 and 2 seconds respectively, and then one prints "Heads",
+              and the other "Tails".</p>
+             <p>After both have finished, print "Finished" and exits.</p>
+<pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">examples</span><span class="pun">/</span><span class="kwd">lwt</span><span class="pln">
+$ vim mysleep</span><span class="pun">.</span><span class="pln">ml
+$ make mysleep
+</span><span class="pun">#</span><span class="pln"> answer is in sleep</span><span class="pun">.</span><span class="pln">ml</span></pre>
+<ul>
+<li><tt>OS.Time.sleep tm</tt> will sleep for <tt>tm</tt> seconds.</li>
+<li><tt>OS.Console.log</tt> and <tt>OS.Console.log_s</tt> (the Lwt version) print a string to console.</li>
+<li><a href="http://ocsigen.org/lwt/api/Lwt#VALchoose"><tt>Lwt.choose</tt></a> waits for multiple threads to finish.</li>
+</ul>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Echo Server</h3>
+  <p>Write an echo server that reads from a dummy input generator and
+  writes each input read to the console. The server should stop listening after 10 inputs are received.</p>
+<pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">examples</span><span class="pun">/</span><span class="kwd">lwt</span><span class="pln">
+$ vim myecho1</span><span class="pun">.</span><span class="pln">ml
+$ make myecho1
+</span><span class="pun">#</span><span class="pln"> answer is in echo1</span><span class="pun">.</span><span class="pln">ml</span></pre>
+<p>You can use this function as a traffic generator:</p>
+<pre class="prettyprint"><span class="kwd">let</span><span class="pln"> read_line </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=</span><span class="pln">
+  OS</span><span class="pun">.</span><span class="typ">Time</span><span class="pun">.</span><span class="pln">sleep </span><span class="pun">(</span><span class="pln">OS</span><span class="pun">.</span><span class="typ">Random</span><span class="pun">.</span><span class="pln">float </span><span class="lit">1.5</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&gt;&gt;</span><span class="pln">
+  return </span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">make </span><span class="pun">(</span><span class="pln">OS</span><span class="pun">.</span><span class="typ">Random</span><span class="pun">.</span><span class="pln">int </span><span class="lit">20</span><span class="pun">)</span><span class="pln"> </span><span class="str">'a'</span><span class="pun">)</span></pre>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h1>Devices and Storage
+    <br>
+     <small>reaching the outside world</small>
+    </h1>
+    <p>Anil Madhavapeddy and David Scott</p>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Bitstrings</h3>
+    <p>New concept is <tt>Bitstring.t</tt>, from the <a href="http://code.google.com/p/bitstring/">Bitstring</a> library by <a href="http://people.redhat.com/%7Erjones/">Richard Jones</a>. It lets us avoid copying strings.</p>
+    <pre class="prettyprint"><span class="kwd">type</span><span class="pln"> bitstring </span><span class="pun">=</span><span class="pln"> string </span><span class="pun">*</span><span class="pln"> int </span><span class="pun">*</span><span class="pln"> int</span></pre>
+<p>A <tt>bitstring</tt> is a tuple of the <tt>string</tt> and an offset (in bits) and length (in bits) into that string.</p>
+<p>I/O is often expressed as a stream of <tt>bitstring</tt> and can be converted to an OCaml string via <a href="http://github.com/avsm/mirage/tree/master/lib/std/bitstring_stream.ml"><tt>Bitstring_stream</tt></a>:</p>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> bitstream </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">t </span><span class="typ">Lwt_stream</span><span class="pun">.</span><span class="pln">t
+</span><span class="kwd">module</span><span class="pln"> </span><span class="typ">Bitstring_stream</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> sig
+</span><span class="kwd">val</span><span class="pln"> string_of_stream </span><span class="pun">:</span><span class="pln"> bitstream </span><span class="pun">-&gt;</span><span class="pln"> string </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span></pre>
+
+   </article>
+ 
+   <article class="">
+     
+    <h3>Bitstring Patterns</h3>
+<p>Used in most protocols. Below is <a href="http://github.com/avsm/mirage/tree/master/lib/fs/fat.ml">FAT filesystem</a>:</p>
+<pre class="prettyprint"><span class="pln">bitmatch bits </span><span class="kwd">with</span><span class="pln">
+  </span><span class="pun">|</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> _</span><span class="pun">:</span><span class="pln"> </span><span class="lit">24</span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+      oem_name</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">8</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+      bytes_per_sector</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      sectors_per_cluster</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      reserved_sectors</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      number_of_fats</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      number_of_root_dir_entries</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      total_sectors_small</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      media_descriptor</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      sectors_per_fat</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      sectors_per_track</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      heads</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      hidden_preceeding_sectors</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">4</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      total_sectors_large</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="lit">4</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">):</span><span class="pln"> littleendian</span><span class="pun">;</span><span class="pln">
+      </span><span class="lit">0xaa55</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16</span><span class="pun">:</span><span class="pln"> littleendian</span><span class="pun">,</span><span class="pln"> offset</span><span class="pun">(</span><span class="lit">0x1fe</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">8</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">...</span></pre>
+  
+   </article>
+ 
+   <article class="">
+     
+    <h3>Getting Input</h3>
+    <p>I/O is platform-specific, and exposed via 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/blkif.mli"><tt>OS.Blkif</tt></a>
+  and 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/netif.mli"><tt>OS.Netif</tt></a>
+ .
+ Each platform has a different low-level implementation behind the same signatures:</p>
+    <ul>
+      <li>UNIX uses sockets (via 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/socket.mli"><tt>OS.Socket</tt></a>
+ )</li>
+      <li>Xen uses shared memory ring buffers (via 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/ring.mli"><tt>OS.Ring</tt></a>
+ )</li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/rings1.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article>
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/rings2.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article>
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/rings3.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article>
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/rings4.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article>
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/rings5.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Xen Shared Rings</h3>
+    <p>The interface for 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/ring.mli"><tt>OS.Ring</tt></a>
+  is quite generic.</p>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> sring
+
+</span><span class="kwd">module</span><span class="pln"> </span><span class="typ">Front</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> sig
+  </span><span class="com">// 'a is the response type, and 'b is the request id </span><span class="pln">
+  </span><span class="kwd">type</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t
+
+  </span><span class="kwd">val</span><span class="pln"> init </span><span class="pun">:</span><span class="pln"> sring</span><span class="pun">:</span><span class="pln">sring </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t
+  </span><span class="kwd">val</span><span class="pln"> slot </span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t </span><span class="pun">-&gt;</span><span class="pln"> int </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">t
+  </span><span class="kwd">val</span><span class="pln"> nr_ents </span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t </span><span class="pun">-&gt;</span><span class="pln"> int
+  </span><span class="kwd">val</span><span class="pln"> get_free_requests </span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t </span><span class="pun">-&gt;</span><span class="pln"> int
+  </span><span class="kwd">val</span><span class="pln"> next_req_id</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t </span><span class="pun">-&gt;</span><span class="pln"> int
+  </span><span class="kwd">val</span><span class="pln"> ack_responses </span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">t </span><span class="pun">-&gt;</span><span class="pln"> unit</span><span class="pun">)</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> unit
+  </span><span class="kwd">val</span><span class="pln"> push_requests </span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t </span><span class="pun">-&gt;</span><span class="pln"> unit
+  </span><span class="kwd">val</span><span class="pln"> push_requests_and_check_notify </span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="str">'a,'</span><span class="pln">b</span><span class="pun">)</span><span class="pln"> t </span><span class="pun">-&gt;</span><span class="pln"> bool
+</span><span class="kwd">end</span></pre>
+  <p>The source code has more comments!</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Typed Rings for Block Transfer</h3>
+    <p>The 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/ring.ml"><tt>OS.Ring</tt></a>
+  module is generic, but specific devices have a defined
+    request/response protocol, such as 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/blkif.ml"><tt>OS.Blkif</tt></a>
+  below.
+    In Mirage, the protocol is implemented in OCaml.</p>
+<pre class="prettyprint"><span class="kwd">module</span><span class="pln"> </span><span class="typ">Req</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> sig
+  </span><span class="kwd">type</span><span class="pln"> op </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Read</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Write</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Write_barrier</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Flush</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Unknown</span><span class="pln"> of int
+  </span><span class="kwd">type</span><span class="pln"> seg </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> gref </span><span class="pun">:</span><span class="pln"> int32</span><span class="pun">;</span><span class="pln"> first_sector </span><span class="pun">:</span><span class="pln"> int</span><span class="pun">;</span><span class="pln"> last_sector </span><span class="pun">:</span><span class="pln"> int</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}</span><span class="pln">
+  </span><span class="kwd">type</span><span class="pln"> t </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    op </span><span class="pun">:</span><span class="pln"> op</span><span class="pun">;</span><span class="pln">
+    handle </span><span class="pun">:</span><span class="pln"> int</span><span class="pun">;</span><span class="pln">
+    id </span><span class="pun">:</span><span class="pln"> int64</span><span class="pun">;</span><span class="pln">
+    sector </span><span class="pun">:</span><span class="pln"> int64</span><span class="pun">;</span><span class="pln">
+    segs </span><span class="pun">:</span><span class="pln"> seg array</span><span class="pun">;</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">end</span><span class="pln">
+</span><span class="kwd">module</span><span class="pln"> </span><span class="typ">Res</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> sig
+  </span><span class="kwd">type</span><span class="pln"> rsp </span><span class="pun">=</span><span class="pln"> OK </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Error</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Not_supported</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Unknown</span><span class="pln"> of int
+  </span><span class="kwd">type</span><span class="pln"> t </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> op </span><span class="pun">:</span><span class="pln"> </span><span class="typ">Req</span><span class="pun">.</span><span class="pln">op</span><span class="pun">;</span><span class="pln"> st </span><span class="pun">:</span><span class="pln"> rsp</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">end</span></pre>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Building a Xen Block Device</h3>
+    <ol>
+    <li>Payloads written to aligned pages; 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/io_page.mli"><tt>OS.Io_page</tt></a>
+ </li>
+    <li>Access granted to the other domain; 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/gnttab.mli"><tt>OS.Gntab</tt></a>
+ </li>
+    <li>RPCs are placed in the shared ring; 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/ring.mli"><tt>OS.Ring</tt></a>
+ </li>
+    <li>Event channels trigger processing; 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/activations.mli"><tt>OS.Activations</tt></a>
+ </li>
+    </ol>
+<section><pre class="prettyprint"><span class="pln">lib</span><span class="pun">/</span><span class="pln">os</span><span class="pun">/</span><span class="pln">xen</span><span class="pun">/</span><span class="pln">blkif</span><span class="pun">.</span><span class="pln">ml</span><span class="pun">:</span><span class="pln">
+</span><span class="typ">Io_page</span><span class="pun">.</span><span class="pln">with_page </span><span class="pun">(*</span><span class="pln"> allocate </span><span class="lit">4KiB</span><span class="pln"> page </span><span class="pun">*)</span><span class="pln">
+  </span><span class="pun">(</span><span class="kwd">fun</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln">
+    </span><span class="typ">Gnttab</span><span class="pun">.</span><span class="pln">with_grant </span><span class="pun">(*</span><span class="pln"> allow backend to read it </span><span class="pun">*)</span><span class="pln">
+      </span><span class="pun">(</span><span class="kwd">fun</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln">
+        </span><span class="typ">Ring</span><span class="pun">.</span><span class="typ">Front</span><span class="pun">.</span><span class="pln">push_request</span><span class="pun">...</span><span class="pln">
+        </span><span class="typ">Evtchn</span><span class="pun">.</span><span class="pln">notify </span><span class="pun">...</span><span class="pln">
+        </span><span class="pun">...</span></pre></section>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>A Generic Blkif</h3>
+    <p>Now that we can push block requests to the ring, we can wrap this in the 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/blkif.ml"><tt>OS.Blkif</tt></a>
+  type, which is a generic block device used by many devices in the system:</p>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> blkif </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">
+  id</span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+  read_page</span><span class="pun">:</span><span class="pln"> int64 </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">t </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">;</span><span class="pln">
+  write_page</span><span class="pun">:</span><span class="pln"> int64 </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">t </span><span class="pun">-&gt;</span><span class="pln"> unit </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">;</span><span class="pln">
+  sector_size</span><span class="pun">:</span><span class="pln"> int</span><span class="pun">;</span><span class="pln">
+  ppname</span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+  destroy</span><span class="pun">:</span><span class="pln"> unit</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">&gt;</span></pre>
+<p>So there you go, we have built up a Xen-compatible device, with much of it in OCaml!</p>
+
+   </article>
+ 
+   <article>
+     
+    <object class="centered" data="Mirage%20CUFP%202011%20Tutorial_files/xenblk.svg" type="image/svg+xml">Â&nbsp;</object>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Synthesising Devices</h3>
+    <ul>
+      <li>So far, we can sleep and output to the console and have low-level devices (via sockets or pages).</li>
+      <li>We need a generic way to plug in I/O devices.</li>
+      <li>Would like to do so both <i>statically</i> at compile-time, and <i>dynamically</i> from the environment.</li>
+      <li>A case where <b>OCaml Objects</b> are very useful!</li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Providers</h3>
+    <ul>
+      <li>These are device managers that manage plugging and unplugging devices from the environment.</li>
+      <li>Each provider registers at application startup, and communicates with the 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/devices.ml"><tt>device manager</tt></a>
+ 
+       via <tt><a href="http://ocsigen.org/lwt/api/Lwt_mvar">Lwt_mvar</a></tt> mailboxes).</li>
+      <li>There are two provider types for this tutorial:</li>
+      <ul>
+         <li><a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/devices.mli"><tt>OS.Devices.blkif</tt></a> for r/w block devices</li>
+         <li><a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/devices.mli"><tt>OS.Devices.kv_ro</tt></a> for r/o key/value store</li>
+      </ul>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Device Types</h3>
+    <p>Block device to read and write sectors to a disk.</p>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> blkif </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">
+  id</span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+  read_page</span><span class="pun">:</span><span class="pln"> int64 </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">t </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">;</span><span class="pln">
+  sector_size</span><span class="pun">:</span><span class="pln"> int</span><span class="pun">;</span><span class="pln">
+  ppname</span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+  destroy</span><span class="pun">:</span><span class="pln"> unit</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">&gt;</span></pre>
+<p>And also a higher level read-only key-value store:</p>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> kv_ro </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">
+  iter_s</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="pln">string </span><span class="pun">-&gt;</span><span class="pln"> unit </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">)</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> unit </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">;</span><span class="pln">
+  read</span><span class="pun">:</span><span class="pln"> string </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">t </span><span class="typ">Lwt_stream</span><span class="pun">.</span><span class="pln">t option </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">;</span><span class="pln">
+  size</span><span class="pun">:</span><span class="pln"> string </span><span class="pun">-&gt;</span><span class="pln"> int64 option </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">&gt;</span></pre>
+
+   </article>
+ 
+   <article>
+     
+
+<h3>Device Tree (1)</h3>
+<p>Defined in <a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/devices.ml"><tt>lib/os/unix/devices.ml</tt></a>:</p>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> entry </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  provider </span><span class="pun">:</span><span class="pln"> provider</span><span class="pun">;</span><span class="pln">
+  id </span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+  depends </span><span class="pun">:</span><span class="pln"> entry list</span><span class="pun">;</span><span class="pln">
+  node </span><span class="pun">:</span><span class="pln"> device</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+   </article>
+ 
+   <article>
+     
+<h3>Device Tree (2)</h3>
+<p>Defined in <a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/devices.ml"><tt>lib/os/unix/devices.ml</tt></a>:</p>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> entry </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  provider </span><span class="pun">:</span><span class="pln"> provider</span><span class="pun">;</span><span class="pln">
+  id </span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+  depends </span><span class="pun">:</span><span class="pln"> entry list</span><span class="pun">;</span><span class="pln">
+  node </span><span class="pun">:</span><span class="pln"> device</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">and</span><span class="pln"> device </span><span class="pun">=</span><span class="pln">
+  </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Blkif</span><span class="pln"> of blkif
+  </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Kv_RO</span><span class="pln"> of kv_ro</span></pre>
+
+   </article>
+ 
+   <article>
+     
+<h3>Device Tree (3)</h3>
+<p>Defined in <a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/devices.ml"><tt>lib/os/unix/devices.ml</tt></a>:</p>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> entry </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  provider </span><span class="pun">:</span><span class="pln"> provider</span><span class="pun">;</span><span class="pln">
+  id </span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+  depends </span><span class="pun">:</span><span class="pln"> entry list</span><span class="pun">;</span><span class="pln">
+  node </span><span class="pun">:</span><span class="pln"> device</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">and</span><span class="pln"> device </span><span class="pun">=</span><span class="pln">
+  </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Blkif</span><span class="pln"> of blkif
+  </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Kv_RO</span><span class="pln"> of kv_ro
+</span><span class="kwd">and</span><span class="pln"> provider </span><span class="pun">=</span><span class="pln">
+</span><span class="pun">&lt;</span><span class="pln"> create </span><span class="pun">:</span><span class="pln"> deps</span><span class="pun">:</span><span class="pln">entry list </span><span class="pun">-&gt;</span><span class="pln"> cfg</span><span class="pun">:(</span><span class="pln">string </span><span class="pun">*</span><span class="pln"> string</span><span class="pun">)</span><span class="pln"> list
+    </span><span class="pun">-&gt;</span><span class="pln"> id </span><span class="pun">-&gt;</span><span class="pln"> entry </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">;</span><span class="pln">
+  id </span><span class="pun">:</span><span class="pln"> string</span><span class="pun">;</span><span class="pln">
+  plug </span><span class="pun">:</span><span class="pln"> plug </span><span class="typ">Lwt_mvar</span><span class="pun">.</span><span class="pln">t</span><span class="pun">;</span><span class="pln">
+  unplug </span><span class="pun">:</span><span class="pln"> id </span><span class="typ">Lwt_mvar</span><span class="pun">.</span><span class="pln">t </span><span class="pun">&gt;</span></pre>
+
+   </article>
+ 
+   <article>
+     
+    <h1>Device Model Exercises
+    <br>
+     <small>taptaptap, is this thing on?</small>
+    </h1>
+    <p>Anil Madhavapeddy and David Scott</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Using Key-Value Stores</h3>
+    <p>To add a key-value store, we just need a provider that implements the 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/unix/devices.mli"><tt>kv_ro</tt></a>
+  interface. The simplest provider is really simple. Lets try it now!</p>
+<pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">devices</span><span class="pun">/</span><span class="pln">crunch
+$ echo </span><span class="lit">12345</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> static</span><span class="pun">/</span><span class="pln">foo
+$ echo </span><span class="lit">67890</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> static</span><span class="pun">/</span><span class="pln">bar
+$ mir</span><span class="pun">-</span><span class="pln">crunch </span><span class="pun">-</span><span class="pln">name myblock static </span><span class="pun">&gt;</span><span class="pln"> filesystem_static</span><span class="pun">.</span><span class="pln">ml
+$ vi filesystem_static</span><span class="pun">.</span><span class="pln">ml</span></pre>
+<p>It is an ML module that statically serves the filesystem from memory.
+ Notice the provider code at the bottom that registers the device with 
+the <tt>id</tt> you specified to <tt>mir-crunch</tt>.</p>
+  
+   </article>
+ 
+   <article>
+     
+   <h3>Using Key-Value Stores (2)</h3>
+   <p>Now create a <tt>server.ml</tt> file that will read the file <tt>foo</tt> from our built-in block store:</p>
+<pre class="prettyprint"><span class="kwd">open</span><span class="pln"> </span><span class="typ">Lwt</span><span class="pln">
+</span><span class="kwd">open</span><span class="pln"> </span><span class="typ">Printf</span><span class="pln">
+
+</span><span class="kwd">let</span><span class="pln"> main </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=</span><span class="pln">
+  printf </span><span class="str">"Plugging device\n%!"</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">lwt</span><span class="pln"> kv_ro </span><span class="pun">=</span><span class="pln"> OS</span><span class="pun">.</span><span class="typ">Devices</span><span class="pun">.</span><span class="pln">with_kv_ro </span><span class="str">"myblock"</span><span class="pln"> return in
+  printf </span><span class="str">"Reading file foo\n%!"</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">match_lwt</span><span class="pln"> kv_ro</span><span class="pun">#</span><span class="pln">read </span><span class="str">"foo"</span><span class="pln"> </span><span class="kwd">with</span><span class="pln">
+  </span><span class="pun">|</span><span class="typ">Some</span><span class="pln"> s </span><span class="pun">-&gt;</span><span class="pln">
+    printf </span><span class="str">"File contents:\n%!"</span><span class="pun">;</span><span class="pln">
+    </span><span class="typ">Lwt_stream</span><span class="pun">.</span><span class="pln">iter </span><span class="pun">(</span><span class="kwd">fun</span><span class="pln"> b </span><span class="pun">-&gt;</span><span class="pln">
+      printf </span><span class="str">"%s%!"</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">string_of_bitstring b</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">)</span><span class="pln"> s
+  </span><span class="pun">|</span><span class="typ">None</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln">
+    printf </span><span class="str">"File not found\n%!"</span><span class="pun">;</span><span class="pln">
+    return </span><span class="pun">()</span></pre>
+  
+   </article>
+ 
+   <article>
+     
+   <h3>Using Key-Value Stores (3)</h3>
+   <p>Now we need to link our fake block device <tt>Filesystem_static</tt> into our Mirage application. The <tt>server.mir</tt> file lets you control the build:</p>
+<pre class="noprettyprint"><span class="pln">$ echo </span><span class="typ">Server</span><span class="pun">.</span><span class="pln">main </span><span class="pun">&gt;</span><span class="pln"> kv_crunch</span><span class="pun">.</span><span class="pln">mir
+$ echo </span><span class="typ">Filesystem_static</span><span class="pln"> </span><span class="pun">&gt;&gt;</span><span class="pln"> kv_crunch</span><span class="pun">.</span><span class="pln">mir</span></pre>
+<p>The first line defines the entry module and function to start the 
+main Lwt thread. The remaining lines specify additional modules to link 
+in, in this case our fake filesystem.</p>
+<pre class="noprettyprint"><span class="pln">$ mir</span><span class="pun">-</span><span class="pln">build unix</span><span class="pun">-</span><span class="pln">socket</span><span class="pun">/</span><span class="pln">kv_crunch</span><span class="pun">.</span><span class="pln">bin
+$ </span><span class="pun">./</span><span class="pln">_build</span><span class="pun">/</span><span class="pln">unix</span><span class="pun">-</span><span class="pln">socket</span><span class="pun">/</span><span class="pln">kv_crunch</span><span class="pun">.</span><span class="pln">bin</span></pre>
+<p>Try reading <tt>bar</tt> too, or examining the output of:<br><tt>mir-build unix-socket/server.pp.ml</tt></p>
+
+   </article>
+ 
+   <article>
+     
+   <h3>A UNIX Filesystem Bridge</h3>
+   <p>Would like to avoid recompiling on UNIX every time we change a file.</p>
+   <p>Replace the <tt>Filesystem_static</tt> with 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/block/socket/simpleKV.ml"><tt>Block.SimpleKV</tt></a>
+ </p>
+<pre class="noprettyprint"><span class="pln">$ echo </span><span class="typ">Server</span><span class="pun">.</span><span class="pln">main </span><span class="pun">&gt;</span><span class="pln"> kv_fs</span><span class="pun">.</span><span class="pln">mir
+$ echo </span><span class="typ">Block</span><span class="pun">.</span><span class="typ">SimpleKV</span><span class="pln"> </span><span class="pun">&gt;&gt;</span><span class="pln"> kv_fs</span><span class="pun">.</span><span class="pln">mir
+$ mir</span><span class="pun">-</span><span class="pln">build unix</span><span class="pun">-</span><span class="pln">socket</span><span class="pun">/</span><span class="pln">kv_fs</span><span class="pun">.</span><span class="pln">bin
+$ </span><span class="pun">./</span><span class="pln">_build</span><span class="pun">/</span><span class="pln">unix</span><span class="pun">-</span><span class="pln">socket</span><span class="pun">/</span><span class="pln">kv_fs</span><span class="pun">.</span><span class="pln">bin </span><span class="pun">-</span><span class="pln">simple_kv_ro myblock</span><span class="pun">:</span><span class="pln">static</span></pre>
+<p>The <b><tt>-simple_kv_ro</tt></b> flag is of form <b><tt>devid:root_dir</tt></b></p>
+<p>The provider maps the filesystem as a k/v store. Notice that no changes were required to your original source!</p>
+<p>Advanced? Try a loop that retries a file read every few seconds, and alter the filesystem.</p>
+
+   </article>
+ 
+   <article>
+     
+    <h3>A Raw Block Device</h3>
+    <p>The <tt>unix-direct</tt> backend lets us build ML filesystems over raw disk images.</p>
+    <p>The <b>
+   <a href="http://github.com/avsm/mirage/tree/master/tools/fs"><tt>mir-fs-create</tt></a>
+ </b> tool converts a directory to a disk image, which is readable by the <tt>unix-direct</tt> version of 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/block/direct/simpleKV.ml"><tt>Block.SimpleKV</tt></a>
+ </p>
+<pre class="noprettyprint"><span class="pln">$ dd </span><span class="kwd">if</span><span class="pun">=</span><span class="str">/dev/</span><span class="pln">zero of</span><span class="pun">=</span><span class="pln">disk1</span><span class="pun">.</span><span class="pln">img count</span><span class="pun">=</span><span class="lit">4096</span><span class="pln">
+$ mir</span><span class="pun">-</span><span class="pln">fs</span><span class="pun">-</span><span class="pln">create static disk1</span><span class="pun">.</span><span class="pln">img
+$ mir</span><span class="pun">-</span><span class="pln">build unix</span><span class="pun">-</span><span class="pln">direct</span><span class="pun">/</span><span class="pln">kv_fs</span><span class="pun">.</span><span class="pln">bin
+$ </span><span class="pun">./</span><span class="pln">_build</span><span class="pun">/</span><span class="pln">unix</span><span class="pun">-</span><span class="pln">direct</span><span class="pun">/</span><span class="pln">kv_fs</span><span class="pun">.</span><span class="pln">bin </span><span class="pun">-</span><span class="pln">vbd myvbd</span><span class="pun">:</span><span class="pln">disk1</span><span class="pun">.</span><span class="pln">img \
+  </span><span class="pun">-</span><span class="pln">simple_kv_ro myblock</span><span class="pun">:</span><span class="pln">myvbd</span></pre>
+<p>The <b><tt>-vbd</tt></b> flag maps in a block device, and the <br>
+<b><tt>-simple_kv_ro</tt></b> flag now accepts a VBD ID to mount.</p>
+<p><b>Advanced? </b>Try <tt>hexdump</tt> on <tt>disk1.img</tt>.</p>
+
+
+   </article>
+ 
+   <article>
+     
+
+   <h3>Standalone Xen</h3>
+
+   <p>With a RAMdisk (<tt>kv_crunch</tt>, the first example), the Xen
+   microkernel with storage is trivial.</p>
+
+<pre class="noprettyprint"><span class="com">// Linux x86_64 only</span><span class="pln">
+$ mir</span><span class="pun">-</span><span class="pln">build xen</span><span class="pun">/</span><span class="pln">kv_crunch</span><span class="pun">.</span><span class="pln">xen
+$ mir</span><span class="pun">-</span><span class="pln">run </span><span class="pun">-</span><span class="pln">b xen _build</span><span class="pun">/</span><span class="pln">xen</span><span class="pun">/</span><span class="pln">kv_crunch</span><span class="pun">.</span><span class="pln">xen</span></pre>
+
+<p>You can spend most of your time debugging using
+  <tt>unix-direct</tt>, and only swap to Xen for wider testing and
+      deployment.</p>
+
+<p>The rich development environment of UNIX, and the microkernel
+      advantages in production, without changing a line of code!</p>
+
+  
+   </article>
+ 
+   <article>
+     
+
+   <h3>FAT Filesystems</h3>
+
+   <p>Mirage has a succinct ML implementation of the FAT filesystem in
+   
+   <a href="http://github.com/avsm/mirage/tree/master/lib/fs"><tt>Fs.Fat</tt></a>
+ .</p>
+
+<pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">devices</span><span class="pun">/</span><span class="pln">fat
+$ make</span></pre>
+
+
+
+<p>The command-line flag to map a FAT image is <br>
+
+<b><tt>-fat_kv_ro id:blkif_id</tt></b> just like the previous one.</p>
+
+<p>This is for advanced users, but see what you can do with it! MacOS
+    has poor support for manipulating FAT volumes, so this will be
+      easier on Linux.</p>
+
+
+
+
+   </article>
+ 
+   <article>
+     
+    <h1>Networking
+    <br>
+     <small>here comes the RESTful bit</small>
+    </h1>
+    <p>Anil Madhavapeddy, Thomas Gazagnaire and David Scott</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Networking</h3>
+    <ul>
+      <li>Very similar to the block devices, except much more sensitive to latency.</li>
+      <li>Xen provides Ethernet frames to the 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/os/xen/netif.mli"><tt>OS.Netif</tt></a>
+  driver, just as <tt>blkif</tt> provides sector-level access.</li>
+      <li>There are two separate shared rings: one for transmit, other for receive, and hardware offload options:</li>
+    </ul>
+<pre class="prettyprint"><span class="kwd">type</span><span class="pln"> features </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  sg</span><span class="pun">:</span><span class="pln"> bool</span><span class="pun">;</span><span class="pln">
+  gso_tcpv4</span><span class="pun">:</span><span class="pln"> bool</span><span class="pun">;</span><span class="pln">
+  rx_copy</span><span class="pun">:</span><span class="pln"> bool</span><span class="pun">;</span><span class="pln">
+  rx_flip</span><span class="pun">:</span><span class="pln"> bool</span><span class="pun">;</span><span class="pln">
+  smart_poll</span><span class="pun">:</span><span class="pln"> bool</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></pre>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Bring up the Network</h3>
+    <p>Lets dive straight in, and bring up the Mirage network stack on UNIX. You will need <tt>tuntap</tt> on your OS (Linux or MacOS X).</p>
+    <p>The bridge should have IP <tt>10.0.0.1</tt> as the applications default to <tt>10.0.0.2</tt>. Try not to bridge to the outside network!</p>
+<pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">examples</span><span class="pun">/</span><span class="pln">net</span><span class="pun">/</span><span class="pln">ping
+$ mir</span><span class="pun">-</span><span class="pln">build unix</span><span class="pun">-</span><span class="pln">direct</span><span class="pun">/</span><span class="pln">ping</span><span class="pun">.</span><span class="pln">ml
+$ sudo </span><span class="pun">./</span><span class="pln">_build</span><span class="pun">/</span><span class="pln">unix</span><span class="pun">-</span><span class="pln">direct</span><span class="pun">/</span><span class="pln">ping</span><span class="pun">.</span><span class="pln">ml
+</span><span class="com">// Another terminal</span><span class="pln">
+$ ping </span><span class="lit">10.0</span><span class="pun">.</span><span class="lit">0.2</span></pre>
+<p>You should receive ICMP echo replies from the Mirage 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/net/direct"><tt>network stack</tt></a>
+ !</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Ethernet and TCP/IP</h3>
+    <ul>
+      <li>The native OCaml implementation uses 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/std/bitstring.mli"><tt>Bitstring</tt></a>
+  to minimise data copying.</li>
+      <li>Ethernet frames are parsed by 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/net/direct/ethif.ml"><tt>Net.Ethif</tt></a>
+ , and 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/net/direct/arp.ml"><tt>Net.ARP</tt></a>
+  responses are sent.</li>
+      <li>
+   <a href="http://github.com/avsm/mirage/tree/master/lib/net/direct/nettypes.mli"><tt>Nettypes</tt></a>
+  defines module signatures for <tt>DATAGRAM</tt> and <tt>CHANNEL</tt> as well as common types.</li>
+      <li>There are simple implementations of 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/net/direct/icmp.ml"><tt>Net.ICMP</tt></a>
+  and 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/net/direct/udp.mli"><tt>UDP</tt></a>
+  (which implements <tt>DATAGRAM</tt> over IPv4).</li>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+   <h3>DATAGRAM signature and UDPv4</h3>
+<pre class="prettyprint"><span class="kwd">module</span><span class="pln"> </span><span class="kwd">type</span><span class="pln"> DATAGRAM </span><span class="pun">=</span><span class="pln"> sig
+  </span><span class="kwd">type</span><span class="pln"> mgr
+
+  </span><span class="kwd">type</span><span class="pln"> src
+  </span><span class="kwd">type</span><span class="pln"> dst
+
+  </span><span class="kwd">type</span><span class="pln"> msg
+
+  </span><span class="kwd">val</span><span class="pln"> recv </span><span class="pun">:</span><span class="pln"> mgr </span><span class="pun">-&gt;</span><span class="pln"> src </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">(</span><span class="pln">dst </span><span class="pun">-&gt;</span><span class="pln"> msg </span><span class="pun">-&gt;</span><span class="pln"> unit </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t</span><span class="pun">)</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> unit </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t
+  </span><span class="kwd">val</span><span class="pln"> send </span><span class="pun">:</span><span class="pln"> mgr </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">?</span><span class="pln">src</span><span class="pun">:</span><span class="pln">src </span><span class="pun">-&gt;</span><span class="pln"> dst </span><span class="pun">-&gt;</span><span class="pln"> msg </span><span class="pun">-&gt;</span><span class="pln"> unit </span><span class="typ">Lwt</span><span class="pun">.</span><span class="pln">t
+</span><span class="kwd">end</span><span class="pln">
+
+</span><span class="kwd">module</span><span class="pln"> </span><span class="typ">UDPv4</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="typ">Nettypes</span><span class="pun">.</span><span class="pln">DATAGRAM </span><span class="kwd">with</span><span class="pln">
+      </span><span class="kwd">type</span><span class="pln"> mgr </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Manager</span><span class="pun">.</span><span class="pln">t
+  </span><span class="kwd">and</span><span class="pln"> </span><span class="kwd">type</span><span class="pln"> src </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Nettypes</span><span class="pun">.</span><span class="pln">ipv4_src
+  </span><span class="kwd">and</span><span class="pln"> </span><span class="kwd">type</span><span class="pln"> dst </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Nettypes</span><span class="pun">.</span><span class="pln">ipv4_dst
+  </span><span class="kwd">and</span><span class="pln"> </span><span class="kwd">type</span><span class="pln"> msg </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Bitstring</span><span class="pun">.</span><span class="pln">t</span></pre>
+  
+   </article>
+ 
+   <article>
+     
+<h3>Lets Build a DNS Server</h3>
+<pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">examples</span><span class="pun">/</span><span class="pln">dns
+$ make
+</span><span class="pun">#</span><span class="pln"> different terminal
+$ dig </span><span class="pun">@</span><span class="lit">127.0</span><span class="pun">.</span><span class="lit">0.1</span><span class="pln"> </span><span class="pun">-</span><span class="pln">p </span><span class="lit">5555</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">openmirage</span><span class="pun">.</span><span class="pln">org
+$ dig </span><span class="pun">@</span><span class="lit">127.0</span><span class="pun">.</span><span class="lit">0.1</span><span class="pln"> </span><span class="pun">-</span><span class="pln">p </span><span class="lit">5555</span><span class="pln"> txt www</span><span class="pun">.</span><span class="pln">openmirage</span><span class="pun">.</span><span class="pln">org</span></pre>
+<p>This builds the socket version, listening on port <tt>5555</tt> and localhost.</p>
+<p>It uses UNIX kernel sockets and not the Mirage stack (useful for testing the higher level protocols).</p>
+
+   </article>
+ 
+   <article>
+     
+  <h3>Building DNS combinations</h3>
+ <p>The table from earlier should make more sense now. Try out as many 
+variations as you can, remembering that the direct stack will listen on <tt>10.0.0.2</tt></p>
+<table>
+<tbody><tr><th>Target</th><th>Backend</th><th>Storage</th><th>Network</th> </tr>
+<tr><td>run-socket_crunch</td><td>UNIX</td><td>Builtin</td><td>Sockets</td></tr>
+<tr><td>run-socket_fs</td><td>UNIX</td><td>UNIX filesystem</td><td>Sockets</td></tr>
+<tr><td>run-direct_crunch</td><td>UNIX</td><td>Builtin</td><td>Tuntap+OCaml</td></tr>
+<tr><td>run-direct_fs</td><td>UNIX</td><td>Disk image+OCaml</td><td>Tuntap+OCaml</td></tr>
+<tr><td>run-xen_crunch</td><td>Xen</td><td>Builtin</td><td>Xennet+OCaml</td></tr>
+<tr><td>run-xen_fs</td><td>Xen</td><td>Xenblock+OCaml</td><td>Xennet+OCaml</td></tr>
+</tbody></table>
+
+   </article>
+ 
+   <article>
+     
+    <h1>Syntax Extensions
+    <br>
+     <small>the zen of camlp4</small>
+    </h1>
+    <p>Thomas Gazagnaire and Anil Madhavapeddy</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Why Syntax Extensions?</h3>
+    <ul>
+     <li>Very convenient way to perform code-generation.</li>
+     <li>OCaml has a comprehensive grammar extension mechanism.</li>
+     <li>But integrating and composing syntax extensions can be difficult.</li>
+    </ul>
+    <p>Mirage features a bundle that is always available, so you never need to worry about them working together or being available.</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Web Syntax extensions</h3>
+    <ul>
+      <li>Web expressions are written natively in Mirage (where they are called quotations):
+      <pre class="prettyprint"><span class="kwd">let</span><span class="pln"> x </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;:</span><span class="pln">html</span><span class="pun">&lt;&lt;</span><span class="pln">h1</span><span class="pun">&gt;</span><span class="typ">Hello</span><span class="pun">&lt;/</span><span class="pln">h1</span><span class="pun">&gt;</span><span class="typ">World</span><span class="pun">!&gt;&gt;</span></pre></li>
+
+       <li>This expands to (<tt>make %.pp.ml</tt>):
+       <pre class="prettyprint"><span class="kwd">let</span><span class="pln"> x </span><span class="pun">=</span><span class="pln"> </span><span class="typ">List</span><span class="pun">.</span><span class="pln">flatten </span><span class="pun">[</span><span class="pln">
+  </span><span class="pun">[</span><span class="pln"> </span><span class="pun">`</span><span class="typ">El</span><span class="pln"> </span><span class="pun">(((</span><span class="str">""</span><span class="pun">,</span><span class="pln"> </span><span class="str">"h1"</span><span class="pun">),</span><span class="pln"> </span><span class="pun">[]),</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">`</span><span class="typ">Data</span><span class="pln"> </span><span class="str">"Hello"</span><span class="pln"> </span><span class="pun">])</span><span class="pln"> </span><span class="pun">];</span><span class="pln">
+  </span><span class="pun">[</span><span class="pln"> </span><span class="pun">`</span><span class="typ">Data</span><span class="pln"> </span><span class="str">"World!"</span><span class="pln"> </span><span class="pun">]</span><span class="pln">
+</span><span class="pun">]</span></pre></li>
+      
+      <li>HTML and XML quotations are compiled to <tt>xmlm</tt> expressions by the pre-processor.</li>
+    </ul> 
+   </article>
+ 
+   <article>
+     
+    <h3>Web Syntax extensions (ii)</h3>
+    <ul>
+      <li>One can use template-like (anti-quotations) to parameterize quotations:
+      <pre class="prettyprint"><span class="kwd">let</span><span class="pln"> x title </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;:</span><span class="pln">html</span><span class="pun">&lt;&lt;</span><span class="pln">h1</span><span class="pun">&gt;</span><span class="pln">$title$</span><span class="pun">&lt;/</span><span class="pln">h1</span><span class="pun">&gt;</span><span class="pln">content</span><span class="pun">&gt;&gt;</span></pre></li>
+
+      <li>This expands to:
+      <pre class="prettyprint"><span class="kwd">let</span><span class="pln"> x title </span><span class="pun">=</span><span class="pln"> </span><span class="typ">List</span><span class="pun">.</span><span class="pln">flatten
+  </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">`</span><span class="typ">El</span><span class="pln"> </span><span class="pun">(((</span><span class="str">""</span><span class="pun">,</span><span class="pln"> </span><span class="str">"h1"</span><span class="pun">),</span><span class="pln"> </span><span class="pun">[]),</span><span class="pln"> title</span><span class="pun">)</span><span class="pln"> </span><span class="pun">];</span><span class="pln">
+    </span><span class="pun">[</span><span class="pln"> </span><span class="pun">`</span><span class="typ">Data</span><span class="pln"> </span><span class="str">"content"</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">]</span></pre></li>
+      
+      <li>Typed templates:
+      <pre class="prettyprint"><span class="kwd">let</span><span class="pln"> f </span><span class="pun">(</span><span class="pln">i </span><span class="pun">:</span><span class="pln"> int</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;:</span><span class="pln">html</span><span class="pun">&lt;</span><span class="typ">This</span><span class="pln"> is an int </span><span class="pun">:</span><span class="pln"> $int</span><span class="pun">:</span><span class="pln">i$</span><span class="pun">!&gt;&gt;</span><span class="pln">
+</span><span class="kwd">let</span><span class="pln"> f </span><span class="pun">(</span><span class="pln">s </span><span class="pun">:</span><span class="pln"> string</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;:</span><span class="pln">html</span><span class="pun">&lt;</span><span class="typ">This</span><span class="pln"> is a string </span><span class="pun">:</span><span class="pln"> $string</span><span class="pun">:</span><span class="pln">s$</span><span class="pun">!&gt;&gt;</span></pre></li>
+   </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Web Syntax extensions</h3>
+    <ul>
+    <li>CSS quotations (with nested declarations):
+    <pre class="prettyprint"><span class="kwd">let</span><span class="pln"> y </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;:</span><span class="pln">css</span><span class="pun">&lt;</span><span class="pln"> h1 </span><span class="pun">{</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> a </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">&gt;&gt;</span></pre></li>
+
+    <li>This expands to:
+<pre class="prettyprint"><span class="kwd">let</span><span class="pln"> y </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="pln">unroll </span><span class="pun">(</span><span class="pln">
+  </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Props</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+    </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Decl</span><span class="pln"> </span><span class="pun">(</span><span class="pln">
+      </span><span class="pun">[[</span><span class="pln"> </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Str</span><span class="pln"> </span><span class="str">"h1"</span><span class="pln"> </span><span class="pun">]],</span><span class="pln">
+      </span><span class="pun">([</span><span class="pln"> </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Prop</span><span class="pln"> </span><span class="pun">(</span><span class="str">"background-color"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[[</span><span class="pln"> </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Str</span><span class="pln"> </span><span class="str">"blue"</span><span class="pln"> </span><span class="pun">]])</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">@</span><span class="pln">
+       </span><span class="pun">[</span><span class="pln"> </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Decl</span><span class="pln"> </span><span class="pun">(</span><span class="pln">
+         </span><span class="pun">[[</span><span class="pln"> </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Str</span><span class="pln"> </span><span class="str">"a"</span><span class="pln"> </span><span class="pun">]],</span><span class="pln">
+         </span><span class="pun">[</span><span class="pln"> </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Prop</span><span class="pln"> </span><span class="pun">(</span><span class="str">"color"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="typ">Cow</span><span class="pun">.</span><span class="typ">Css</span><span class="pun">.</span><span class="typ">Str</span><span class="pln"> </span><span class="str">"red"</span><span class="pln"> </span><span class="pun">]])</span><span class="pln"> </span><span class="pun">])</span><span class="pln"> </span><span class="pun">]))</span><span class="pln">
+  </span><span class="pun">])</span></pre></li></ul>
+
+   </article>
+ 
+   <article>
+     
+    <h1>Build Your Website
+    <br>
+     <small>a personal kernel</small>
+    </h1>
+    <p>Anil Madhavapeddy and David Scott</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>Skeleton HTTP Server</h3>
+    <p>Mirage has a rather hacked up HTTP implementation (but it does work!) in 
+   <a href="http://github.com/avsm/mirage/tree/master/lib/http"><tt>Http</tt></a>
+ .</p> 
+    <p>Take a shot at filling in your own website.</p>
+<pre class="noprettyprint"><span class="pln">$ cd mirage</span><span class="pun">-</span><span class="pln">tutorial</span><span class="pun">/</span><span class="pln">net</span><span class="pun">/</span><span class="pln">http
+$ vi server</span><span class="pun">.</span><span class="pln">ml
+$ vi dispatch</span><span class="pun">.</span><span class="pln">ml
+$ make</span></pre>
+<table>
+<tbody><tr><th>Target</th><th>Backend</th><th>Storage</th><th>Network</th> </tr>
+<tr><td>run-socket_crunch</td><td>UNIX</td><td>Builtin</td><td>Sockets</td></tr>
+<tr><td>run-socket_fs</td><td>UNIX</td><td>UNIX filesystem</td><td>Sockets</td></tr>
+<tr><td>run-direct_crunch</td><td>UNIX</td><td>Builtin</td><td>Tuntap+OCaml</td></tr>
+<tr><td>run-direct_fs</td><td>UNIX</td><td>Disk image+OCaml</td><td>Tuntap+OCaml</td></tr>
+<tr><td>run-xen_crunch</td><td>Xen</td><td>Builtin</td><td>Xennet+OCaml</td></tr>
+<tr><td>run-xen_fs</td><td>Xen</td><td>Xenblock+OCaml</td><td>Xennet+OCaml</td></tr>
+</tbody></table>
+  
+   </article>
+ 
+   <article>
+     
+    <h1>To The Cloud!
+    <br>
+     <small>where we're going, we don't need displays</small>
+    </h1>
+    <p>Anil Madhavapeddy and David Scott</p>
+  
+   </article>
+ 
+   <article>
+     
+    <h3>How Kernels Boot on Amazon</h3>
+    <ul>
+    </ul>
+  
+   </article>
+ 
+   <article>
+     
+    <h1>The End
+    <br><small>now stand around the watercooler and discuss things</small>
+    </h1>
+  
+   </article>
+ 
+    <div id="prev-slide-area" class="slide-area"></div><div id="next-slide-area" class="slide-area"></div></section>
+  
+
+<link href="Mirage%20CUFP%202011%20Tutorial_files/css.css" type="text/css" rel="stylesheet"><link href="Mirage%20CUFP%202011%20Tutorial_files/styles.css" type="text/css" rel="stylesheet"><script src="Mirage%20CUFP%202011%20Tutorial_files/prettify.js" type="text/javascript"></script></body></html>
