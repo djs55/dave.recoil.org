@@ -69,22 +69,129 @@
 
 -->
 
+
+<h2>Interests</h2>
+
+<p>
+My current focus is on cloud computing, rethinking the role of an Operating System (OS)
+now that you can rely on a hypervisor to do many of the things an OS kernel had to
+do before. I've been working on the
+<a href="http://openmirage.org/">MirageOS</a>
+project to create a &quot;programming framework&quot; (really a set of nicely composable
+libraries) which makes it easy to write applications which run directly on top of
+hypervisors. For an overview of this work, check out the recent
+<a href="http://cacm.acm.org/magazines/2014/1/170866-unikernels/abstract">Communications of the ACM article</a>
+or the
+<a href="papers/final/asplos2013.pdf">ASPLOS 2013 paper</a>
+or explore the
+<a href="http://openmirage.org/docs/">MirageOS docs.</a>
+</p>
+
+<p>
+In the recent past I've had a lot of fun exploiting the capabilities of smartphones, in particular
+using
+<ul>
+  <li> built-in cameras to track visual tags in real-time: see
+       <a href="http://www.cl.cam.ac.uk/Research/SRG/netos/uid/spotcode.html">SpotCode Interfaces</a>;
+  </li>
+  <li> built-in microphones and speakers to transmit data, both audibly (e.g. as ringtones) and inaudibly
+       (e.g. as location beacons): see
+       <a href="http://www.cl.cam.ac.uk/Research/SRG/netos/uid/audio.html">Audio Networking</a>
+       (&quot;<a href="papers/2005-ieee-audio.pdf">the forgotten wireless technology</a>&quot;); and
+  </li>
+  <li> (of-course) built-in local networking capabilities (originally Bluetooth but now WiFi)
+       to <a href="papers/final/netgames2004.pdf">play games</a> and to join up physical
+       interfaces (e.g. posters, signs, maps) with their virtual equivalents: see
+       <a href="papers/2006-puc-tags.pdf">Interacting with Mobile Services: An Evaluation of
+       Camera-Phones and Visual Tags</a>.
+  </li>
+</ul>
+</p>
+
+<p>
+Earlier still, my PhD research focused on application-level security policies for mobile web-based systems.
+The work was supervised by
+<a href="http://www.cl.cam.ac.uk/~am/">Alan Mycroft</a> in the
+<a href="http://www.cl.cam.ac.uk/">CL</a>.
+I'm grateful to
+<a href="http://www.cl.cam.ac.uk/~ah12/">Andy Hopper</a> from the
+<a href="http://www.cl.cam.ac.uk/research/dtg">LCE (now the DTG)</a> and the
+<a href="www.admin.cam.ac.uk/offices/gradstud/fees/funding/awards/Schiff.doc">Schiff Foundation</a>
+for support and funding respectively. I was also sponsored by the now defunct
+<a href="http://www.cl.cam.ac.uk/research/dtg/attarchive/">AT&amp;T Laboratories Cambridge Ltd.</a>
+</p>
+
 <h2>Papers which won prizes</h2>
+
+<p>Several of the papers we've written have won prizes:</p>
+
 <table class="table table-striped">
-<tr">
+<tr>
+<td width="160"><a href="papers/final/2015-nsdi-jitsu.pdf"><img src="papers/final/2015-nsdi-jitsu.jpg"></a></td>
+<td><div align="top">
+    <p><b>Jitsu: Just-In-Time Summoning of Unikernels</b> -
+      A. Madhavapeddy, T. Leonard, M. Skjegstad, T. Gazagnaire, D. Sheets,
+         D.Scott, R. Mortier, A. Chaudhry, B. Singh, J. Ludlam, J. Crowcroft,
+         I. Leslie
+    </p>
+    <p>won the <a href="https://www.cl.cam.ac.uk/ring/awards.html">
+      Cambridge Computer Lab Ring Publication of the Year 2016</a>
+    and was presented at
+    <a href="https://www.usenix.org/conference/nsdi15/technical-sessions/presentation/madhavapeddy">
+      12th USENIX symposium on Networked Systems Design and Implementation</a>
+      (NSDI 2015)
+    </a></p>
+    <p> We presented <a href="https://github.com/mirage/jitsu/">Jitsu</a>: a system
+        optimised for spinning up tiny Unikernels in response to network traffic.
+        For example when the first TCP/IP SYN packet arrives for a webserver, we
+        would buffer the packet while simultaneously starting the Unikernel which
+        completes the handshake when it finishes booting in a few hundred milliseconds
+        on an ARM A20.
+    </p>
+    </div>
+</td>
+</tr>
+
+<tr>
+<td width="160"><a href="papers/final/asplos2013.pdf"><img src="papers/final/asplos2013.jpg"></a></td>
+<td><div align="top">
+    <p><b>Unikernels: Library Operating Systems for the Cloud</b> -
+          A. Madhavapeddy, R. Mortier, C. Rotsos, D. Scott, B. Singh, T. Gazagnaire, S. Smith, S. Hand, J Crowcroft</p>
+    <p>won a <a href="http://www.hipeac.net/award">HIPEAC 2013 award</a>
+    presented at <a
+    href="http://asplos13.rice.edu">Eighteenth International Conference on Architectural Support for Programming Languages
+    and Operating Systems (ASPLOS 2013)</a></p>
+    <p> We present unikernels, a new approach to deploying cloud services via applications written
+        in high-level source code. Unikernels are single-purpose appliances that are compile-time
+        specialised into standalone kernels, and sealed against modification when deployed to a cloud
+        platform. In return they offer significant reduction in image sizes, improved efficiency and
+        security, and should reduce operational costs. Our Mirage prototype compiles OCaml code into
+        unikernels that run on commodity clouds and offer an order of magnitude reduction in code size
+        without significant performance penalty. The architecture combines static type-safety with a
+        single address-space layout that can be made immutable via a hypervisor extension. Mirage
+        contributes a suite of type-safe protocol libraries, and our results demonstrate that the
+        hypervisor is a platform that overcomes the hardware compatibility issues that have made past
+        library operating systems impractical to deploy in the real-world. </p>
+    <p> <i>This describes the awesomeness of the <a href="http://www.openmirage.org/">
+        MirageOS</a> open-source library OS which hosts this website!</i></p>
+    </div>
+</td>
+</tr>
+
+<tr>
 <td width="160"><a href="papers/final/eurosys2007.pdf"><img src="papers/final/eurosys2007.jpg"></a></td>
 <td><div align="top">
-    <p><b>Melange: creating a functional internet</b> - 
+    <p><b>Melange: creating a functional internet</b> -
           A. Madhavapeddy, A. Ho, T. Deegan, D. Scott, R. Sohan</p>
     <p><b>Best student paper</b> at <a
     href="http://www.gsd.inesc-id.pt/conference/EuroSys2007/">EuroSys
     2007</a></p>
     <p> We present a framework based in OCaml called ``Melange'' which
-        uses strong static typing and generative meta-programming to 
+        uses strong static typing and generative meta-programming to
         eliminate a serious class of bugs from Internet servers without
         paying a performance penalty. We report on fully-featured SSH
         and DNS servers and measure greater throughput, lower latency and
-        increased flexibility all with source code which is more succinct than 
+        increased flexibility all with source code which is more succinct than
         the C equivalents: OpenSSH and BIND. </p>
     <p> <i>Quite a fun piece of work which shows how well you can do by
         throwing away the old designs and starting again, with benefit of
@@ -97,7 +204,7 @@
 <td><a href="papers/final/fase2003.pdf"><img src="papers/final/fase2003.jpg" width="160"></a></td>
 <td><div align="top">
     <p><b><a href="papers/final/fase2003.pdf">Spatial Security Policies for Mobile Agents in a Sentient Computing
-    Environment</a></b> - 
+    Environment</a></b> -
       D. Scott, A. Beresford, A. Mycroft</p>
     <p>
 Won the <a href="http://www.easst.net/">European Association of Software
@@ -105,7 +212,7 @@ Science and Technology</a> (EASST) <b>Best Software Science Paper</b>
 award</a> at
 <a href="http://www.lta.disco.unimib.it/fase2003/">FASE 2003</a> (part of
 <a href="http://www.mimuw.edu.pl/etaps03/">ETAPS 2003</a>) in Warsaw,
-Poland. 
+Poland.
     <p> A Sentient Computing environment is one in which the system is able
     to perceive the state of the physical world and use this information to
     customise its behaviour. Mobile agents are a promising new programming
@@ -149,37 +256,6 @@ Poland.
 
 </table>
 
-<h2>Past projects</h2>
-
-Past projects include:
-<ul>
-  <li> The Ubiquitous Interaction Devices (UID) project encompassing
-       <ul>
-       <li> <a href="http://www.cl.cam.ac.uk/Research/SRG/netos/uid/spotcode.html">SpotCode Interfaces</a>
-       <li> <a href="http://www.cl.cam.ac.uk/Research/SRG/netos/uid/audio.html">Audio Networking</a>
-       <li> Bluetooth-based Mobile Services
-       </ul>
-  <li> Location-aware computing including
-       <ul>
-       <li> Analysing participation in voluntary location systems
-       <li> Location-aware gaming
-       </ul>
-  <li> Security
-       <ul>
-       <li> Application-level policies for web-applications
-       <li> Spatial policies for restricting mobility
-       </ul>
-</ul>
-My PhD research focused on application-level security policies for mobile web-based systems.
-The work was supervised by 
-<a href="http://www.cl.cam.ac.uk/~am/">Alan Mycroft</a> in the 
-<a href="http://www.cl.cam.ac.uk/">CL</a>. 
-I'm grateful to 
-<a href="http://www-lce.eng.cam.ac.uk/~hopper">Andy Hopper</a> from the 
-<a href="http://www-lce.eng.cam.ac.uk/">LCE</a> and the Schiff Foundation for support and funding respectively. I am also sponsored by the now defunct
-<a href="http://www.uk.research.att.com/">AT&amp;T Laboratories Cambridge Ltd.</a>
-</p>
-
 
 <h2>Refereed Reports</h2>
 
@@ -187,21 +263,84 @@ I'm grateful to
   <tbody>
 
     <tr>
+      <td>2015&nbsp;&nbsp;</td>
+      <td width="50%">
+          <p>A. Madhavapeddy, T. Leonard, M. Skjegstad, T. Gazagnaire, D. Sheets,
+             D.Scott, R. Mortier, A. Chaudhry, B. Singh, J. Ludlam, J. Crowcroft,
+             I. Leslie
+          </p>
+          <p><i>Jitsu: Just-In-Time Summoning of Unikernels</i></p>
+      </td>
+      <td></td>
+      <td>
+         <p> Presented at <a href="https://www.usenix.org/conference/nsdi15/technical-sessions/presentation/madhavapeddy">
+           12th USENIX symposium on Networked Systems Design and Implementation</a>
+           (NSDI 2015), May 2015 </p>
+         <p> <a href="papers/final/2015-nsdi-jitsu.pdf">[pdf: 352KiB]</a></p>
+       </td>
+    </tr>
+
+    <tr>
+      <td>2014&nbsp;&nbsp;</td>
+      <td width="50%">
+
+        <p>A. Madhavapeddy, D. Scott</p>
+        <p><i>Unikernels: The Rise of the Virtual Library Operating System</i></p>
+      </td>
+      <td></td>
+      <td>
+        <p> Appeared in <a href="http://cacm.acm.org/">Communications of the ACM</a>, January 2014 </p>
+        <p> <a href="http://cacm.acm.org/magazines/2014/1/170866-unikernels/abstract">[CACM]</a></p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>2013&nbsp;&nbsp;</td>
+      <td width="50%">
+
+          <p>A. Madhavapeddy, R. Mortier, C. Rotsos, D. Scott, B. Singh, T. Gazagnaire, S. Smith, S. Hand, J. Crowcroft</p>
+          <p><i>Unikernels: Library Operating Systems for the Cloud</i></p>
+      </td>
+      <td></td>
+      <td>
+         <p> Appeared in <a href="http://asplos13.rice.edu/">Eighteenth International Conference on
+             Architectural Support for Programming Languages and Operating Systems (ASPLOS 2013)</a>, March 2013 </p>
+         <p> <a href="papers/final/asplos2013.pdf">[pdf: 700KiB]</a></p>
+       </td>
+    </tr>
+
+    <tr>
+      <td>2010&nbsp;&nbsp;</td>
+      <td width="50%">
+
+        <p>D. Scott, R. Sharp, T. Gazagnaire, A. Madhavapeddy</p>
+        <p><i>Using Functional Programming within an Industrial Product Group: Perspectives and Perceptions</i></p>
+      </td>
+      <td></td>
+      <td>
+        <p> Appeared in <a href="http://www.icfpconference.org/icfp2010/">The 15th ACM SIGPLAN International Conference on Functional Programming (ICFP '10)</a>, September 2010 </p>
+        <p> <a href="papers/final/icfp2010.pdf">[pdf: 150KiB]</a>
+            <a href="http://www.slideshare.net/AnilMadhavapeddy/using-functional-programming-within-an-industrial-product-group-perspectives-and-perceptions">[slides]</a></p>
+      </td>
+    </tr>
+
+    <tr>
       <td>2007&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
           <p>A. Madhavapeddy, A. Ho, T. Deegan, D. Scott, R. Sohan</p>
           <p><i>Melange: Towards a &quot;functional&quot; Internet</i></p>
       </td>
       <td></td>
       <td>
           <p> Appeared in <a href="http://www.gsd.inesc-id.pt/conference/EuroSys2007/">EuroSys 2007</a>, March 2007 </p>
+          <p><a href="papers/melange.pdf">[pdf: 740KiB]</a></p>
        </td>
     </tr>
     <tr>
       <td>2006&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
           <p>E. Toye, R. Sharp, A. Madhavapeddy, D. Scott, E. Upton,
           A. Blackwell</p>
           <p><i>Interacting with Mobile Services: An Evaluation of
@@ -210,7 +349,7 @@ I'm grateful to
       </td>
       <td></td>
       <td>
-      <p>In <a href="http://www.personal-ubicomp.com/">Personal and Ubiquitous Computing Journal</a>,
+      <p>In <a href="http://www.springer.com/computer/hci/journal/779">Personal and Ubiquitous Computing Journal</a>,
           February 2006</p>
       <p><a href="papers/2006-puc-tags.pdf"> [pdf:
           330 kB] </a></p>
@@ -220,7 +359,7 @@ I'm grateful to
     <tr>
       <td>2005&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>A. Madhavapeddy, R. Sharp, D. Scott, A. Tse</p>
         <p><i>Audio Networking: The Forgotten Wireless Technology</i></p>
       </td>
@@ -235,7 +374,7 @@ I'm grateful to
     <tr>
       <td>2005&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
         <p><i>SPLAT: A Tool for Model-Checking and Dynamically
           Enforcing Abstractions</i></p>
@@ -251,13 +390,13 @@ I'm grateful to
     <tr>
       <td>2005&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>E. Toye, R. Sharp, A. Madhavapeddy, D.Scott</p>
         <p><i>Using Smart Phones to Access Site-Specific Mobile Services</i></p>
       </td>
       <td></td>
       <td>
-        <p>In the special issue of IEEE Pervasive Computing on the Smart Phone: A First Platform for Pervasive Computing, April-June 2005</p>
+        <p>In the <a href="http://ieeexplore.ieee.org/xpl/tocresult.jsp?isnumber=30819">special issue of IEEE Pervasive Computing on the Smart Phone</a>: A First Platform for Pervasive Computing, April-June 2005</p>
         <p><a href="papers/2005-ieee-smartphones.pdf"> [pdf: 2.4 MiB]</a></p>
       </td>
     </tr>
@@ -265,7 +404,7 @@ I'm grateful to
     <tr>
       <td>2005&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>A. Madhavapeddy, D. Scott</p>
         <p><i>On the Challenge of Delivering High-Performance, Dependable, Model-Checked Internet Servers</i></p>
       </td>
@@ -276,17 +415,17 @@ I'm grateful to
       </td>
     </tr>
 
-
     <tr>
       <td>2005&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>D. Scott, R. Sharp, A. Madhavapeddy, E. Upton</p>
-        <p><i>Using Camera-Enabled Personal Devices to Access Bluetooth Mobile Services</i></p>
+        <p><i>Using Visual Tags to Bypass Bluetooth Device Discovery</i></p>
       </td>
       <td></td>
       <td>
-        <p>ACM Mobile Computing and Communications Review (MC2R), January 2005, Volume 9, Number 1, Pages 41-53.</p>
+        <p><a href="http://dl.acm.org/citation.cfm?id=1055965">ACM Mobile Computing and Communications Review (MC2R), January 2005, Volume 9, Number 1, Pages 41-53.</a></p>
+        <p><a href="papers/final/mc2r2005.pdf">[pdf: 200KiB]</a></p>
       </td>
     </tr>
 
@@ -294,27 +433,27 @@ I'm grateful to
     <tr>
       <td>2004&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>D. Scott</p>
         <p><i>Abstracting Application-Level Security Policy for Ubiquitous Computing</i></p>
       </td>
       <td></td>
       <td>
         <p>PhD thesis, University of Cambridge</p>
-        <p><a href="thesis/approved.pdf"> [pdf: 2.0 MB]</a></p>
+        <p><a href="http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-613.pdf">[pdf: 2MiB]</a> <a href="http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-613.html"> [UCAM-CL-TR-613]</a></p>
       </td>
     </tr>
 
     <tr>
       <td>2004&nbsp;&nbsp;</td>
       <td width="50%">
- 
-        <p>K. mansley, A. Beresford, D. Scott</p>
+
+        <p>K. Mansley, A. Beresford, D. Scott</p>
         <p><i>The Carrot Approach: Encouraging use of location systems</i></p>
       </td>
       <td></td>
       <td>
-        <p>This paper describes techniques to encourage (rather than force) the use of location-aware apps in the face of declining participation. Presented at 
+        <p>This paper describes techniques to encourage (rather than force) the use of location-aware apps in the face of declining participation. Presented at
            <a href="http://ubicomp.org/ubicomp2004/">
            The Sixth International Conference on Ubiquitous Computing (UBICOMP 2004)</a> in Nottingham, UK in Septempter 2004</p>
         <p><a href="papers/final/ubicomp2004.pdf">
@@ -333,8 +472,8 @@ I'm grateful to
       </td>
       <td></td>
       <td>
-        <p>Presented at 
-        <a href="http://netgames2004.cse.ogi.edu/">NetGames 2004</a>, in conjunction with ACM
+        <p>Presented at
+        <a href="http://www.informatik.uni-trier.de/~ley/db/conf/netgames/netgames2004.html">NetGames 2004</a>, in conjunction with ACM
         <a href="http://www.acm.org/sigs/sigcomm/sigcomm2004/">SIGCOMM 2004</a>, August 2004</p>
         <p><a href="papers/final/netgames2004.pdf">
         [pdf: 1.3MB]</a></p>
@@ -346,19 +485,19 @@ I'm grateful to
     <tr>
       <td>2003&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
         <p><i>Context-Aware Computing with Sound</i></p>
       </td>
       <td></td>
       <td>
-        <p>This paper describes simple techniques for 
+        <p>This paper describes simple techniques for
           <i>audible</i> data communication and shows how these channels,
           although low bandwidth, may be used to create cheap context-aware
           applications.
-          Presented at 
+          Presented at
           <a href="http://ubicomp.org/ubicomp2003/">
-          The Fifth International Conference on Ubiquitous Computing (UBICOMP) 
+          The Fifth International Conference on Ubiquitous Computing (UBICOMP)
           2003</a> in Seattle, Washington.
         </p>
         <p><a href="papers/final/ubicomp2003.pdf">
@@ -376,14 +515,15 @@ I'm grateful to
       </td>
       <td></td>
       <td>
-        <p>Invited contribution to Jul/Aug 2003 IEEE Transactions in Knowledge and Data Engineering (<a href="http://www.computer.org/tkde/">TKDE</a>)</p>
+        <p>Invited contribution to Jul/Aug 2003 IEEE Transactions in Knowledge and Data Engineering (<a href="http://www.computer.org/portal/web/tkde/">TKDE</a>)</p>
+        <p><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=1208998">[IEEE]</a></p>
       </td>
     </tr>
 
     <tr>
       <td>2003&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>A. Madhavapeddy, A. Mycroft, D. Scott, R. Sharp</p>
         <p><i>The Case For Abstracting Security Policies</i></p>
       </td>
@@ -403,24 +543,24 @@ I'm grateful to
     <tr>
       <td>2003&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>D. Scott, A. Beresford, A. Mycroft</p>
         <p><i>Spatial Policies for Sentient Mobile Applications</i></p>
       </td>
       <td></td>
       <td>
-        <p>This paper describes a runtime for implementing 
+        <p>This paper describes a runtime for implementing
           a Spatial Policy system for sentient applications built from Mobile Agents
           Presented at <a href="http://www.labs.agilent.com/policy2003/">IEEE Policy 2003</a>.</p>
-        <p><a href="papers/final/policy.ps.gz">[gzipped ps: 76kB]</a>&nbsp;<a href="papers/final/policy2003.pdf">
-        [pdf: 132kB]]</a></p>
+        <p><a href="papers/final/policy2003.pdf">
+        [pdf: 132kB]</a></p>
       </td>
     </tr>
 
     <tr>
       <td>2003&nbsp;&nbsp;</td>
       <td width="50%">
- 
+
         <p>D. Scott, A. Beresford, A. Mycroft</p>
         <p><i>Spatial Security Policies for Mobile Agents in a Sentient Computing environment</i></p>
       </td>
@@ -432,7 +572,7 @@ I'm grateful to
            <a href="papers/final/fase2003.pdf">[pdf: 170Kb]</a></p>
       </td>
     </tr>
-    
+
     <tr>
       <td>2002&nbsp;&nbsp;</td>
       <td width="50%">
@@ -444,7 +584,7 @@ I'm grateful to
       <td></td>
       <td>
         <p><a href="http://www.computer.org/internet/">IEEE Internet Computing</a> Magazine in the Nov/Dec 2002 special issue on <a href="http://dsonline.computer.org/0211/f/w6gei.htm">The Technology of Trust</a></p>
-        <p><a href="developingsecure.pdf">[pdf: 560kb]</a></p>
+        <p><a href="papers/developingsecure.pdf">[pdf: 560kb]</a></p>
       </td>
     </tr>
 
@@ -462,14 +602,12 @@ I'm grateful to
         <p>Proceedings of the 11th International World-Wide Web conference
         (<a href="http://www2002.org/">WWW2002</a>) where
         it also received the "Best Paper" award.</p>
-        <p><a href="abstracting.ps.gz">[gzipped ps: 91Kb]</a>;
-              <a href="abstracting.pdf">[pdf: 180Kb]</a>
-              <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/slides/">[slides]</a>
-              <a href="http://citeseer.nj.nec.com/508874.html">[citeseer]</a>
+        <p><a href="papers/final/abstracting.pdf">[pdf: 180Kb]</a>
+              <a href="http://web.archive.org/web/20041010090529/http://www-lce.eng.cam.ac.uk/~djs55/swap/slides/">[slides]</a>
         </p>
       </td>
     </tr>
-    
+
     <tr>
       <td>2001&nbsp;&nbsp;</td>
       <td width="50%">
@@ -479,11 +617,9 @@ I'm grateful to
       </td>
       <td></td>
       <td>
-        <p>Proceedings of the 9th International Python Conference (<a href="http://www.python9.org/">Python9</a>), March 2001
+        <p>Proceedings of the 9th International Python Conference <a href="https://mail.python.org/pipermail/python-list/attachments/20010123/a55ada57/attachment.pdf">Python9</a>), March 2001
       </p>
-      <p><a href="http://www-lce.eng.cam.ac.uk/~jnw22/papers/koala.ps.gz">[gzipped ps]</a> 
-              <a href="http://citeseer.nj.nec.com/weatherall01mobile.html">[citeseer]</a>
-         </p>
+      <p><a href="papers/final/python2001.pdf">[pdf: 800KiB]</a></p>
       </td>
 
     </tr>
@@ -511,21 +647,21 @@ I'm grateful to
     <tr>
       <td><p>2004</p></td>
       <td width="50%">
- 
+
         <p>E. Toye, A. Madhavapeddy, R. Sharp, D. Scott, A. Blackwell, E. Upton</p>
         <p><i>Using camera-phones to interact with context-aware mobile services</i></p>
       </td>
       <td></td>
       <td>
         <p>Technical report UCAM-CL-TR-609, University of Cambridge</p>
-        <p><a href="http://www.cl.cam.ac.uk/TechReports/UCAM-CL-TR-609.html">[pdf: 0.4 MB]</a></p>
+        <p><a href="http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-609.pdf">[pdf: 0.4MiB]</a> <a href="http://www.cl.cam.ac.uk/TechReports/UCAM-CL-TR-609.html">[UCAM-CL-TR-609]</a></p>
       </td>
     </tr>
 
     <tr>
       <td>2002</td>
       <td width="50%">
- 
+
         <p>D. Scott, R. Sharp</p>
         <p><i>SPECTRE: A Tool for Inferring, Specifying and
         Enforcing Web-Security Policies</i></p>
@@ -534,8 +670,7 @@ I'm grateful to
       <td>
         <p>This paper describes the implementation of the dynamic
         policy enforcement tool called "SPECTRE"</p>
-        <p><a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/spectre.ps.gz">[gzipped ps: 107Kb]</a>
-           <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/spectre.pdf">[pdf: 145Kb]</a></p>
+        <p><a href="papers/spectre.pdf">[pdf: 145Kb]</a></p>
       </td>
     </tr>
 
@@ -550,8 +685,7 @@ I'm grateful to
       <td>
         <p>This poster describes the overall aim of the SWAP
         Project</p>
-        <p><a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/poster.ps.gz">[gzipped ps: 100Kb]</a>
-               <a href="http://www-lce.eng.cam.ac.uk/~djs55/swap/poster.pdf">[pdf: 125Kb]</a></p>
+        <p><a href="papers/swap.pdf">[pdf: 125Kb]</a></p>
       </td>
     </tr>
 
@@ -567,17 +701,17 @@ I'm grateful to
     <tr>
       <td>2003</td>
       <td width="50%">
- 
+
         <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
         <p><i>Audio Notes</i></p>
       </td>
       <td></td>
       <td>
         <p>This video demonstrates how audionotes (special sequences of DTMF tones) may be used to store and retrieve documents via standard audio recording equipment.</p>
-        <p><a href="videos/audionetworking/divx/audionotes.avi">[DivX AVI: 11Mb]</a></p>
+        <p><a href="http://www.cl.cam.ac.uk/research/srg/netos/uid/m/audionotes.mpg">[MPEG: 20MiB]</a></p>
       </td>
     </tr>
-    
+
     <tr>
       <td>2003</td>
       <td>
@@ -588,24 +722,24 @@ I'm grateful to
       <td></td>
       <td>
         <p>This video demonstrates how a capability to access a resource may be sent as a melodic ring tone via SMS to a mobile phone handset.</p>
-        <p><a href="videos/audionetworking/divx/authentication.avi">[DivX AVI: 8.8Mb]</a></p>
+        <p><a href="http://www.cl.cam.ac.uk/research/srg/netos/uid/m/authentication.mpg">[MPEG: 14MiB]</a></p>
       </td>
     </tr>
 
     <tr>
       <td>2003</td>
       <td width="50%">
- 
+
         <p>A. Madhavapeddy, D. Scott, R. Sharp</p>
         <p><i>Room-grained Location</i></p>
       </td>
       <td></td>
       <td>
         <p>This video demonstrates how audio beacons operating at approximately 21kHz (imperceptible to humans) may be used to easily infer room-grained location.</p>
-        <p><a href="videos/audionetworking/divx/location.avi">[DivX AVI: 2.7Mb]</a></p>
+        <p><a href="http://www.cl.cam.ac.uk/research/srg/netos/uid/m/location.mpg">[MPEG: 4.6MiB]</a></p>
       </td>
     </tr>
-    
+
     <tr>
       <td>2003</td>
       <td>
@@ -616,7 +750,7 @@ I'm grateful to
       <td></td>
       <td>
         <p>This video demonstrates how document references may be easily transmitted across telephone networks as sequences of DTMF tones.</p>
-        <p><a href="videos/audionetworking/divx/telephone.avi">[DivX AVI: 7.5Mb]</a></p>
+        <p><a href="http://www.cl.cam.ac.uk/research/srg/netos/uid/m/telephone.mpg">[MPEG: 13MiB]</a></p>
       </td>
     </tr>
 
@@ -646,4 +780,3 @@ I'm grateful to
 
   </body>
 </html>
-
