@@ -6,166 +6,81 @@
     <meta name="description" content="Dave Scott's homepage">
     <meta name="author" content="Dave Scott">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-      }
-    </style>
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css" />
   </head>
 
-  <body>
+  <body class="terminal">
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">dave.recoil.org</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-<!--
-            <li><a href="about.html">About</a></li>
--->
-            <li><a href="research.html">Research</a></li>
-<!--
-            <li><a href="personal.html">Personal</a></li>
-            <li><a href="#gallery">Gallery</a></li>
--->
-            <li><a href="blog/index.html">Blog</a></li>
-<!--
-            <li><a href="notes/index.html">Notes</a></li>
--->
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
+    <div class="container">
+      <div class="terminal-nav">
+        <header class="terminal-logo">
+          <div class="logo terminal-prompt"><a href="/" class="no-style">Dave Scott</a></div>
+        </header>
+      <nav class="terminal-menu">
+        <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+          <li><a href="/" class="menu-item"><span>Home</span></a><meta property="position"></li>
+          <li property="itemListElement" typeof="ListItem"><a href="/blog.html" property="item" typeof="WebPage" class="menu-item"><span property="name">Blog</span></a><meta property="position" content="1"></li>
+          <li property="itemListElement" typeof="ListItem"><a href="/research.html" property="item" typeof="WebPage" class="menu-item"><span property="name">Research</span></a><meta property="position" content="2"></li>
+        </ul>
+      </nav>
     </div>
 
     <div class="container">
+      <!-- I definitely didn't steal Anil's CSS for this. Look it floats to the opposite side! -->
+      <img class="noicon" style="width: 15%; float:right; margin-right: 10px" src="djs55.png" width="128px" alt="Photo of Dave Scott"/>
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>David Scott</h1>
 <p>
 
-I work for
-<a href="http://www.docker.com/">Docker</a> on the
-<a href="https://blog.docker.com/2016/03/docker-for-mac-windows-beta/">
-Docker for Mac and Windows</a>
-project.
-Previously I worked for
-<a href="http://www.citrix.com/">Citrix</a>, making
-virtualisation products based on the open source
-<a href="http://www.cl.cam.ac.uk/Research/SRG/netos/xen/">Xen
-hypervisor</a>.
-Before Citrix I was a consultant research scientist at
-<a href="http://www.fraserresearch.org/">Fraser Research</a>. Earlier still
-I finished a PhD in the
+  I work for
+<a href="https://blog.docker.com/2016/03/docker-for-mac-windows-beta/">Docker</a>,
+bringing the benefits of containers to developers everywhere.
+Previously I worked for Unikernel Systems
+(<a href="https://techcrunch.com/2016/01/21/docker-acquires-unikernel-systems-as-it-looks-beyond-containers/">techcrunch</a>),
+improving application performance and security using type-safe languages and virtual library operating systems
+(<a href="https://queue.acm.org/detail.cfm?id=2566628">ACM queue</a>,
+<a href="https://www.usenix.org/system/files/conference/nsdi15/nsdi15-paper-madhavapeddy.pdf">USENIX</a>).
+
+</p>
+
+<p>
+I enjoy working on open-source projects (e.g. <a href="https://xenproject.org/">Xen</a>, <a href="https://mirage.io/">Mirage OS</a>)
+and commercial software (e.g.
+<a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a>,
+<a href="https://www.xenserver.com/">XenServer</a>).
+I have a PhD from the
 <a href="http://www.cl.cam.ac.uk">University of Cambridge Computer Laboratory</a>
-and I was co-founder of
-<strong>High Energy Magic</strong>, a company
-which produced mobile phone software to recognise printed visual symbols,
+and was a consultant research scientist at
+<a href="http://www.fraserresearch.org/">Fraser Research</a> in Princeton.
+While teaching and studying, I co-founded <strong>High Energy Magic</strong> and shipped mobile apps which could
+interact with printed visual symbols 
 known as <a
 href="http://www.cl.cam.ac.uk/Research/SRG/netos/uid/spotcode.html">SpotCodes</a>.
 </p>
 
-<a class="btn btn-primary btn-large"
-   href="http://uk.linkedin.com/pub/david-scott/1/a52/282">
-      View LinkedIn profile
-</a>
-<a class="btn btn-primary btn-large"
-   href="https://github.com/djs55">
-      View GitHub profile
-</a>
-<a class="btn btn-primary btn-large"
-   href="https://twitter.com/mugofsoup">
-      Follow on twitter
-</a>
 </div>
 
+<div class="container">
 <h2>Timeline</h2>
 <p>
 <img src="timeline.png"/>
 </p>
 
-<div class="hero-unit">
-<div class="row-fluid">
-<div class="span4">
-<h2>Email</h2>
-            <p>
-            <address>
-            <strong>Work email</strong><br />
-            <a mailto="">dave.scott(AT)docker.com</a><br />
-            <strong>Personal email</strong><br />
-            <a mailto="">dave(AT)recoil.org</a><br />
-            </address>
-            </p>
-<!--
-      </div>
--->
-</div>
 
-<div class="span4">
-<h2>Address</h2>
-            <p>
-            <address>
-            <strong>Work address</strong><br />
-            Docker,<br />
-            Bateman House,<br />
-            82-88 Hills Rd,<br />
-            Cambridge, UK<br />
-            </address>
-            </p>
-<!--
-      </div>
--->
-</div>
-<div class="span4">
-<h2>Social media</h2>
-<ul>
-<li><a href="http://uk.linkedin.com/pub/david-scott/1/a52/282">LinkedIn</a>
-<li><a href="https://github.com/djs55">GitHub</a>
-<li><a href="https://twitter.com/mugofsoup" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @mugofsoup</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}
-</ul>
+<h2>Contact</h2>
+  <p>
+  <address>
+  <a mailto="">dave.scott(AT)docker.com</a><br />
+  <a mailto="">dave(AT)recoil.org</a><br />
+  <a href="http://uk.linkedin.com/pub/david-scott/1/a52/282">
+    LinkedIn
+  </a> <br />
+  <a href="https://github.com/djs55">
+    GitHub
+  </a> <br />
+</address>
+</p>
 
 </div>
-</div>
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap-transition.js"></script>
-    <script src="bootstrap/js/bootstrap-alert.js"></script>
-    <script src="bootstrap/js/bootstrap-modal.js"></script>
-    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="bootstrap/js/bootstrap-tab.js"></script>
-    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="bootstrap/js/bootstrap-popover.js"></script>
-    <script src="bootstrap/js/bootstrap-button.js"></script>
-    <script src="bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
 
   </body>
 </html>
